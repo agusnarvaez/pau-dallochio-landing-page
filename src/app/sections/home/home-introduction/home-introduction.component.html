@@ -1,0 +1,27 @@
+<section class="introduction" [ngClass]="show ? 'show' : ''">
+    <!-- @if (show) {
+        <h3>Conoce menos</h3>
+    }else{
+        <h3>Conoce más</h3>
+    } -->
+
+    <div class="introduction-text" [ngClass]="show ? 'show' : ''">
+        <p>
+            Somos una fábrica de implantes traumatológicos líder que destaca por su compromiso con la calidad e innovación en la fabricación, comercialización y distribución de productos.
+        </p>
+        <p>
+            Equipada con tecnología avanzada y materia prima de estándares internacionales que garantiza la seguridad y confiabilidad de los implantes.
+        </p>
+        <p>
+            Nuestro enfoque en el desarrollo constante y calidad es lo que nos distingue en el campo de la traumatología.
+        </p>
+        <p>
+            Establecemos una estrecha colaboración con destacados traumatólogos con el fin de diseñar y fabricar productos a medida que se ajusten a las necesidades específicas de cada paciente.
+        </p>
+        <p>
+            Nuestro compromiso principal es brindar un completo apoyo al equipo quirúrgico, ofreciendo todo nuestro conocimiento y recursos a disposición.
+        </p>
+    </div>
+    @if (!show) {  <h3>Conocé más</h3> }
+    <div class="down-arrow" [ngClass]="show ? 'show' : ''" (click)="toggleShow()"></div>
+</section>

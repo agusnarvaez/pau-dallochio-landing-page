@@ -1,0 +1,61 @@
+.info-section > div{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-section div ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: space-between;
+    font-size: 2rem;
+}
+
+.info-section div ul li{
+    list-style: none;
+    font-weight: 500;
+    display: flex;
+    align-items: stretch;
+
+}
+
+.info-section div ul li i{
+    color: var(--primary-color);
+    margin-right: 1rem;
+    height: 100%;
+}
+
+.info-section div ul li span{
+    line-height: 2rem;
+}
+
+.info-section img{
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+
+@media (min-width: 530px) {
+
+    .info-section img{
+        width: 30%;
+    }
+    .info-section > div{
+        order: 10;
+        width: 60%;
+    }
+}
+
+@media (min-width: 950px) {
+
+    .info-section div ul li span{
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+    }
+
+    .info-section > div{
+        gap: 1rem;
+    }
+}

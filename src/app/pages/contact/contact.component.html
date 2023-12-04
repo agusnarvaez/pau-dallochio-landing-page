@@ -1,0 +1,75 @@
+<section>
+
+    <h2>ESTAMOS PARA AYUDARTE</h2>
+
+    <form #myForm="ngForm">
+
+        <div class="input-container">
+            <label for="contactName">
+                Nombre y apellido
+            </label>
+                <input
+                    type='text'
+                    placeholder="Juan Perez"
+                    id='contactName'
+                    [(ngModel)]="fullName"
+                    name="fullName"
+                    />
+        </div>
+
+        <div class="input-container">
+            <label for="contactEmail">
+                Email
+            </label>
+                <input
+                    type='text'
+                    placeholder="juan.perez@hotmail.com"
+                    id='contactEmail'
+                    [(ngModel)]="email"
+                    name="email"
+                    />
+        </div>
+
+        <div class="input-container">
+            <label for="contactPhone">
+                Teléfono
+            </label>
+                <input
+                    type='text'
+                    placeholder="11 1234 5678"
+                    id='contactPhone'
+                    [(ngModel)]="phone"
+                    name="phone"
+                    />
+        </div>
+
+
+        <div class="input-container">
+            <label for="contactSubject">Motivo</label>
+            <select id="contactSubject" name="subject" [(ngModel)]="subject">
+                <option value="" disabled selected>Seleccione un motivo</option>
+                <option value="Consulta General">Consulta general</option>
+                <option value="Atencion al cliente">Atención al cliente</option>
+                <option value="Distribuidores">Distribuidores</option>
+            </select>
+        </div>
+
+        <div class="input-container">
+            <label for="contactMessage">
+                Mensaje
+            </label>
+                <textarea
+                    placeholder="Escribe tu mensaje"
+                    id="contactMessage"
+                    [(ngModel)]="message"
+                    name='message'
+                    ></textarea>
+        </div>
+
+        <app-button (click)="onSubmit()"text="Enviar" ></app-button>
+
+
+    </form>
+    <img src="../../../assets/backgrounds/contact.jpeg">
+
+</section>

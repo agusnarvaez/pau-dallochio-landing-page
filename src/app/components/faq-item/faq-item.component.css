@@ -1,0 +1,96 @@
+.faq-item{
+    width: 100%;
+    display: flex;
+    padding: 2% 0;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+
+.faq-item h3{
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    width: 90%;
+    padding: 5% 2% 5% 0;
+
+}
+.faq-item div{
+    width: 10%;
+    position: relative;
+}
+.faq-item div::after,
+.faq-item div::before{
+    content: '';
+    display: block;
+    width: 70%;
+    height: 4px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: 50%;
+    right: 0;
+    transition: transform 0.3s ease-in-out;
+}
+.faq-item div::after{
+    transform: rotate(90deg);
+}
+.faq-item.show div::before{
+    transform: rotate(45deg);
+}
+.faq-item.show div::after{
+    transform: rotate(135deg);
+}
+.faq-item p{
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: 400;
+    overflow: hidden;
+    max-height: 0;
+    width: 100%;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.faq-item.show p{
+    max-height: 500px;
+}
+
+@media (min-width: 530px) {
+    .faq-item div::after,
+    .faq-item div::before{
+        width: 40%;
+    }
+    .faq-item h3{
+        font-size: 2.5rem;
+    }
+    .faq-item p{
+        font-size: 2.5rem;
+
+    }
+
+}
+
+@media (min-width: 950px) {
+    .faq-item div::after,
+    .faq-item div::before{
+        width: 30%;
+    }
+    .faq-item{
+        padding: 3rem 0;
+    }
+    .faq-item h3{
+        font-size: 4rem;
+        line-height: 4.5rem;
+        padding: 2rem 2rem 2rem 0;
+    }
+    .faq-item p{
+        font-size: 3rem;
+        line-height: 3rem;
+
+    }
+    .faq-item.show p{
+        max-height: 1000px;
+    }
+}
