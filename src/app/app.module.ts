@@ -1,8 +1,10 @@
 //  Módulos angular
 import { NgModule } from '@angular/core'
-import { AppComponent } from './app.component'
-/* import { AppRoutingModule } from './app-routing.module' */
-
+import { AppRoutingModule } from './app-routing.module'
+import { RouterModule, RouterOutlet } from '@angular/router'
+import { BrowserModule } from '@angular/platform-browser'
+import { NgOptimizedImage } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
 // Componentes
 
 // Páginas
@@ -10,15 +12,17 @@ import { AppComponent } from './app.component'
 
 @NgModule({
   declarations: [
+
   ],
   imports: [
-    AppComponent
-    /* FormsModule,
-    BrowserModule,
     AppRoutingModule,
     RouterOutlet,
-    RouterModule,
+    BrowserModule,
     HttpClientModule,
+    NgOptimizedImage,
+    RouterModule,
+    NgModule
+    /* FormsModule,
     NgOptimizedImage */
   ],
   providers: [],

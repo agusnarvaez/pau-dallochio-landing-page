@@ -1,1 +1,184 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-color: #D88C2B;
+    --secondary-color: #D9D9D9;
+    --tertiary-color: #C4C4C4;
+    --tertiary-color-darker: #767676;
+    --dark-button-color: #212427;
+    --danger-color: #ff0000;
+    --success-color: #00ff00;
+    --warning-color: #ffff00;
+    --info-color: #0000ff;
+    --light-color: #FFF;
+    --primary-font: 'Montserrat', sans-serif;
+    --secondary-font: 'Raleway', sans-serif;
+    --primary-font-size: 1.6rem;
+    --secondary-font-size: 1.4rem;
+    --primary-border-radius: 1rem;
+    --secondary-border-radius: 0.5rem;
+    --primary-border: 0.2rem solid var(--primary-color);
+    --primary-border_lighter: 0.2rem solid var(--primary-color-lighter);
+    --primary-border_gray: 0.2rem solid #d3d3d3;
+    --secondary-border: 0.1rem solid var(--secondary-color);
+    --tertiary-border: 0.5rem;
+    --primary-padding: 1rem;
+    --secondary-padding: 0.5rem;
+    --primary-margin: 1rem;
+    --secondary-margin: 0.5rem;
+    --primary-shadow: 0.1rem 0.1rem 0.5rem black;
+    --secondary-shadow: 0.1rem 0.1rem 0.5rem var(--secondary-color);
+    --primary-transition: all 0.3s ease-in-out;
+    --ambar-color: #ac977b;
+    --icon-yellow-color: #efb810;
+}
+
+* {
+    font-family: var(--primary-font);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    overflow-x: hidden;
+}
+
+body{
+    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+main{
+    min-height: 80vh;
+    position: relative;
+    background-color: var(--secondary-color);
+}
+main section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+app-root{
+    position: relative;
+}
+
+p,
+span,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+address{
+    font-size: 2rem;
+}
+
+a{
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+
+
+.info-section{
+    justify-content: space-between;
+    padding: 5%;
+    flex-direction: column;
+    gap: 3rem;
+    min-height: 50vh;
+}
+
+.info-section > div{
+    width: 100%;
+    height: 100%;
+}
+
+.info-section h2{
+    font-size: 3rem;
+    line-height: 3.5rem;
+    font-weight: 600;
+}
+
+.info-section p{
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+
+
+@media (min-width: 530px) {
+
+    h1{
+        font-size: 3rem;
+    }
+
+    h2{
+        font-size: 2.3rem;
+    }
+
+    h3{
+        font-size: 2rem;
+    }
+
+    h4{
+        font-size: 1.5rem;
+    }
+
+    h5{
+        font-size: 1.3rem;
+    }
+
+    h6{
+        font-size: 1.1rem;
+    }
+
+    .info-section{
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 40vh;
+    }
+
+    .info-section h2{
+        font-size: 5rem;
+        font-weight: 700;
+        display: block;
+    }
+    .info-section p{
+        font-size: 2.5rem;
+        display: block;
+    }
+}
+
+
+
+@media (min-width: 950px) {
+
+    .info-section{
+        min-height: 30vh;
+        padding: 3%;
+    }
+
+    .info-section h2{
+        font-size: 5rem;
+        line-height: 5rem;
+/*         margin-bottom: 1rem; */
+
+    }
+    .info-section p{
+        font-size: 2.5rem;
+        line-height: 3.2rem;
+    }
+}
+
+

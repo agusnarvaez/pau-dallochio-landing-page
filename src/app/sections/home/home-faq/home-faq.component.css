@@ -1,0 +1,22 @@
+.faq-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 5%;
+}
+.faq-section h2{
+    font-size: 3rem;
+    line-height: 3.5rem;
+    font-weight: 600;
+}
+.faq-section app-faq-item{
+    border-bottom: 1px solid var(--tertiary-color);
+}
+.faq-section app-faq-item:last-child{
+    border-bottom: none;
+}
+
+.faq-item.last-item div{
+    border-bottom: none;
+}
