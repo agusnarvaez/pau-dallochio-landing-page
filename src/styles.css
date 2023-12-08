@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --primary-color: #D88C2B;
-    --secondary-color: #D9D9D9;
-    --tertiary-color: #C4C4C4;
-    --tertiary-color-darker: #767676;
+    --primary-color: #B80E3B;
+    --secondary-color: #FFFFF0;
+    --tertiary-color: #D2B48C;
+    --tertiary-color-darker: #bba07d;
     --dark-button-color: #212427;
     --danger-color: #ff0000;
     --success-color: #00ff00;
     --warning-color: #ffff00;
     --info-color: #0000ff;
-    --light-color: #FFF;
+    --light-color: #FFFFF0;
     --primary-font: 'Montserrat', sans-serif;
     --secondary-font: 'Raleway', sans-serif;
     --primary-font-size: 1.6rem;
