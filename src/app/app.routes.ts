@@ -4,11 +4,15 @@ import { ProductsComponent } from './pages/products/products.component'
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component'
 import { ContactComponent } from './pages/contact/contact.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
-
+import { HowWeWorkComponent } from './pages/how-we-work/how-we-work.component'
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'como-trabajamos',
+    component: HowWeWorkComponent
   },
   {
     path: 'catalogo',
