@@ -1,0 +1,32 @@
+section{
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 5%;
+    gap: 1.5rem;
+}
+
+section h2{
+    font-size: 1.8rem;
+    line-height: 2rem;
+    width: 100%;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+@media (min-width: 530px) {
+    section h2{
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+}
+
+@media (min-width: 950px) {
+    section{
+        gap: 2.5rem;
+    }
+
+    section h2{
+        font-size: 3rem;
+        line-height: 3.5rem;
+    }
+}
