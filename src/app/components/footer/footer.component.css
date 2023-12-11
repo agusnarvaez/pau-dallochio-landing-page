@@ -11,7 +11,7 @@ footer{
 }
 footer > img{
     width: 45%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 
