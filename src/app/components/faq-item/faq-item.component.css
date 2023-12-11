@@ -70,6 +70,7 @@
     .faq-item div::after,
     .faq-item div::before{
         width: 40%;
+        height: 3px;
     }
     .faq-item h3{
         font-size: 2rem;
@@ -89,6 +90,7 @@
     .faq-item div::after,
     .faq-item div::before{
         width: 30%;
+        height: 4px;
     }
 
     .faq-item h3{
