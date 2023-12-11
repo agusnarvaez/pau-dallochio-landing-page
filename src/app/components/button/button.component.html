@@ -1,7 +1,7 @@
 @if(isLink()){
     <a
         class="btn {{icon}}"
-        [ngClass]="{'btn-secondary': isSecondary}"
+        [ngClass]="{'btn-secondary': isSecondary()}"
         [routerLink]="link"
     >
         {{ text }}
