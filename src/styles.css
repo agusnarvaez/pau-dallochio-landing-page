@@ -54,6 +54,9 @@ main{
     min-height: 80vh;
     position: relative;
     background-color: var(--secondary-color);
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
 }
 main section{
     width: 100%;
