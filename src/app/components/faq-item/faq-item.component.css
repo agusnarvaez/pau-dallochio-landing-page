@@ -1,21 +1,24 @@
 .faq-item{
     width: 100%;
     display: flex;
-    padding: 2% 0;
+    padding: 2% 7%;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
     overflow: hidden;
+    border: 0.5px solid var(--primary-color);
+    border-radius: 0.3rem;
 }
 
 
 .faq-item h3{
-    font-size: 2rem;
-    line-height: 2.5rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
     width: 90%;
-    padding: 5% 2% 5% 0;
+    padding: 5% 0% 5% 0;
 
 }
 .faq-item div{
@@ -27,9 +30,10 @@
     content: '';
     display: block;
     width: 70%;
-    height: 4px;
+    height: 2px;
     background-color: var(--primary-color);
     position: absolute;
+    border-radius: 0.5rem;
     bottom: 50%;
     right: 0;
     transition: transform 0.3s ease-in-out;
@@ -44,8 +48,9 @@
     transform: rotate(135deg);
 }
 .faq-item p{
-    font-size: 2rem;
-    line-height: 2.2rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--dark-color);
     font-weight: 400;
     overflow: hidden;
     max-height: 0;
@@ -58,39 +63,41 @@
 }
 
 @media (min-width: 530px) {
+    .faq-item{
+        border-radius: 0.5rem;
+        padding: 2% 5%;
+    }
     .faq-item div::after,
     .faq-item div::before{
         width: 40%;
     }
     .faq-item h3{
-        font-size: 2.5rem;
+        font-size: 2rem;
+        line-height: 2.5rem;
     }
     .faq-item p{
-        font-size: 2.5rem;
-
+        font-size: 1.5rem;
+        line-height: 2rem;
     }
 
 }
 
 @media (min-width: 950px) {
+    .faq-item{
+        border-radius: 1rem;
+    }
     .faq-item div::after,
     .faq-item div::before{
         width: 30%;
     }
-    .faq-item{
-        padding: 3rem 0;
-    }
+
     .faq-item h3{
-        font-size: 4rem;
-        line-height: 4.5rem;
-        padding: 2rem 2rem 2rem 0;
+        font-size: 2.5rem;
+        line-height: 3rem;
     }
     .faq-item p{
-        font-size: 3rem;
-        line-height: 3rem;
+        font-size: 2rem;
+        line-height: 2.5rem;
 
-    }
-    .faq-item.show p{
-        max-height: 1000px;
     }
 }
