@@ -4,6 +4,7 @@ import { HomeBannerComponent } from '../../sections/home/home-banner/home-banner
 import { HomeFaqComponent } from '../../sections/home/home-faq/home-faq.component'
 import { HomeStudioComponent } from '../../sections/home/home-studio/home-studio.component'
 import { HomeReviewsComponent } from '../../sections/home/home-reviews/home-reviews.component'
+import { HomeContactComponent } from '../../sections/home/home-contact/home-contact.component'
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import { HomeReviewsComponent } from '../../sections/home/home-reviews/home-revi
     HomeBannerComponent,
     HomeStudioComponent,
     HomeReviewsComponent,
-    HomeFaqComponent
+    HomeFaqComponent,
+    HomeContactComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
