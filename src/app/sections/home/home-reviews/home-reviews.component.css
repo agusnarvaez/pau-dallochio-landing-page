@@ -1,0 +1,130 @@
+section{
+    padding: 5% 3% 10% 3%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+    .review-container {
+        width: 90%;
+        border: 1px solid var(--tertiary-color-darker);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        position: relative;
+    }
+    .review-container_right{
+        align-self: flex-end;
+    }
+    .review-container::after {
+        content: '';
+        position: absolute;
+        bottom: -20px; /* Ajusta esta posición como necesites */
+        left: 5%; /* Ajusta para mover la cola izquierda-derecha */
+        border-width: 10px;
+        border-radius: 5px;
+        border-style: solid;
+        border-color: var(--tertiary-color-darker) transparent transparent transparent;
+        /* Esto crea la 'cola': un triángulo con el borde inferior del mismo color que el cuadro de diálogo */
+    }
+
+    .review-container::before {
+        content: '';
+        position: absolute;
+        bottom: -19px; /* Ajusta esta posición como necesites */
+        left: 5%; /* Ajusta para mover la cola izquierda-derecha */
+        border-width: 10px;
+        z-index: 50;
+        border-style: solid;
+        border-color: var(--secondary-color) transparent transparent transparent;
+        /* Esto crea la 'cola': un triángulo con el borde inferior del mismo color que el cuadro de diálogo */
+    }
+
+    .review-container_right::before,
+    .review-container_right::after{
+        left: auto;
+        right: 5%;
+    }
+
+    .review-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .review-container_right .review-header{
+        flex-direction: row-reverse;
+    }
+
+    .review-author {
+        font-weight: bold;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        color: var(--tertiary-color-darker);
+    }
+
+    .review-stars {
+        display: flex;
+        align-items: center;
+        color: var(--primary-color); /* Color amarillo de las estrellas */
+        font-size: 1.5rem; /* Ajusta el tamaño de las estrellas */
+    }
+
+    .review-body p {
+        font-size: 0.9rem;
+        padding: 1rem 0;
+        color: var(--dark-color);
+    }
+
+    .review-footer {
+        font-size: 0.8rem;
+        color: #777;
+        margin-bottom: 5px;
+    }
+
+    .review-source {
+        font-size: 0.7rem;
+        text-align: left;
+        color: #999;
+    }
+    .review-container_right .review-source{
+        text-align: right;
+    }
+
+    @media (min-width: 530px) {
+        .review-container {
+            width: 70%;
+        }
+        .review-author {
+            font-size: 1.6rem;
+        }
+        .review-stars {
+            font-size: 1.7rem;
+        }
+        .review-body p {
+            font-size: 1.3rem;
+        }
+        .review-source {
+            font-size: 1rem;
+        }
+    }
+
+    @media (min-width: 950px) {
+        .review-container {
+            width: 60%;
+        }
+
+        .review-author {
+            font-size: 2rem;
+        }
+        .review-stars {
+            font-size: 2rem;
+        }
+        .review-body p {
+            font-size: 1.6rem;
+        }
+        .review-source {
+            font-size: 1.1rem;
+        }
+
+    }
+
+
