@@ -1,0 +1,94 @@
+section{
+    width: 100%;
+    padding: 5% 3% 5% 3%;
+    min-height: 55vh;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.home-studio-text{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+section .home-studio-text p{
+    width: 100%;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    z-index: 50;
+}
+
+.home-studio-slogan_mobile{
+    width: 60%;
+    object-fit: contain;
+}
+.home-studio-slogan_desktop{
+    display: none;
+}
+
+.home-studio-avatar{
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50rem;
+}
+
+
+@media (min-width: 530px) {
+    section{
+        min-height: 70vh;
+    }
+
+    section .home-studio-text p{
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    .home-studio-slogan_mobile{
+        width: 50%;
+    }
+
+    .home-studio-avatar{
+        width: 170px;
+        height: 170px;
+    }
+
+}
+
+@media (min-width: 950px) {
+    section{
+        padding: 5% 3%;
+        align-items: center;
+    }
+    .home-studio-slogan_mobile{
+        display: none;
+    }
+    .home-studio-slogan_desktop{
+        display: block;
+        width: 100%;
+    }
+
+    .home-studio-text{
+        order: 0;
+        width: 60%;
+    }
+    section .home-studio-text p{
+        font-size: 2.1rem;
+        line-height: 2.5rem;
+    }
+    .home-studio-slogan_desktop{
+        order: 2;
+        width: 100%;
+    }
+    .home-studio-avatar{
+        width: 250px;
+        height: 250px;
+    }
+
+}
