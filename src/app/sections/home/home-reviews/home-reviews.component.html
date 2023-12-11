@@ -1,1 +1,21 @@
-<p>home-reviews works!</p>
+<section>
+    @for (item of reviews; track $index) {
+        <div class="review-container" [ngClass]="{'review-container_right':isOdd($index)}">
+            <div class="review-header">
+                <span class="review-author">{{item.author}}</span>
+                <div class="review-stars">
+                    <!-- Aquí puedes insertar imágenes de estrellas o usar algún tipo de icono de una librería como FontAwesome -->
+                    @for(star of this.makeArray(item.stars); track $index){
+                        ★
+                    }
+                </div>
+            </div>
+            <div class="review-body">
+                <p>{{item.content}}</p>
+            </div>
+
+            <div class="review-source">Review de Google</div>
+        </div>
+    }
+
+</section>
