@@ -1,0 +1,64 @@
+section{
+    padding: 5% 3%;
+    gap: 2rem;
+}
+section .text-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+section h2{
+    font-size: 2.5rem;
+    width: 100%;
+    color: var(--primary-color);
+    text-align: start;
+    font-weight: 500;
+}
+
+section p{
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: start;
+    font-weight: 400;
+}
+
+section img{
+    border-radius: 50rem;
+    width: 200px;
+    height: 200px;
+}
+
+@media (min-width: 530px) {
+    section{
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 3%;
+    }
+    section .text-container{
+        width: 60%;
+    }
+
+
+    section img{
+        width: 250px;
+        height: 250px;
+    }
+}
+
+
+@media (min-width: 950px) {
+    section h2{
+        font-size: 3.5rem;
+    }
+    section p{
+        font-size: 2rem;
+    }
+
+    section img{
+        width: 300px;
+        height: 300px;
+    }
+}
