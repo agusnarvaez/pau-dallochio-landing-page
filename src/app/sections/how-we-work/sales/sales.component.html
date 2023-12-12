@@ -1,0 +1,15 @@
+<section class="">
+    @for (item of info; track $index) {
+        <article>
+            <div class="text-container">
+                <h2>{{item.title}}</h2>
+                <ul>
+                    @for (listItem of item.items; track $index) {
+                        <li><i class="fa-solid fa-circle-check"></i><span>{{listItem}}</span></li>
+                    }
+                </ul>
+            </div>
+            <img src="{{item.img}}" alt="Imagen conceptual de {{item.title}}">
+        </article>
+    }
+</section>
