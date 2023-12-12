@@ -1,0 +1,45 @@
+section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 5%;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.main-filter-btn{
+    width: 30%;
+}
+
+
+.secondary-filter-btn{
+    width: 65%;
+}
+
+.search-btn{
+    width: 30%;
+    height: 100%;
+}
+
+
+@media (min-width: 530px) {
+    section{
+        padding: 5% 10%;
+    }
+    .main-filter-btn{
+        width: 18%;
+    }
+    .search-btn{
+        width: 10%;
+    }
+    .secondary-filter-btn{
+        width: 27%;
+    }
+}
+
+@media (min-width: 950px) {
+    section{
+        padding: 3% 15%;
+    }
+}
