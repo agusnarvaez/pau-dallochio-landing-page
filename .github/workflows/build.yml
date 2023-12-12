@@ -36,7 +36,7 @@ jobs:
       - name: Generate Coverage badge
         uses: demyanets/angular-coverage-badges-action@v1
         with:
-          coverage-summary-path: coverage/bodach-landing-page/coverage-summary.json
+          coverage-summary-path: coverage/pau-dallochio-landing-page/coverage-summary.json
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload coverage reports to Codecov

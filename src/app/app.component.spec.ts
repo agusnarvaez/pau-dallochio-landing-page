@@ -16,7 +16,7 @@ describe('AppComponent', () => {
           useValue: {
             snapshot: {
               data: {
-                title: 'bodach-landing-page'
+                title: 'pau-dallochio-landing-page'
               }
             }
           }
@@ -31,10 +31,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy()
   })
 
-  it(`should have the 'bodach-landing-page' title`, () => {
+  it(`should have the 'pau-dallochio-landing-page' title`, () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.componentInstance
-    expect(app.title).toEqual('bodach-landing-page')
+    expect(app.title).toEqual('pau-dallochio-landing-page')
   })
 
 })

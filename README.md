@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/build.yml/badge.svg)](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/build.yml)
 
-<!-- ![Coverage](./badges/bodach-landing-page/coverage.svg) -->
+<!-- ![Coverage](./badges/pau-dallochio-landing-page/coverage.svg) -->
 
 Este proyecto será la landing page de Paula Dallochio, una corredora inmobiliaria, la cual se encuentra en desarrollo.
 
@@ -10,4 +10,4 @@ Para el desarrollo del frontend de la página, se utilizó Angular, un marco de 
 
 TokkoBrokers, por otro lado, es un CRM para desarrolladores inmobiilarios.
 
-Por lo tanto, la pila de tecnología para la página de Bodach incluye Angular, TypeScript y TokkoBrokers.
+Por lo tanto, la pila de tecnología para la página de Paula Dallochio incluye Angular, TypeScript y TokkoBrokers.

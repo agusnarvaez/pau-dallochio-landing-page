@@ -14,5 +14,5 @@ import { FooterComponent } from "./components/footer/footer.component"
 })
 export class AppComponent {
   show = false
-  title = 'bodach-landing-page'
+  title = 'pau-dallochio-landing-page'
 }
