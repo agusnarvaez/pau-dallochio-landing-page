@@ -2,7 +2,7 @@
 :root {
     --primary-color: #B80E3B;
     --secondary-color: #FFFFF0;
-    --tertiary-color: #D2B48C;
+    --tertiary-color: #9D9480;
     --tertiary-color-darker: #9D9480;
     --dark-button-color: #212427;
     --danger-color: #ff0000;
@@ -145,6 +145,15 @@ a:hover{
     background-color: var(--tertiary-color-darker);
     left: 0;
     position: absolute;
+}
+
+/* Estilos específicos para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--secondary-color);
+    }
+
+    /* Puedes necesitar agregar más estilos específicos para el modo oscuro */
 }
 
 
