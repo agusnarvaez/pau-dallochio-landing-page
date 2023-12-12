@@ -14,11 +14,12 @@ export class ButtonComponent {
   @Input() link: string = ''
   @Input() text: string = ''
   @Input() icon: string = ''
-
+  @Input() class: string = ''
   isSecondary = ()=> this.type === 'secondary'
 
-  buttonType = () => this.isSecondary() ? 'button' : 'submit'
+  isTertiary = ()=> this.type === 'tertiary'
 
+  buttonType = () => this.isSecondary() ? 'button' : 'submit'
 
   isLink = () => this.link !== ''
 }
