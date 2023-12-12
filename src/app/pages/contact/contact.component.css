@@ -1,11 +1,26 @@
-section{
+
+.contact-title{
     width: 100%;
-    height: 100%;
     display: flex;
-    position: relative;
     flex-direction: column;
-    gap: 3rem;
-    padding: 5% 5%;
+    justify-content: center;
+    align-items: center;
+    padding: 5% 3% 5% 3%;
+}
+.contact-slogan{
+    width: 100%;
+    display: flex;
+    object-fit: contain;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 5% 0;
+
+}
+
+.contact-title p{
+    font-size: 1.5rem;
+    text-align: center;
 }
 h2{
     font-size: 3rem;
@@ -25,33 +40,33 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    padding: 0%;
+    padding: 5% 3%;
     gap: 2.3rem;
 }
 
 form .input-container{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
     position: relative;
-    padding: 1.3rem;
-    border: 1px solid var(--dark-button-color);
+    gap: 1rem;
     border-radius: 5px;
     transition: all 0.3s ease-in-out;
-    background-color: var(--tertiary-color);
     z-index: 50;
 }
 
-form .input-container input,
 form .input-container textarea,
-form .input-container select{
+form .input-container select,
+form .input-container input{
     width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
     resize: none;
+    outline: none;
     background-color: transparent;
+    border: 1px solid var(--dark-color);
+    padding: 1.3rem;
+    border-radius: 0.5rem;
 }
 
 form .input-container textarea{
@@ -59,90 +74,142 @@ form .input-container textarea{
 }
 
 form .input-container label{
-    position: absolute;
-    top: -0.8rem;
-    left: 1rem;
+    width: 100%;
+    color: var(--primary-color);
     font-size: 1.2rem;
-    padding: 0 1%;
-    background-color: var(--tertiary-color);
-    border: 1px solid var(--tertiary-color);
     border-radius: 0.5rem;
     transition: all 0.3s ease-in-out;
 }
 
-form .input-container:focus-within{
+form .input-container select:focus-within,
+form .input-container textarea:focus-within,
+form .input-container input:focus-within{
     border: 1px solid var(--primary-color);
-    background-color: var(--tertiary-color-darker);
-    color: var(--light-color);
+    color: var(--primary-color);
 }
 
 form .input-container:focus-within label{
-    border-color: var(--primary-color);
-    background-color: var(--tertiary-color-darker);
     font-size: 1.3rem;
-    color: var(--light-color);
-}
-form .input-container input:focus,
-form .input-container textarea:focus{
-    color: var(--light-color);
-    /* background-color: var(--tertiary-color-darker); */
+    font-weight: 600;
 }
 
-img{
+.contact-socials{
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 5% 3%;
+    gap: 2.3rem;
+}
+.contact-socials li h3,
+.contact-socials li{
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.contact-socials li h3{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.contact-socials li a{
+    color: var(--dark-color);
+    font-size: 1.3rem;
+}
+.contact-socials li a:hover{
+    color: var(--primary-color);
+}
+.contact-socials li:last-child{
+    gap: 2rem;
+}
+.contact-socials li .social-icons{
+    background-color: var(--tertiary-color-darker);
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.contact-socials li .social-icons:hover{
+    transform: scale(1.1);
+    text-decoration: none;
+}
+.contact-socials li .social-icons i{
+    font-size: 2rem;
+    color: var(--light-color);
+    transition: all 0.3s ease-in-out;
 }
 
 @media (min-width: 530px) {
 
-    section{
-        padding: 5% 15%;
+    .contact-title{
+        padding: 0;
+        width: 45%;
+        height: 45%;
+    }
+    form{
+        padding: 0;
+        order: 1;
+        width: 45%;
+        height: 100%;
+        /* order: 1; */
+    }
+    .contact-socials{
+        padding: 0;
+        height: 45%;
+        width: 45%;
+    }
+    form .input-container textarea,
+    form .input-container select,
+    form .input-container input{
+        padding: 1rem;
     }
 
+    form .input-container label{
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    .contact-socials li h3{
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+    .contact-socials li a{
+        font-size: 1.5rem;
+    }
 }
 
 @media (min-width: 950px) {
-
-    section{
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 0% 0 0 0%;
-        max-height: 90vh;
-        overflow: hidden;
+    .contact-title{
+        align-items: start;
     }
-    h2{
-        font-size: 4rem;
-        line-height: 4.5rem;
+    .contact-slogan{
+        width: 70%;
+    }
+    .contact-title p{
+        font-size: 2rem;
+    }
+    form .input-container textarea,
+    form .input-container select,
+    form .input-container input{
+        padding: 1rem;
+        font-size: 1.5rem;
+    }
+
+    form .input-container label{
+        font-size: 2rem;
         font-weight: 600;
-        font-size: 5rem;
-        margin-bottom: 1rem;
-        z-index: 50;
-        color: var(--light-color);
-        font-weight: 800;
-        width: 45%;
-        padding: 2%;
-        position: absolute;
-        right: 0;
-        top: 5rem;
     }
-    img{
-        position: relative;
-        width: 45%;
+    .contact-socials li h3{
+        font-size: 2.5rem;
+        font-weight: 600;
     }
-
-    form{
-        width: 45%;
-        padding: 5% 0 0 5%;
-    }
-    form .input-container,
-    form .input-container label{
-        background-color: var(--secondary-color);
-    }
-    form .input-container label{
-        border: 1px solid var(--secondary-color);
+    .contact-socials li a{
+        font-size: 2rem;
     }
 }

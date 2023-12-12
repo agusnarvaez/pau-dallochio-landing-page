@@ -1,6 +1,8 @@
-<!-- <section>
-
-    <h2>ESTAMOS PARA AYUDARTE</h2>
+    <section class="contact-title">
+        <img class="contact-slogan" src="../../../assets/backgrounds/contact-slogan.png">
+        <p>Tenes alguna duda o necesitas asistencia con una atención personalizada?</p>
+        <p>¡Contactános! Nos encantaría recibir tus consultar y ayudarte en obtener el hogar de tus sueños</p>
+    </section>
 
     <form #myForm="ngForm">
 
@@ -45,12 +47,14 @@
 
 
         <div class="input-container">
-            <label for="contactSubject">Motivo</label>
+            <label for="contactSubject">¿Sobre que tema quisieras hablar?</label>
             <select id="contactSubject" name="subject" [(ngModel)]="subject">
                 <option value="" disabled selected>Seleccione un motivo</option>
                 <option value="Consulta General">Consulta general</option>
                 <option value="Atencion al cliente">Atención al cliente</option>
-                <option value="Distribuidores">Distribuidores</option>
+                <option value="Comprar">Quiero comprar</option>
+                <option value="Vender">Quiero vender</option>
+                <option value="Alquilar">Quiero alquilar</option>
             </select>
         </div>
 
@@ -68,9 +72,20 @@
 
         <app-button (click)="onSubmit()"text="Enviar" ></app-button>
 
-
     </form>
-    <img src="../../../assets/backgrounds/contact.jpeg">
 
-</section> -->
-<p>Contacto en construcción</p>
+    <ul class="contact-socials">
+        <li>
+            <h3>Email</h3>
+            <a>estudioinmobiliario&#64;pauladallochio.com.ar</a>
+        </li>
+        <li>
+            <h3>Teléfono</h3>
+            <a>+54 9 11 4085 6083</a>
+        </li>
+        <li>
+            <h3>Redes sociales</h3>
+            <a class="social-icons"><i class="fa-brands fa-instagram"></i></a>
+            <a class="social-icons"><i class="fa-brands fa-linkedin-in"></i></a>
+        </li>
+    </ul>
