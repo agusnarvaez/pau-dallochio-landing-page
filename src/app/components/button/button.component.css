@@ -28,7 +28,7 @@
 }
 
 .btn.btn-secondary{
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
     color: var(--primary-color);
     border: 1.5px solid var(--primary-color);
 }
