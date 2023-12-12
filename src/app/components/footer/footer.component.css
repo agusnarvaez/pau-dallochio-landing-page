@@ -59,7 +59,7 @@ footer section > ul > li{
 
 footer section ul li a{
     font-weight: 400;
-    font-size: 2rem;
+    font-size: 1.3rem;
     color:var(--light-color);
 }
 
@@ -138,7 +138,7 @@ footer section:last-child div img{
         width: 25%;
     }
     footer section:nth-child(2){
-        width: 50%;
+        width: 60%;
     }
     footer h2{
         font-size: 2rem;
