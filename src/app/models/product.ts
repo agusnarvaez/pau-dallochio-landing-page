@@ -1,6 +1,7 @@
 import { Address } from './address'
 
 export class Product{
+    id: string
     type: string
     address: Address
     price: number
@@ -10,7 +11,8 @@ export class Product{
     bathrooms: number
     images: string[]
 
-    constructor(type: string, address: Address, price: number, area: number, coveredArea: number, rooms: number, bathrooms: number, images: string[]){
+    constructor(id: string, type: string, address: Address, price: number, area: number, coveredArea: number, rooms: number, bathrooms: number, images: string[]){
+        this.id = id
         this.type = type
         this.address = address
         this.price = price
