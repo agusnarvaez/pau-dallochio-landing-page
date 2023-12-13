@@ -9,6 +9,8 @@
     overflow: hidden;
     border: 0.5px solid var(--primary-color);
     border-radius: 0.3rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
 }
 
 
@@ -86,6 +88,9 @@
 @media (min-width: 950px) {
     .faq-item{
         border-radius: 1rem;
+    }
+    .faq-item:hover{
+        transform: scale(0.98);
     }
     .faq-item div::after,
     .faq-item div::before{
