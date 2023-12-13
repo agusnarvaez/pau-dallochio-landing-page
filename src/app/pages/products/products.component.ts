@@ -27,6 +27,7 @@ export class ProductsComponent {
   }
 
   propertiesAmount = () => this.list.length
+  listIsEmpty = () => this.list.length === 0
 
   ngOnInit() {
     // Lógica para inicializar `this.list`
