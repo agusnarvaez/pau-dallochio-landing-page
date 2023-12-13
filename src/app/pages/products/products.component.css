@@ -1,0 +1,31 @@
+section{
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 0% 3% 3% 3%;
+}
+
+h3{
+    width: 100%;
+    padding: 3% 5%;
+}
+app-products-card{
+    width: 100%;
+}
+
+@media (min-width: 530px) {
+
+    app-products-card{
+        width: 47%;
+    }
+
+}
+
+@media (min-width: 950px) {
+    app-products-card{
+        width: 31%;
+    }
+}

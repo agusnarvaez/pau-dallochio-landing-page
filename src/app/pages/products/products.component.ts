@@ -22,7 +22,6 @@ export class ProductsComponent {
   }
 
   updateProductListBasedOnFilter() {
-    console.log("Filtros seleccionados:", this.selectedFilters)
     // Lógica para filtrar la lista basada en `this.selectedFilters`
   }
 
@@ -32,6 +31,5 @@ export class ProductsComponent {
   ngOnInit() {
     // Lógica para inicializar `this.list`
     this.list = productsMock
-    console.log(this.list)
   }
 }

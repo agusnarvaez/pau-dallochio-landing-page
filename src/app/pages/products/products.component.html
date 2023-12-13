@@ -1,15 +1,17 @@
 
 <app-products-filter [selectedFilters]="selectedFilters" (filterChange)="onFilterChange($event)"></app-products-filter>
 
-<h3>Se encontraron {{propertiesAmount()}} propiedades para su compra</h3>
 @if (listIsEmpty()) {
     <h3>No se encontraron propiedades para su compra</h3>
 }@else{
-    @for (product of list; track $index) {
-        <app-products-card [product]="product"></app-products-card>
-    }
+    <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su compra</h3>
+    <section>
+        @for (product of list; track $index) {
+            <app-products-card [product]="product"></app-products-card>
+        }
+    </section>
 
-}
+    }
 
 
 <app-products-banner></app-products-banner>
