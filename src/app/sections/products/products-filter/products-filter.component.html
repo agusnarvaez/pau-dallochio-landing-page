@@ -1,7 +1,7 @@
 <section>
-    <app-button text="Comprar" class="main-filter-btn" [type]="isFilterActive('Comprar') ? 'secondary' : ''" (click)="setActiveFilter('Comprar')"></app-button>
-    <app-button text="Vender" class="main-filter-btn" [type]="isFilterActive('Vender') ? 'secondary' : ''" (click)="setActiveFilter('Vender')"></app-button>
-    <app-button text="Alquilar" class="main-filter-btn" [type]="isFilterActive('Alquilar') ? 'secondary' : ''" (click)="setActiveFilter('Alquilar')"></app-button>
+    <app-button text="Comprar" class="main-filter-btn" [type]="isFilterActive('Comprar') ? '' : 'secondary'" (click)="toggleFilter('Comprar')"></app-button>
+    <app-button text="Vender" class="main-filter-btn" [type]="isFilterActive('Vender') ? '' : 'secondary'" (click)="toggleFilter('Vender')"></app-button>
+    <app-button text="Alquilar" class="main-filter-btn" [type]="isFilterActive('Alquilar') ? '' : 'secondary'" (click)="toggleFilter('Alquilar')"></app-button>
     <app-button text="Mas filtros (0)" class="secondary-filter-btn" icon="fa-solid fa-filter" type="secondary"></app-button>
     <app-button class="search-btn" icon="fa fa-search fa-solid fa-magnifying-glass" ></app-button>
 </section>
