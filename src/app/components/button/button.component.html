@@ -4,7 +4,12 @@
         [ngClass]="{'btn-secondary': isSecondary()}"
         [routerLink]="link"
     >
-    <i class="{{icon}}"></i>
+    @if (isIcon()) {
+        <i class="{{icon}} {{iconClass}}"></i>
+    }
+    @if (isSvgImage()) {
+        <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">
+    }
         {{ text }}
     </a>
 }@else{
@@ -13,7 +18,12 @@
         [ngClass]="{'btn-secondary': isSecondary()}"
         type="{{buttonType()}}"
     >
-    <i class="{{icon}}"></i>
+        @if (isIcon()) {
+            <i class="{{icon}} {{iconClass}}"></i>
+        }
+        @if (isSvgImage()) {
+            <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">
+        }
         {{text}}
     </button>
 }

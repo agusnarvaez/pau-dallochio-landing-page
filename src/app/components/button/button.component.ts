@@ -11,10 +11,13 @@ import { RouterLink, RouterModule } from '@angular/router'
 })
 export class ButtonComponent {
   @Input() type: string = ''
-  @Input() link: string = ''
+  @Input() link: string | undefined = ''
   @Input() text: string = ''
   @Input() icon: string = ''
   @Input() class: string = ''
+  @Input() svgIcon: string | undefined = ''
+  @Input() iconClass: string | undefined
+
   isSecondary = ()=> this.type === 'secondary'
 
   isTertiary = ()=> this.type === 'tertiary'
@@ -22,4 +25,8 @@ export class ButtonComponent {
   buttonType = () => this.isSecondary() ? 'button' : 'submit'
 
   isLink = () => this.link !== ''
+
+  isSvgImage = () => this.svgIcon !== ''
+  isIcon = () => this.icon !== ''
+
 }
