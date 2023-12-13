@@ -1,7 +1,7 @@
 
 <app-products-filter [selectedFilters]="selectedFilters" (filterChange)="onFilterChange($event)"></app-products-filter>
 
-<h3>Se encontraron {{propertiesAmount}} propiedades para su compra</h3>
+<h3>Se encontraron {{propertiesAmount()}} propiedades para su compra</h3>
 <app-products-card></app-products-card>
 
 <app-products-banner></app-products-banner>

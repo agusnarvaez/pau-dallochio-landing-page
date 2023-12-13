@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common'
 import { ProductsBannerComponent } from '../../sections/products/products-banner/products-banner.component'
 import { ProductsFilterComponent } from '../../sections/products/products-filter/products-filter.component'
 import { ProductsCardComponent } from '../../sections/products/products-card/products-card.component'
-
+import { Product } from '../../models/product'
+import { productsMock } from '../../models/common.mock'
 @Component({
   selector: 'app-products',
   standalone: true,
@@ -13,56 +14,7 @@ import { ProductsCardComponent } from '../../sections/products/products-card/pro
 })
 export class ProductsComponent {
   selectedFilters: string[] = []
-  list = [
-    {
-      type:"Departamento",
-      address:
-        {
-          street: 'Malabia',
-          number: '1000',
-          locality: 'Palermo',
-          city: 'CABA',
-          province: 'Buenos Aires',
-        },
-      price: 350000,
-      area: 100,
-      coveredArea: 80,
-      rooms: 3,
-      bathrooms: 3
-    },
-    {
-      type:"Departamento",
-      address:
-        {
-          street: 'Malabia',
-          number: '1000',
-          locality: 'Palermo',
-          city: 'CABA',
-          province: 'Buenos Aires',
-        },
-      price: 350000,
-      area: 100,
-      coveredArea: 80,
-      rooms: 3,
-      bathrooms: 3
-    },
-    {
-      type:"Departamento",
-      address:
-        {
-          street: 'Malabia',
-          number: '1000',
-          locality: 'Palermo',
-          city: 'CABA',
-          province: 'Buenos Aires',
-        },
-      price: 350000,
-      area: 100,
-      coveredArea: 80,
-      rooms: 3,
-      bathrooms: 3
-    }
-  ]
+  list: Product[] = []
 
   onFilterChange(newFilters: string[]) {
     this.selectedFilters = newFilters
@@ -74,5 +26,11 @@ export class ProductsComponent {
     // Lógica para filtrar la lista basada en `this.selectedFilters`
   }
 
-  propertiesAmount = this.list.length
+  propertiesAmount = () => this.list.length
+
+  ngOnInit() {
+    // Lógica para inicializar `this.list`
+    this.list = productsMock
+    console.log(this.list)
+  }
 }
