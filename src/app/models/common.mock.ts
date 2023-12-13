@@ -11,6 +11,7 @@ export const address = new Address(
 )
 
 export const product = new Product(
+    "1",
     "Departamento",
     address,
     350000,
