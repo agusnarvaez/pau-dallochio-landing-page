@@ -1,30 +1,39 @@
 section{
     width: 100%;
-    height: 60vh;
+    height: 30vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: 1%;
+    padding: 5% 2%;
+    margin-top: 5rem;
+/*     border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem; */
+}
+
+section::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    background-color: rgba(0,0,0,0.10);
+    backdrop-filter: blur(11.5px);
+    z-index: 10;
 }
 
 
 section h2{
-    font-size: 3rem;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 2rem;
-    z-index: 50;
-}
-
-section h3{
+    width: 100%;
     font-size: 2.5rem;
     font-weight: 600;
-    text-align: center;
     margin-bottom: 2rem;
     z-index: 50;
+    color: var(--secondary-color);
 }
+
 section img{
     width: 100%;
     height: 100%;
@@ -32,4 +41,39 @@ section img{
     position: absolute;
     top: 0;
     left: 0;
+}
+
+@media (min-width: 530px) {
+
+    section{
+        height: 40vh;
+        padding: 5%;
+    }
+
+    section h2{
+        font-size: 3rem;
+    }
+
+}
+
+@media (min-width: 950px) {
+
+    section{
+        height: 50vh;
+    }
+
+    section h2{
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    section{
+        height: 60vh;
+    }
+
+    section h2{
+        font-size: 5rem;
+    }
 }
