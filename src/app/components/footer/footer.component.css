@@ -94,6 +94,29 @@ footer .footer-secondary:last-child div img{
     justify-content: center;
     align-items: center;
 }
+footer section ul .social-icons{
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.footer-contact .social-icon {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.footer-contact .social-icon:hover{
+    background-color: var(--tertiary-color-darker);
+}
+
+.footer-contact .social-icon i{
+    color: var(--tertiary-color-darker);
+}
+
+.footer-contact .social-icon:hover i{
+    color: var(--secondary-color);
+
+}
+
 
 
 @media (min-width: 530px) {

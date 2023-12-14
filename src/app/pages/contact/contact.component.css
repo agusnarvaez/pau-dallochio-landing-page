@@ -125,26 +125,7 @@ form .input-container:focus-within label{
 .contact-socials li:last-child{
     gap: 2rem;
 }
-.contact-socials li .social-icons{
-    background-color: var(--tertiary-color-darker);
-    width: 50px;
-    height: 50px;
-    aspect-ratio: 1/1;
-    border-radius: 50rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.contact-socials li .social-icons:hover{
-    transform: scale(1.1);
-    text-decoration: none;
-}
-.contact-socials li .social-icons i{
-    font-size: 2rem;
-    color: var(--light-color);
-    transition: all 0.3s ease-in-out;
-}
 
 @media (min-width: 530px) {
 
