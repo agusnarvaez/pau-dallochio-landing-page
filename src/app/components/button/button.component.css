@@ -6,6 +6,7 @@
     z-index: 50;
     position: relative;
     padding: 1rem 2rem;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,6 +54,18 @@
 
 @media (min-width: 530px) {
     .btn{
-        min-height: 3rem;
+        font-size: 1.7rem;
+    }
+}
+
+@media (min-width: 950px) {
+    .btn{
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 1150px) {
+    .btn{
+        font-size: 2.5rem;
     }
 }
