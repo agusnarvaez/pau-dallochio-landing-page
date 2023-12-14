@@ -25,7 +25,7 @@ section{
 
 @media (min-width: 530px) {
     section{
-        padding: 5% 10%;
+        padding: 5% 5%;
     }
     .main-filter-btn{
         width: 18%;
@@ -34,7 +34,7 @@ section{
         width: 10%;
     }
     .secondary-filter-btn{
-        width: 27%;
+        width: 30%;
     }
 }
 
@@ -42,4 +42,11 @@ section{
     section{
         padding: 3% 15%;
     }
+    .secondary-filter-btn{
+        width: 30%;
+    }
+}
+
+@media (min-width: 1150px) {
+
 }

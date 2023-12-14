@@ -1,5 +1,5 @@
 
-<app-products-filter [selectedFilters]="selectedFilters" (filterChange)="onFilterChange($event)"></app-products-filter>
+<app-products-filter [selectedFilters]="selectedFilters()" (filterChange)="onFilterChange($event)"></app-products-filter>
 
 @if (listIsEmpty()) {
     <h3>No se encontraron propiedades para su compra</h3>
