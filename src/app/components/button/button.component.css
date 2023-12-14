@@ -39,3 +39,20 @@
     border: 1.5px solid var(--primary-color);
 }
 
+.btn.btn-tertiary{
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.btn.btn-tertiary:hover{
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    border: 1px solid var(--secondary-color);
+}
+
+@media (min-width: 530px) {
+    .btn{
+        min-height: 3rem;
+    }
+}

@@ -1,7 +1,7 @@
 @if(isLink()){
     <a
         class="btn {{class}}"
-        [ngClass]="{'btn-secondary': isSecondary()}"
+        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary()}"
         [routerLink]="link"
     >
     @if (isIcon()) {
@@ -15,7 +15,7 @@
 }@else{
     <button *ngIf="!isLink()"
         class="btn {{class}}"
-        [ngClass]="{'btn-secondary': isSecondary()}"
+        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary()}"
         type="{{buttonType()}}"
     >
         @if (isIcon()) {

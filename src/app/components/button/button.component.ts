@@ -29,4 +29,7 @@ export class ButtonComponent {
   isSvgImage = () => this.svgIcon !== ''
   isIcon = () => this.icon !== ''
 
+  ngOnInit(){
+    console.log(this.isTertiary())
+  }
 }
