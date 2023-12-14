@@ -63,26 +63,32 @@ footer section ul li a{
     color:var(--light-color);
 }
 
-footer section:last-child{
+footer .footer-secondary:last-child{
 
     justify-content: space-between;
     align-items: flex-end;
-}
 
-footer section:last-child > img{
+}
+footer .footer-secondary:last-child h2{
+    width: 100%;
+    font-size: 1.3rem;
+    text-align: end;
+}
+footer .footer-secondary:last-child > img{
     width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-footer section:last-child div{
+footer .footer-secondary:last-child div{
     width: 50%;
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+    flex-wrap: wrap;
 }
-footer section:last-child div img{
+footer .footer-secondary:last-child div img{
     width: 40%;
     display: flex;
     justify-content: center;
@@ -111,14 +117,18 @@ footer section:last-child div img{
     footer section ul li a{
         font-size: 1.8rem;
     }
-    footer section:last-child > img{
+    footer .footer-secondary:last-child > img{
         width: 20%;
     }
-    footer section:last-child div{
+    footer .footer-secondary:last-child div{
         gap: 2rem;
     }
-    footer section:last-child div img{
+    footer .footer-secondary:last-child div img{
         width: 30%;
+    }
+
+    footer .footer-secondary:last-child h2{
+        font-size: 1.5rem;
     }
 
 }
@@ -147,14 +157,18 @@ footer section:last-child div img{
         font-size: 1.5rem;
     }
 
-    footer section:last-child > img{
+    footer .footer-secondary:last-child > img{
         width: 10%;
     }
-    footer section:last-child div{
+    footer .footer-secondary:last-child div{
         gap: 2rem;
     }
-    footer section:last-child div img{
+    footer .footer-secondary:last-child div img{
         width: 20%;
+    }
+
+    footer .footer-secondary:last-child h2{
+        font-size: 1.7rem;
     }
 }
 
@@ -176,13 +190,17 @@ footer section:last-child div img{
         font-size: 2rem;
     }
 
-    footer section:last-child > img{
+    footer .footer-secondary:last-child > img{
         width: 6%;
     }
-    footer section:last-child div{
+    footer .footer-secondary:last-child div{
         gap: 5rem;
     }
-    footer section:last-child div img{
+    footer .footer-secondary:last-child div img{
         width: 10%;
+    }
+
+    footer .footer-secondary:last-child h2{
+        font-size: 2rem;
     }
 }
