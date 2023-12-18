@@ -5,6 +5,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ContactComponent } from './pages/contact/contact.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component'
 import { HowWeWorkComponent } from './pages/how-we-work/how-we-work.component'
+import { SellComponent } from './pages/sell/sell.component'
+
 export const routes: Routes = [
   {
     path: '',
@@ -13,6 +15,10 @@ export const routes: Routes = [
   {
     path: 'como-trabajamos',
     component: HowWeWorkComponent
+  },
+  {
+    path: 'vender',
+    component: SellComponent
   },
   {
     path: 'catalogo',
