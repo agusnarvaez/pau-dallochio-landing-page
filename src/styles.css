@@ -208,16 +208,6 @@ a:hover{
         line-height: 2rem;
     }
 
-    main app-contact{
-        height: 95vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        flex-wrap: wrap;
-        padding: 0 3%;
-    }
-
 }
 .social-icon{
     background-color: var(--tertiary-color-darker);
@@ -270,10 +260,6 @@ a:hover{
 }
 
 
-@media (min-width: 1150px) {
-    main app-contact{
-        height: 90vh;
-    }
-}
+
 
 
