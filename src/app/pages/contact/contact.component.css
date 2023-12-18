@@ -129,6 +129,16 @@ form .input-container:focus-within label{
 
 @media (min-width: 530px) {
 
+    main{
+        height: 95vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap: wrap;
+        padding: 0 3%;
+    }
+
     .contact-title{
         padding: 0;
         width: 45%;
@@ -192,5 +202,11 @@ form .input-container:focus-within label{
     }
     .contact-socials li a{
         font-size: 2rem;
+    }
+}
+
+@media (min-width: 1150px) {
+    main{
+        height: 90vh;
     }
 }

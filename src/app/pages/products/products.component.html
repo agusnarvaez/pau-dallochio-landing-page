@@ -1,17 +1,17 @@
+<main>
+    <app-products-filter [selectedFilters]="selectedFilters()" (filterChange)="onFilterChange($event)"></app-products-filter>
 
-<app-products-filter [selectedFilters]="selectedFilters()" (filterChange)="onFilterChange($event)"></app-products-filter>
-
-@if (listIsEmpty()) {
-    <h3>No se encontraron propiedades para su compra</h3>
-}@else{
-    <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su compra</h3>
-    <section>
-        @for (product of list; track $index) {
-            <app-products-card [product]="product"></app-products-card>
-        }
-    </section>
-
+    @if (listIsEmpty()) {
+        <h3>No se encontraron propiedades para su compra</h3>
+    }@else{
+        <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su compra</h3>
+        <section>
+            @for (product of list; track $index) {
+                <app-products-card [product]="product"></app-products-card>
+            }
+        </section>
     }
 
 
-<app-products-banner></app-products-banner>
+    <app-products-banner></app-products-banner>
+</main>

@@ -1,4 +1,4 @@
-section{
+main{
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@ h3{
 }
 
 @media (min-width: 1150px) {
-    section{
+    main{
         gap: 1rem;
     }
     h3{
