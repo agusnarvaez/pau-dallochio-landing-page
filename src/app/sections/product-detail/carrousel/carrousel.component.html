@@ -1,1 +1,47 @@
-<p>carrousel works!</p>
+@if (noImages()) {
+    <div class="no-images">
+        <p>
+            No se encuentran imágenes para mostrar
+        </p>
+    </div>
+}
+@else {
+    <section>
+        <div class="carousel">
+            <div class="main-image_desktop">
+                <img src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+            </div>
+            <div class="carousel__container"
+                [style.transform]="transformStyle()"
+                [style.width]="carouselContainerWidth"
+                [style.height]="carouselContainerHeight"
+            >
+                @for (image of images; track $index) {
+                    <article
+                        class="carousel__item"
+                        [style.width]="carouselItemWidth"
+                        [style.height]="carouselItemHeight"
+                        [ngClass]="{'active': isImageSelected($index)}"
+                        >
+                            <img
+                                src="{{ image }}"
+                                alt="Imagen de propiedad"
+                                title="Imagen de la propiedad"/>
+                    </article>
+                }
+            </div>
+        </div>
+        <div class="carousel__controls">
+            <app-button
+                (click)="prevImage()"
+                type="secondary"
+                [rounded]="true"
+                icon="fa fa-solid fa-chevron-left"></app-button>
+            <app-button
+                [rounded]="true"
+                (click)="nextImage()"
+                type="secondary"
+                icon="fa fa-solid fa-chevron-right"></app-button>
+        </div>
+    </section>
+}
