@@ -3,10 +3,9 @@
         <img class="banner-slogan-mobile" src="../../../../assets/backgrounds/home-filter-banner.png" alt="Banner" />
         <img class="banner-slogan-desktop" src="../../../../assets/backgrounds/home-filter-banner_desktop.png" alt="Banner" />
         <section>
-            <app-button text="Comprar" class="main-filter-btn" [type]="isFilterActive('Comprar') ? '' : 'secondary'" (click)="toggleFilter('Comprar')"></app-button>
+            <app-button text="Comprar" class="main-filter-btn" [type]="isFilterActive('Comprar') ? '' : 'secondary'" (click)="toggleFilter('Comprar'); searchProducts()"></app-button>
             <app-button text="Vender" class="main-filter-btn" type="secondary" link="/vender"></app-button>
-            <app-button text="Alquilar" class="main-filter-btn" [type]="isFilterActive('Alquilar') ? '' : 'secondary'" (click)="toggleFilter('Alquilar')"></app-button>
-            <app-button class="search-btn" icon="fa fa-search fa-solid fa-magnifying-glass" (click)="searchProducts()"></app-button>
+            <app-button text="Alquilar" class="main-filter-btn" [type]="isFilterActive('Alquilar') ? '' : 'secondary'" (click)="toggleFilter('Alquilar'); searchProducts()"></app-button>
         </section>
     </header>
     <img src="../../../assets/backgrounds/home-banner.jpg" alt="Banner" />
