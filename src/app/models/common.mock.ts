@@ -19,7 +19,12 @@ export const product = new Product(
     80,
     3,
     3,
-    ['../../../assets/backgrounds/stock-image.jpg']
+    [
+        '../../../assets/backgrounds/stock-image.jpg',
+        '../../../assets/backgrounds/stock-image.jpg',
+        '../../../assets/backgrounds/stock-image.jpg',
+        '../../../assets/backgrounds/stock-image.jpg'
+    ]
 )
 
 export const productsMock = [
