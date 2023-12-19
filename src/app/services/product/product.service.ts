@@ -16,4 +16,9 @@ export class ProductService {
   getAll = ( ) => productsMock
 
   getById = (id: string) => productsMock.find(p => p.id === id)
+
+  getSuggested = (id:string) => {
+    console.log(id)
+    return productsMock.slice(0, 3)
+  }
 }
