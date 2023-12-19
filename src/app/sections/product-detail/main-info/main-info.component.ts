@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { Product } from '../../../models/product'
 
 @Component({
   selector: 'app-main-info',
@@ -9,5 +10,5 @@ import { CommonModule } from '@angular/common'
   styleUrl: './main-info.component.css'
 })
 export class MainInfoComponent {
-
+  @Input() product: Product | undefined
 }
