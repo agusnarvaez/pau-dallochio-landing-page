@@ -20,10 +20,12 @@ export const product = new Product(
     3,
     3,
     [
-        '../../../assets/backgrounds/stock-image.jpg',
-        '../../../assets/backgrounds/stock-image.jpg',
-        '../../../assets/backgrounds/stock-image.jpg',
-        '../../../assets/backgrounds/stock-image.jpg'
+        '../../../assets/backgrounds/home-banner.jpg',
+        '../../../assets/backgrounds/aboutLiving.jpg',
+        '../../../assets/backgrounds/livingRoom.jpg',
+        '../../../assets/backgrounds/home-banner.jpg',
+        '../../../assets/backgrounds/aboutLiving.jpg',
+        '../../../assets/backgrounds/livingRoom.jpg'
     ]
 )
 
