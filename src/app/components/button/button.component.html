@@ -15,11 +15,17 @@
 }@else{
     <button *ngIf="!isLink()"
         class="btn {{class}}"
-        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary()}"
+        [ngClass]="{
+            'btn-tertiary': isTertiary(),
+            'btn-secondary': isSecondary(),
+            'rounded': rounded,
+        }"
         type="{{buttonType()}}"
     >
         @if (isIcon()) {
-            <i class="{{icon}} {{iconClass}}"></i>
+            <i class="{{icon}} {{iconClass}}"
+                [ngClass]="{'margin-right': hasText()}"
+            ></i>
         }
         @if (isSvgImage()) {
             <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">

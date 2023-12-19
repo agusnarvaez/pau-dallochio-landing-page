@@ -28,6 +28,14 @@
     transform: scale(0.9);
 }
 
+.btn .margin-right {
+    margin-right: 1rem;
+}
+.btn.rounded{
+    border-radius: 5rem;
+    aspect-ratio: 1/1;
+}
+
 .btn.btn-secondary{
     background-color: var(--secondary-color);
     color: var(--primary-color);

@@ -17,7 +17,7 @@ export class ButtonComponent {
   @Input() class: string = ''
   @Input() svgIcon: string | undefined = ''
   @Input() iconClass: string | undefined
-
+  @Input() rounded = false
   isSecondary = ()=> this.type === 'secondary'
 
   isTertiary = ()=> this.type === 'tertiary'
@@ -27,8 +27,10 @@ export class ButtonComponent {
   isLink = () => this.link !== ''
 
   isSvgImage = () => this.svgIcon !== ''
+
   isIcon = () => this.icon !== ''
 
+  hasText = () => this.text !== ''
  /*  ngOnInit(){
     console.log(this.isTertiary())
   } */
