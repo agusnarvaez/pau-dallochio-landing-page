@@ -17,14 +17,7 @@ export const product = new ProductList(
     80,
     3,
     3,
-    [
-        '../../../assets/backgrounds/home-banner.jpg',
-        '../../../assets/backgrounds/aboutLiving.jpg',
-        '../../../assets/backgrounds/livingRoom.jpg',
-        '../../../assets/backgrounds/home-banner.jpg',
-        '../../../assets/backgrounds/aboutLiving.jpg',
-        '../../../assets/backgrounds/livingRoom.jpg'
-    ],
+    '../../../assets/backgrounds/home-banner.jpg',
     "Venta"
 )
 

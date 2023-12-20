@@ -84,7 +84,7 @@ export class ProductService {
                     p.roofed_surface,
                     p.room_amount,
                     p.bathroom_amount,
-                    p.photos.map((photo) => photo.image),
+                    p.photos.map((photo) => photo.image)[0],
                     p.operations[0].operation_type
                   )
                 })
@@ -113,13 +113,14 @@ export class ProductService {
                     response.roofed_surface,
                     response.room_amount,
                     response.bathroom_amount,
-                    response.photos.map((photo) => photo.image),
-                    response.rich_description,
+                    response.photos.map((photo) => photo.image)[0],
+                    response.operations[0].operation_type,
                     response.type.name,
                     response.geo_lat,
                     response.geo_long,
                     response.parking_lot_amount,
-                    response.operations[0].operation_type
+                    response.rich_description,
+                    response.photos.map((photo) => photo.image)
                   /* response.floors_amount,
                   response.tags.map((tag) => tag.name),
                   response.situation,

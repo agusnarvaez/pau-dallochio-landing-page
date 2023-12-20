@@ -12,9 +12,5 @@ import { RouterLink } from '@angular/router'
 export class ProductsCardComponent {
   @Input() product?: ProductList
 
-  mainImage: string | undefined
-  ngOnInit(){
-    this.mainImage = this.product?.images[0]
-  }
   iconButton = '../../../../assets/icons/arrow-up-right.svg'
 }
