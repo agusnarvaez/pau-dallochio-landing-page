@@ -8,16 +8,24 @@ header{
     align-items: center;
     position: sticky;
     top: 0;
-    padding: 0% 5%;
+    padding: 1% 5%;
     z-index: 1000;
     transition: all 0.3s ease-in-out;
+}
+header .header-logo{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
 }
 header.show{
     background-color: var(--tertiary-color);
 }
 
-header img:first-child{
-    width: 30%;
+header .header-logo img{
+    width: auto;
     height: 100%;
     object-fit: contain;
 }
@@ -134,7 +142,7 @@ nav ul li a.active{
     header{
         height: 15vh;
     }
-    header img:first-child{
+    header .header-logo{
         width: 20%;
     }
 
@@ -170,7 +178,7 @@ nav ul li a.active{
         padding: 0.5% 3%;
         background-color: var(--secondary-color);
     }
-    header img:first-child{
+    header .header-logo img{
         width: auto;
         height: 100%;
     }
