@@ -18,6 +18,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class ProductDetailComponent {
   product: ProductDetail | undefined
+  showNotification = false
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute
@@ -29,5 +30,14 @@ export class ProductDetailComponent {
         this.product = product
       })
     })
+  }
+  copyActualRoute() {
+    const url = "www.pauladallochio.com.ar/catalogo/" + this.product?.id
+    navigator.clipboard.writeText(url)
+    this.showNotification = true
+
+    setTimeout(() => {
+      this.showNotification = false
+    }, 2000)
   }
 }
