@@ -4,18 +4,22 @@ import { CommonModule } from '@angular/common'
 import { ProductsBannerComponent } from '../../sections/products/products-banner/products-banner.component'
 import { ProductsFilterComponent } from '../../sections/products/products-filter/products-filter.component'
 import { ProductsCardComponent } from '../../sections/products/products-card/products-card.component'
-import { Product } from '../../models/product'
-import { productsMock } from '../../models/common.mock'
+import { ProductList } from '../../models/product'
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule,ProductsBannerComponent,ProductsFilterComponent,ProductsCardComponent],
+  imports: [
+    CommonModule,
+    ProductsBannerComponent,
+    ProductsFilterComponent,
+    ProductsCardComponent
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  list: Product[] = []
+  list: ProductList[] = []
 
   constructor(private productService: ProductService) { }
 
@@ -28,7 +32,16 @@ export class ProductsComponent {
 
   updateProductsList() {
     // Lógica para filtrar la lista basada en `this.selectedFilters`
-    this.list = this.productService.getAll()
+    this.productService.getAll(this.selectedFilters()).subscribe(
+      {
+        next: (products) => {
+          this.list = products
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      }
+    )
   }
 
   propertiesAmount = () => this.list.length
@@ -37,6 +50,6 @@ export class ProductsComponent {
 
   ngOnInit() {
     // Lógica para inicializar `this.list`
-    this.list = productsMock
+    this.updateProductsList()
   }
 }
