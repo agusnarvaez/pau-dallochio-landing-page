@@ -41,6 +41,7 @@ interface ProductListResponse {
       type:number
     }
   ]
+  description_only: string
 }
 
 @Injectable({
@@ -102,7 +103,7 @@ export class ProductService {
                 // Aquí puedes hacer alguna transformación de los datos si es necesario.
                 return new ProductDetail(
                   response.id,
-                  response.publication_title,
+                  response.type.name,
                   new Address(
                     response.address,
                     response.location.name,
@@ -115,11 +116,11 @@ export class ProductService {
                     response.bathroom_amount,
                     response.photos.map((photo) => photo.image)[0],
                     response.operations[0].operation_type,
-                    response.type.name,
+                    response.publication_title,
                     response.geo_lat,
                     response.geo_long,
                     response.parking_lot_amount,
-                    response.rich_description,
+                    response.description_only,
                     response.photos.map((photo) => photo.image)
                   /* response.floors_amount,
                   response.tags.map((tag) => tag.name),
