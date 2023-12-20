@@ -90,3 +90,5 @@ Thumbs.db
 
 # Angular cache
 .angular
+.env
+enviroment.prod.ts
