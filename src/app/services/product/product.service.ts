@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http'
 import { enviroment } from '../../../../enviroment.prod'
 
 interface ApiResponse {
-  objects: ProductListResponse[];
+  objects: ProductListResponse[]
 }
 
 interface ProductListResponse {
