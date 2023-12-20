@@ -15,6 +15,7 @@ article:hover{
 
 article img{
     width: 100%;
+    min-height: 250px;
     object-fit: cover;
     border-radius: 1rem;
 }
@@ -67,5 +68,17 @@ article section h3{
         /* stroke: var(--primary-color); */
         fill: var(--primary-color);
     }
+    article h2{
+        font-size: 1.5rem;
+    }
+    article .price{
+        font-size: 2rem;
+    }
+    article h3{
+        font-size: 1.3rem;
+    }
+    /* article img{
+        min-height: 250px;
+    } */
 
 }
