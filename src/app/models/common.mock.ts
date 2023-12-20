@@ -1,20 +1,18 @@
-import { Product } from "./product"
+import { ProductList } from "./product"
 import { Address } from './address'
 
 
 export const address = new Address(
-    "Malabia",
-    "1000",
-    "Palermo",
-    "CABA",
-    "Buenos Aires"
+    "Malabia 1000",
+    "Palermo, CABA"
 )
 
-export const product = new Product(
+export const product = new ProductList(
     "1",
     "Departamento",
     address,
     350000,
+    "USD",
     100,
     80,
     3,
