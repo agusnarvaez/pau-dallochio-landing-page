@@ -16,7 +16,10 @@ interface ProductListResponse {
   type: { name: string }
   address: string
   branch: { address: string }
-  operations: [{ prices: [{ price: number,currency:string }] }]
+  operations: [{
+    prices: [{ price: number,currency:string }]
+    operation_type:string
+  }]
   total_surface: number
   roofed_surface: number
   room_amount: number
@@ -81,7 +84,8 @@ export class ProductService {
                     p.roofed_surface,
                     p.room_amount,
                     p.bathroom_amount,
-                    p.photos.map((photo) => photo.image)
+                    p.photos.map((photo) => photo.image),
+                    p.operations[0].operation_type
                   )
                 })
               }))
@@ -99,22 +103,23 @@ export class ProductService {
                 return new ProductDetail(
                   response.id,
                   response.publication_title,
-                  response.type.name,
                   new Address(
                     response.address,
                     response.location.name,
                     ),
-                    response.geo_lat,
-                    response.geo_long,
                     response.operations[0].prices[0].price,
                     response.operations[0].prices[0].currency,
-                  response.total_surface,
-                  response.roofed_surface,
-                  response.room_amount,
-                  response.bathroom_amount,
-                  response.parking_lot_amount,
-                  response.photos.map((photo) => photo.image),
-                  response.rich_description,
+                    response.total_surface,
+                    response.roofed_surface,
+                    response.room_amount,
+                    response.bathroom_amount,
+                    response.photos.map((photo) => photo.image),
+                    response.rich_description,
+                    response.type.name,
+                    response.geo_lat,
+                    response.geo_long,
+                    response.parking_lot_amount,
+                    response.operations[0].operation_type
                   /* response.floors_amount,
                   response.tags.map((tag) => tag.name),
                   response.situation,

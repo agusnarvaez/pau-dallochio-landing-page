@@ -24,7 +24,8 @@ export const product = new ProductList(
         '../../../assets/backgrounds/home-banner.jpg',
         '../../../assets/backgrounds/aboutLiving.jpg',
         '../../../assets/backgrounds/livingRoom.jpg'
-    ]
+    ],
+    "Venta"
 )
 
 export const productsMock = [
