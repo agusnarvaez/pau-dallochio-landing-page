@@ -1,1 +1,25 @@
-<p>main-info works!</p>
+<section>
+    <span>{{product?.operation_type}}</span>
+    <h1>{{product?.title}}</h1>
+    <h2>{{product?.currency + " " + product?.price}}</h2>
+    <ul>
+        <li><i class="fa fa-solid fa-house-chimney-window"></i> {{product?.rooms}} ambientes</li>
+        <li><i class="fa fa-solid fa-maximize"></i> {{product?.area}} m2</li>
+        <li><i class="fa fa-solid fa-person-shelter"></i>{{product?.coveredArea}} m2</li>
+        <li><i class="fa fa-solid fa-square-parking"></i>{{product?.garage==0?"Sin cochera":product?.garage + " Cochera"}}</li>
+        <li><i class="fa fa-solid fa-bath"></i>{{product?.bathrooms}} Baño</li>
+    </ul>
+    <h2>Descripción</h2>
+    <p class="description" [innerHTML]="product?.description"></p>
+
+    <!-- <h2>Ubicación</h2>
+    <div class="product-map">
+        <google-map
+            height="300px"
+            width="100%"
+            [center]="center"
+            [zoom]="15"
+        >
+        </google-map>
+    </div> -->
+</section>
