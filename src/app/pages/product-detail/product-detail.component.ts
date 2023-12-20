@@ -6,7 +6,7 @@ import { MainInfoComponent } from '../../sections/product-detail/main-info/main-
 import { ContactCardComponent } from '../../sections/product-detail/contact-card/contact-card.component'
 import { SuggestionsComponent } from '../../sections/product-detail/suggestions/suggestions.component'
 import { ProductService } from '../../services/product/product.service'
-import { Product } from '../../models/product'
+import { ProductDetail } from '../../models/product'
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router'
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
-  product: Product | undefined
+  product: ProductDetail | undefined
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute
@@ -25,7 +25,9 @@ export class ProductDetailComponent {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.product = this.productService.getById(params['id'])
+      this.productService.getById(params["id"]).subscribe(product => {
+        this.product = product
+      })
     })
   }
 }
