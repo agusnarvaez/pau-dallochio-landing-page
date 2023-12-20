@@ -1,6 +1,7 @@
-import { Component, HostListener, Input } from '@angular/core'
+import { Component, HostListener, Input, SimpleChanges } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../../components/button/button.component'
+import { ChangeDetectorRef } from '@angular/core'
 
 @Component({
   selector: 'app-carrousel',
@@ -19,15 +20,13 @@ export class CarrouselComponent {
 
   @HostListener('window:resize', ['$event'])
 
-  onResize(event:Event) {
+  onResize() {
     // Esta función se llama cada vez que la ventana cambia de tamaño
-    console.log(event)
     this.updateCarouselMetrics()
   }
   updateCarouselMetrics() {
     // Actualiza las métricas del carrusel basadas en el tamaño de la ventana
     if (window.innerWidth >= 530) {
-      console.log(window.innerWidth)
       this.carouselContainerHeight = `${50 * (this.images?.length || 0)}%`
       this.carouselContainerWidth = '30%'
       this.carouselItemHeight = `${(100 / (this.images?.length || 1))}%`
@@ -43,18 +42,21 @@ export class CarrouselComponent {
 
   noImages=() => this.images?.length === 0
 
+
+  selectImage = (index: number) => {
+    this.imageIndex = index
+  }
+
   nextImage = () => {
     if (this.images) {
       this.imageIndex = (this.imageIndex + 1) % this.images.length
     }
-    console.log(this.imageIndex)
   }
 
   prevImage = () => {
     if (this.images) {
       this.imageIndex = this.imageIndex === 0 ? this.images.length - 1 : this.imageIndex - 1
     }
-    console.log(this.imageIndex)
   }
   isImageSelected = (index: number) => this.imageIndex === index
   imagesSize = () => this.images?.length || 1
@@ -69,10 +71,17 @@ export class CarrouselComponent {
       return `translateX(${percentage}%)`
     }
   }
+
   actualImage = () => this.images?.[this.imageIndex]
 
-
+  constructor(private cdr: ChangeDetectorRef) {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['images']) {
+      this.onResize()
+      this.cdr.detectChanges()
+    }
+  }
   ngOnInit() {
-    this.updateCarouselMetrics()
+    this.onResize()
   }
 }

@@ -9,7 +9,8 @@
     <section>
         <div class="carousel">
             <div class="main-image_desktop">
-                <img src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                <img class="main-image_desktop--principal" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                <img class="main-image_desktop--background" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
             </div>
             <div class="carousel__container"
                 [style.transform]="transformStyle()"
@@ -22,6 +23,7 @@
                         [style.width]="carouselItemWidth"
                         [style.height]="carouselItemHeight"
                         [ngClass]="{'active': isImageSelected($index)}"
+                        (click)="selectImage($index)"
                         >
                             <img
                                 src="{{ image }}"
