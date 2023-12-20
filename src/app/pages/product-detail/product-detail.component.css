@@ -1,3 +1,40 @@
 main{
     padding: 3%;
 }
+
+.main-info-contact{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+.main-info-contact h2{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.main-info app-contact-card{
+    width: 100%;
+}
+
+@media (min-width: 530px) {
+    .main-info{
+        justify-content: space-between;
+        align-items: start;
+    }
+    app-main-info{
+        width: 45%;
+    }
+    .main-info-contact{
+        width: 45%;
+        justify-content: flex-start;
+        padding-top: 10%;
+    }
+    .main-info-contact h2{
+        color: var(--primary-color);
+        
+    }
+
+}

@@ -1,11 +1,21 @@
 <main>
     <app-carrousel [images]="product?.images"></app-carrousel>
 
-    <app-main-info [product]="product"></app-main-info>
+    <section class="main-info">
 
-    <app-contact-card></app-contact-card>
+        <app-main-info [product]="product"></app-main-info>
 
-    <app-button text=" Copiar URL de la propiedad" icon="fa fa-solid fa-link"></app-button>
+        <div class="main-info-contact">
+            <h2>¿Te interesa esta propiedad?</h2>
+            <app-contact-card></app-contact-card>
+            <app-button text=" Copiar URL de la propiedad" icon="fa fa-solid fa-link"></app-button>
 
-    <app-suggestions></app-suggestions>
+        </div>
+
+
+    </section>
+
+
+
+    <!-- <app-suggestions></app-suggestions> -->
 </main>
