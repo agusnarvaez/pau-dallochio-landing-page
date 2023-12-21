@@ -29,7 +29,8 @@
 .contact-card article header img{
     width: 75px;
     height: 75px;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 5rem;
 }
 
 .contact-card article header h2{
