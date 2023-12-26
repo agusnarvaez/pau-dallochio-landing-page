@@ -18,6 +18,7 @@ export class ButtonComponent {
   @Input() svgIcon: string | undefined = ''
   @Input() iconClass: string | undefined
   @Input() rounded = false
+
   isSecondary = ()=> this.type === 'secondary'
 
   isTertiary = ()=> this.type === 'tertiary'
@@ -31,7 +32,12 @@ export class ButtonComponent {
   isIcon = () => this.icon !== ''
 
   hasText = () => this.text !== ''
- /*  ngOnInit(){
-    console.log(this.isTertiary())
-  } */
+
+  goToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
 }

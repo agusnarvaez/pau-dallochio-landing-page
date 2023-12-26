@@ -20,8 +20,6 @@ import { NgOptimizedImage } from '@angular/common'
     NgOptimizedImage,
     RouterModule,
     NgModule
-    /* FormsModule,
-    NgOptimizedImage */
   ],
   providers: [],
   bootstrap: []
