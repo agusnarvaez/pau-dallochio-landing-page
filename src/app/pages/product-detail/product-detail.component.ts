@@ -6,7 +6,7 @@ import { MainInfoComponent } from '../../sections/product-detail/main-info/main-
 import { ContactCardComponent } from '../../sections/product-detail/contact-card/contact-card.component'
 import { SuggestionsComponent } from '../../sections/product-detail/suggestions/suggestions.component'
 import { ProductService } from '../../services/product/product.service'
-import { ProductDetail } from '../../models/product'
+import { Product } from '../../models/product'
 import { ActivatedRoute } from '@angular/router'
 
 @Component({
@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router'
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
-  product: ProductDetail | undefined
+  product: Product | undefined
   showNotification = false
   constructor(
     private productService: ProductService,
