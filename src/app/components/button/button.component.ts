@@ -18,6 +18,7 @@ export class ButtonComponent {
   @Input() svgIcon: string | undefined = ''
   @Input() iconClass: string | undefined
   @Input() rounded = false
+  @Input() disabled: boolean | null = false
 
   isSecondary = ()=> this.type === 'secondary'
 
