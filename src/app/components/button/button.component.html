@@ -1,7 +1,8 @@
 @if(isLink()){
     <a
         class="btn {{class}}"
-        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary()}"
+        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary(), 'rounded': rounded,
+        'disabled': disabled}"
         [routerLink]="link"
         (click)="goToTop()"
     >
@@ -20,6 +21,7 @@
             'btn-tertiary': isTertiary(),
             'btn-secondary': isSecondary(),
             'rounded': rounded,
+            'disabled': disabled
         }"
         type="{{buttonType()}}"
     >
