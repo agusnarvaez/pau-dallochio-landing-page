@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../components/button/button.component'
 import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
 
-
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -15,5 +14,4 @@ import { ContactFormComponent } from '../../sections/contact/contact-form/contac
 
 
 export class ContactComponent {
-
 }

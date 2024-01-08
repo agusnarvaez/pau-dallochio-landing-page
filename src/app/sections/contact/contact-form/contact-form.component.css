@@ -54,8 +54,8 @@ form .input-container input:focus-within{
 }
 
 form .input-container:focus-within label{
-    font-size: 1.3rem;
     font-weight: 600;
+    color: #000;
 }
 
 @media (min-width: 530px) {
