@@ -6,6 +6,7 @@ export class Mail{
     subject: string
     message: string
     html: string
+    cc: string = ''
     constructor(to: string, from: string, subject: string, message: string, html: string){
         this.to = to
         this.from = from
@@ -13,4 +14,5 @@ export class Mail{
         this.message = message
         this.html = html
     }
+
 }
