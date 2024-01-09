@@ -27,11 +27,9 @@ export class EmailService {
       )
       .pipe(
         catchError(error => {
-          console.log(error)
           return throwError(() => new Error(error.message))
         }),
         map((response) => {
-          console.log(response)
           return response
         }
       ))
