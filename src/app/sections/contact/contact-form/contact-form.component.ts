@@ -46,7 +46,7 @@ export class ContactFormComponent {
       this.message,
       `
       <body style="width:100%; height: 100%; background-color: #FFFFF0; font-size: 10px; padding: 5% 0;">
-        <h1 style="padding: 0 5%;  font-size: 12px; color: #9D9480">Hola Paula! - Tienes un nuevo mensaje de ${this.fullName}</h1>
+        <h1 style="padding: 0 5%; font-size: 15px; color: #9D9480">Hola Paula! - Tienes un nuevo mensaje de ${this.fullName}</h1>
         <h2 style="padding: 0 5%;  font-size: 12px; color: #9D9480">${this.subject}</h2>
         <p style="padding: 0 5%; font-size: 12px; color: #9D9480">${this.message}</p>
         <p style="padding: 0 5%; font-size: 12px; color: #9D9480">${this.email}</p>
@@ -57,7 +57,7 @@ export class ContactFormComponent {
       </body>
       `
     )
-    /* notification.cc = 'agus.narvaez@outlook.com' */
+    notification.cc = 'agus.narvaez@outlook.com'
 
     const mailToSend = new Mail(
       this.email,
@@ -66,7 +66,7 @@ export class ContactFormComponent {
       'Gracias por contactarte con nosotros, en breve nos pondremos en contacto con vos.',
       `
       <body style="width:100%; height: 100%; background-color: #FFFFF0; font-size: 10px; padding: 5% 0;">
-        <h1 style="padding: 0 5%; font-size: 12px; color: #9D9480" >Hola ${this.fullName}! - Gracias por contactarte con nosotros</h1>
+        <h1 style="padding: 0 5%; font-size: 15px; color: #9D9480" >Hola ${this.fullName}! - Gracias por contactarte con nosotros</h1>
         <h2 style="padding: 0 5%; font-size: 12px; color: #9D9480" >Tu consulta sobre ${this.subject} ya fue enviada</h2>
         <p style="padding: 0 5%; font-size: 12px; color: #9D9480" >Te estaremos contestando a la brevedad</p>
         <div style="background-color: #FFFFFF0; text-align: center; padding: 10px;">
