@@ -33,11 +33,13 @@ export class ProductService {
 
     return forkJoin({
       tokko: this.getAllFromTokko(),
-      sanity: this.getAllFromSanity()
+      // TODO: Agregar peticiones de Sanity cuando Pau agregue propiedades
+      /* sanity: this.getAllFromSanity() */
     }).pipe(
         map(results => {
             // Combinar los resultados de Tokko y Sanity
-            return [...results.tokko, ...results.sanity]
+            // TODO: Agregar peticiones de Sanity cuando Pau agregue propiedades
+            return [...results.tokko/* , ...results.sanity */]
         }),
         catchError(error => {
             // Manejar el error
