@@ -22,7 +22,7 @@ export class EmailService {
   sendEmail(mail:Mail):Observable<any> {
     console.log('Email sending')
     return this.http.post<any>(
-      `${enviroment.mail_api_prod}/mail/send`,
+      `${enviroment.mail_api_dev}/mail/send`,
       mail
       )
       .pipe(
