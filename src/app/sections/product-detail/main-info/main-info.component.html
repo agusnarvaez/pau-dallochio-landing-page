@@ -12,14 +12,19 @@
     <h2>Descripción</h2>
     <p class="description" [innerHTML]="product?.description"></p>
 
-    <!-- <h2>Ubicación</h2>
-    <div class="product-map">
+    <h2>Ubicación</h2>
+    <div class="product-map" *ngIf="product">
         <google-map
             height="300px"
             width="100%"
             [center]="center"
-            [zoom]="15"
-        >
+            [zoom]="15">
+            <map-marker
+                *ngIf="product?.geo_lat && product?.geo_long"
+                [position]="marker.position ?? center"
+                [title]="marker.title ?? ''">
+            </map-marker>
         </google-map>
-    </div> -->
+    </div>
+
 </section>
