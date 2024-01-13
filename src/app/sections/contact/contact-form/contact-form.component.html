@@ -49,25 +49,25 @@
         </div>
     </div>
 
-    <div class="input-container">
-        <label for="contactSubject">¿Sobre qué tema quisieras hablar?</label>
-        <select
-            id="contactSubject"
-            name="subject"
-            [(ngModel)]="subject"
-            required
-            #subjectField="ngModel">
-            <option value="" disabled selected>Seleccione un motivo</option>
-            <option value="Consulta General">Consulta general</option>
-            <option value="Atencion al cliente">Atención al cliente</option>
-            <option value="Comprar">Quiero comprar</option>
-            <option value="Vender">Quiero vender</option>
-            <option value="Alquilar">Quiero alquilar</option>
-        </select>
-        <div *ngIf="subjectField.invalid && (subjectField.dirty || subjectField.touched)">
-            <small *ngIf="subjectField.errors?.['required']">Debes seleccionar un motivo.</small>
+        <div class="input-container" *ngIf="showSubject">
+            <label for="contactSubject">¿Sobre qué tema quisieras hablar?</label>
+            <select
+                id="contactSubject"
+                name="subject"
+                [(ngModel)]="subject"
+                required
+                #subjectField="ngModel">
+                <option value="" disabled selected>Seleccione un motivo</option>
+                <option value="Consulta General">Consulta general</option>
+                <option value="Atencion al cliente">Atención al cliente</option>
+                <option value="Comprar">Quiero comprar</option>
+                <option value="Vender">Quiero vender</option>
+                <option value="Alquilar">Quiero alquilar</option>
+            </select>
+            <div *ngIf="subjectField.invalid && (subjectField.dirty || subjectField.touched)">
+                <small *ngIf="subjectField.errors?.['required']">Debes seleccionar un motivo.</small>
+            </div>
         </div>
-    </div>
 
     <div class="input-container">
         <label for="contactMessage">Mensaje</label>
