@@ -87,7 +87,8 @@ section ul li img{
 @media (min-width: 1150px) {
 
     section h2{
-        font-size: 4rem;
+        font-size: 3.5rem;
+        padding-right: 15%;
     }
     section h3{
         font-size: 3rem;
