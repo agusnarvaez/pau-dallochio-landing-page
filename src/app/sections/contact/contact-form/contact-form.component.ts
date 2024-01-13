@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component, Input, ViewChild } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, NgForm } from '@angular/forms'
 import { ButtonComponent } from '../../../components/button/button.component'
@@ -18,11 +18,17 @@ export class ContactFormComponent {
   fullName: string = ''
   email: string = ''
   phone: string = ''
-  subject: string = ''
 
+  @Input() subject: string = ''
+  showSubject = true
   constructor(
     public emailService: EmailService
   ) {}
+  ngOnInit() {
+    if(this.subject !== '') {
+      this.showSubject = false
+    }
+  }
 
   sendMail = (mailToSend: Mail) => {
 
