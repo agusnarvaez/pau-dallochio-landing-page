@@ -68,6 +68,24 @@
     font-size: 2rem;
 }
 
+.btn.disabled, .btn:disabled {
+    background-color: #cccccc; /* Un color más tenue que el primario */
+    color: #666666; /* Un color de texto más tenue */
+    border: 1px solid #cccccc; /* Borde tenue para coincidir con el fondo */
+    cursor: not-allowed; /* Cambia el cursor para indicar que el botón está desactivado */
+    pointer-events: none; /* Evita que el botón responda a eventos del mouse */
+    opacity: 0.7; /* Opcional: reduce la opacidad para un efecto "desactivado" más claro */
+    filter: none; /* Elimina cualquier sombra o efecto para simplificar el aspecto */
+}
+
+/* Asegúrate de que los efectos de hover y active no se apliquen a los botones desactivados */
+.btn.disabled:hover, .btn:disabled:hover,
+.btn.disabled:active, .btn:disabled:active {
+    background-color: #cccccc; /* Mantén el color de fondo para hover y active */
+    color: #666666; /* Mantén el color del texto para hover y active */
+    transform: none; /* Evita cualquier transformación al hacer click */
+}
+
 @media (min-width: 530px) {
     .btn{
         font-size: 1.5rem;

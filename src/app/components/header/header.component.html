@@ -1,5 +1,7 @@
 <header [ngClass]="showHeader ? 'show' : ''">
-    <img src="../../../assets/logos/logo-header.png" alt="logo-paula-dallochio" />
+    <a class="header-logo" [routerLink]="['']">
+        <img src="../../../assets/logos/logo-header.png" alt="logo-paula-dallochio" />
+    </a>
     <div class="header-button" [ngClass]="showHeader ? 'show' : ''" (click)="toggleHeader()" >
         <div></div>
     </div>

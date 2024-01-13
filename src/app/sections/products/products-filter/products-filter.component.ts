@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../../components/button/button.component'
+import { FilterObject, FiltersService } from '../../../services/filters/filters.service'
 
 @Component({
   selector: 'app-products-filter',
@@ -10,17 +11,25 @@ import { ButtonComponent } from '../../../components/button/button.component'
   styleUrl: './products-filter.component.css'
 })
 export class ProductsFilterComponent {
-  @Input() selectedFilters: string[] = []
-  @Output() filterChange = new EventEmitter<string[]>()
+  @Output() filterChange = new EventEmitter<void>()
 
-  isFilterActive = (filterText: string): boolean => this.selectedFilters.includes(filterText)
+  // Propiedades para almacenar el estado de los filtros
+  isSellFilterActive: boolean = false
+  isRentFilterActive: boolean = false
 
-  toggleFilter(filterText: string): void {
-    if (this.isFilterActive(filterText)) {
-      this.selectedFilters = this.selectedFilters.filter(f => f !== filterText)
-    } else {
-      this.selectedFilters.push(filterText)
-    }
-    this.filterChange.emit(this.selectedFilters)
+  constructor(private filtersService: FiltersService) {
+    // Inicializar el estado de los filtros
+  }
+  ngOnInit(): void {
+    this.isSellFilterActive = this.filtersService.isActive("operation_type",'Venta')
+    this.isRentFilterActive = this.filtersService.isActive("operation_type",'Alquiler')
+  }
+
+  toggleFilter(filterObj: FilterObject): void {
+    this.filtersService.toggle(filterObj)
+    // Actualizar el estado de los filtros después de cambiarlos
+    this.isSellFilterActive = this.filtersService.isActive("operation_type",'Venta')
+    this.isRentFilterActive = this.filtersService.isActive("operation_type",'Alquiler')
+    this.filterChange.emit()
   }
 }

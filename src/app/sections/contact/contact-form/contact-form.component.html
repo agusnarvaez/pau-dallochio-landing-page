@@ -1,0 +1,88 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="input-container">
+        <label for="contactName">Nombre y apellido</label>
+        <input
+            type="text"
+            placeholder="Juan Perez"
+            id="contactName"
+            [(ngModel)]="fullName"
+            name="fullName"
+            required
+            minlength="3"
+            #fullNameField="ngModel"/>
+        <div *ngIf="fullNameField.invalid && (fullNameField.dirty || fullNameField.touched)">
+            <small *ngIf="fullNameField.errors?.['required']">El nombre es obligatorio.</small>
+            <small *ngIf="fullNameField.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</small>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <label for="contactEmail">Email</label>
+        <input
+            type="email"
+            placeholder="juan.perez@hotmail.com"
+            id="contactEmail"
+            [(ngModel)]="email"
+            name="email"
+            required
+            email
+            #emailField="ngModel"/>
+        <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
+            <small *ngIf="emailField.errors?.['required']">El email es obligatorio.</small>
+            <small *ngIf="emailField.errors?.['email']">El email no es válido.</small>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <label for="contactPhone">Teléfono</label>
+        <input
+            type="text"
+            placeholder="11 1234 5678"
+            id="contactPhone"
+            [(ngModel)]="phone"
+            name="phone"
+            pattern="[0-9 ]+"
+            #phoneField="ngModel"/>
+        <div *ngIf="phoneField.invalid && (phoneField.dirty || phoneField.touched)">
+            <small *ngIf="phoneField.errors?.['pattern']">Solo se permiten números y espacios.</small>
+        </div>
+    </div>
+
+        <div class="input-container" *ngIf="showSubject">
+            <label for="contactSubject">¿Sobre qué tema quisieras hablar?</label>
+            <select
+                id="contactSubject"
+                name="subject"
+                [(ngModel)]="subject"
+                required
+                #subjectField="ngModel">
+                <option value="" disabled selected>Seleccione un motivo</option>
+                <option value="Consulta General">Consulta general</option>
+                <option value="Atencion al cliente">Atención al cliente</option>
+                <option value="Comprar">Quiero comprar</option>
+                <option value="Vender">Quiero vender</option>
+                <option value="Alquilar">Quiero alquilar</option>
+            </select>
+            <div *ngIf="subjectField.invalid && (subjectField.dirty || subjectField.touched)">
+                <small *ngIf="subjectField.errors?.['required']">Debes seleccionar un motivo.</small>
+            </div>
+        </div>
+
+    <div class="input-container">
+        <label for="contactMessage">Mensaje</label>
+        <textarea
+            placeholder="Escribe tu mensaje"
+            id="contactMessage"
+            [(ngModel)]="message"
+            name="message"
+            required
+            #messageField="ngModel"></textarea>
+        <div *ngIf="messageField.invalid && (messageField.dirty || messageField.touched)">
+            <small *ngIf="messageField.errors?.['required']">El mensaje es obligatorio.</small>
+        </div>
+    </div>
+
+    <app-button type="submit" [disabled]="myForm.invalid" text="Enviar"></app-button>
+
+</form>

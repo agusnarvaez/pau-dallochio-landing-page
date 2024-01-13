@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common'
 import { ProductsBannerComponent } from '../../sections/products/products-banner/products-banner.component'
 import { ProductsFilterComponent } from '../../sections/products/products-filter/products-filter.component'
 import { ProductsCardComponent } from '../../sections/products/products-card/products-card.component'
-import { ProductList } from '../../models/product'
+import { Product } from '../../models/product'
 
 @Component({
   selector: 'app-products',
@@ -19,12 +19,11 @@ import { ProductList } from '../../models/product'
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  list: ProductList[] = []
+  list: Product[] = []
 
   constructor(private productService: ProductService) { }
 
-  onFilterChange(newFilters: string[]) {
-    newFilters.forEach(f => this.productService.filtersService.add(f))
+  onFilterChange() {
     this.updateProductsList()
   }
 
@@ -32,7 +31,7 @@ export class ProductsComponent {
 
   updateProductsList() {
     // Lógica para filtrar la lista basada en `this.selectedFilters`
-    this.productService.getAll(this.selectedFilters()).subscribe(
+    this.productService.getAll().subscribe(
       {
         next: (products) => {
           this.list = products
