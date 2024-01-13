@@ -8,11 +8,12 @@ import { SuggestionsComponent } from '../../sections/product-detail/suggestions/
 import { ProductService } from '../../services/product/product.service'
 import { Product } from '../../models/product'
 import { ActivatedRoute } from '@angular/router'
+import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule,ButtonComponent,CarrouselComponent,MainInfoComponent,ContactCardComponent,SuggestionsComponent],
+  imports: [CommonModule,ButtonComponent,CarrouselComponent,MainInfoComponent,ContactCardComponent,SuggestionsComponent,ContactFormComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
