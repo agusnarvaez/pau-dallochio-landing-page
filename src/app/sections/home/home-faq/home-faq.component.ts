@@ -22,11 +22,11 @@ export class HomeFaqComponent {
       answer:
         'PARA OPERACIONES DE VENTA: <br> • IMPUESTOS: (se abonan en pesos al equivalente del valor del dólar oficial) Retiene el escribano actuante. Se liquidan sobre el valor de escrituración . Sellos 1.75% (por parte), I.T.I. (en caso de corresponder) 1,5%, IVA. <br> • GASTOS DE ESCRIBANÍA: 1-2% (Se solicita presupuesto al escribano actuante) <br> • HONORARIOS INMOBILIARIA: 3%  <br> • IVA (cliente vendedor); 4% <br> • IVA (cliente comprador) <br> • HONORARIOS ESCRIBANÍA: Solo le corresponden al cliente comprador'
     },
-    {
+    /* {
       question: '¿Cuál es la inversión inicial para un alquiler?',
       answer:
         'PARA OPERACIONES DE ALQUILER RESIDENCIAL PERMANENTE: <br><br> Honorarios inmobiliaria: 4.15% del total del alquiler (Se calcula con el valor del primer mes multiplicado por 36 meses de la duración mínima del contrato.  Los abona la parte LOCATARIA). <br><br> Certificación de firma por escribano'
-    },
+    }, */
     {
       question: '¿Cómo calculo el índice de ajuste de mi alquiler?',
       answer: '<a href="https://cpicalq.portalcucicba.com.ar/calculo_add.php" target="_blank" rel="noreferer" >CALCULADORA DE AJUSTE</a>'
