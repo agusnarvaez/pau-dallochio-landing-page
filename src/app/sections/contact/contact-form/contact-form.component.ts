@@ -43,7 +43,7 @@ export class ContactFormComponent {
 
   }
 
-  onSubmit() {
+  async onSubmit() {
     const notification = new Mail(
       'inmobiliaria@pauladallochio.com.ar',
       /* 'agus.narvaez@outlook.com', */
