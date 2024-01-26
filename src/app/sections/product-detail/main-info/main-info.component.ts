@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Product } from '../../../models/product'
 import { GoogleMapsModule } from '@angular/google-maps'
-
+import { environment } from '../../../../../enviroment.prod'
 @Component({
   selector: 'app-main-info',
   standalone: true,
@@ -29,4 +29,15 @@ export class MainInfoComponent {
     }
   }
 
+  ngOnInit(): void {
+    if (document.getElementById('googleMapsScript')) return
+
+    const script = document.createElement('script')
+    script.id = 'googleMapsScript' // Asegúrate de que el script no se añada más de una vez.
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.maps_key}`
+    script.async = true // Carga el script de forma asíncrona.
+    script.defer = true // Diferir la ejecución del script hasta que la carga de la página haya terminado.
+    
+    document.head.appendChild(script)
+  }
 }
