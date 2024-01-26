@@ -2,7 +2,7 @@
     <app-products-filter (filterChange)="onFilterChange()"></app-products-filter>
 
     @if (listIsEmpty()) {
-        <h3>No se encontraron propiedades para su compra</h3>
+        <h3>No se encontraron propiedades para su {{typeOfOperation()}}</h3>
     }@else{
         <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su {{typeOfOperation()}}</h3>
         <section>
