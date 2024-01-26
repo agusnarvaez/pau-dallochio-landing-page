@@ -47,8 +47,17 @@ export class ProductsComponent {
 
   listIsEmpty = () => this.list.length === 0
 
+  typeOfOperation = () => {
+    if(this.productService.filters()["operation_type"]=="Venta") return "compra"
+
+    if(this.productService.filters()["operation_type"]=="Alquiler") return "alquiler"
+
+    return "compra o alquiler"
+  }
+
   ngOnInit() {
     // Lógica para inicializar `this.list`
     this.updateProductsList()
   }
+
 }

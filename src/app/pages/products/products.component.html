@@ -4,7 +4,7 @@
     @if (listIsEmpty()) {
         <h3>No se encontraron propiedades para su compra</h3>
     }@else{
-        <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su compra</h3>
+        <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su {{typeOfOperation()}}</h3>
         <section>
             @for (product of list; track $index) {
                 <app-products-card [product]="product"></app-products-card>
