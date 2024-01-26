@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Observable, catchError, map, throwError } from 'rxjs'
-import { enviroment } from '../../../../enviroment.prod'
+import { environment } from '../../../../enviroment.prod'
 import { HttpClient } from '@angular/common/http'
 import { Mail } from '../../models/mail'
 
@@ -16,7 +16,7 @@ export class EmailService {
   sendEmail(mail:Mail):Observable<any> {
     console.log('Email sending')
     return this.http.post<any>(
-      `${enviroment.mail_api_dev}/mail/send`,
+      `${environment.mail_api_dev}/mail/send`,
       mail
       )
       .pipe(
