@@ -60,6 +60,26 @@ export class FiltersService {
     }`
   }
 
+  getTokkoQuery(): string {
+    const base_query= {
+      current_localization_id:0,
+      current_localization_type:"country",
+      price_from:0,
+      price_to:999999999,
+      operation_types:[1,2,3],
+      property_types:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
+      currency:"ANY",
+      filters:[]
+    }
+
+    if(this._filters["operation_type"]=="Venta") base_query.operation_types=[1]
+
+    if(this._filters["operation_type"]=="Alquiler") base_query.operation_types=[2,3]
+
+    return JSON.stringify(base_query)
+
+  }
+
   add(filterObj: FilterObject): void {
     this._filters[filterObj.name] = filterObj.value
   }
@@ -90,5 +110,6 @@ export class FiltersService {
     } else {
       this.add(filterObj)
     }
+
   }
 }
