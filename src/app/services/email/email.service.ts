@@ -8,13 +8,7 @@ import { Mail } from '../../models/mail'
   providedIn: 'root'
 })
 export class EmailService {
-  mail = {
-    from: "no_reply@bapps.com.ar",
-    to: "agus.narvaez@outlook.com",
-    subject: "Example Subject",
-    message: "This is the body of the email.",
-    html:"<h1>This is the body of the email</h1><h2>This is the subtitle of the email</h2>"
-  }
+
   constructor(
     private http: HttpClient
   ) { }
