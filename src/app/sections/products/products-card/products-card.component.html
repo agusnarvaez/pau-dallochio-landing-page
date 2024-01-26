@@ -1,22 +1,23 @@
-<article>
-    <img [src]="product?.cover" alt="Imagen principal">
-    <section>
-        <h2>{{product?.type}} en {{product?.address?.street}} {{product?.address?.city}}</h2>
-        <h2 class="price"><span class="bold">{{product?.currency}} {{product?.price}}</span></h2>
-        <h3><span class="bold">{{product?.area}}</span> m2 totales</h3>
-        <h3><span class="bold">{{product?.coveredArea}}</span> m2 cubiertos</h3>
-        <h3><span class="bold">{{product?.rooms}}</span> ambientes</h3>
-        <h3><span class="bold">{{product?.bathrooms}}</span> baños</h3>
-    </section>
+<article class="product-card">
+    <a routerLink="/catalogo/{{product?.id}}">
+        <img [src]="product?.cover" alt="Imagen principal">
+        <section>
+            <h2>{{product?.type}} en {{product?.address?.street}} {{product?.address?.city}}</h2>
+            <h2 class="price"><span class="bold">{{product?.currency}} {{product?.price}}</span></h2>
+            <h3><span class="bold">{{product?.area}}</span> m2 totales</h3>
+            <h3><span class="bold">{{product?.coveredArea}}</span> m2 cubiertos</h3>
+            <h3><span class="bold">{{product?.rooms}}</span> ambientes</h3>
+            <h3><span class="bold">{{product?.bathrooms}}</span> baños</h3>
+        </section>
 
-    <a
-        routerLink="/catalogo/{{product?.id}}"
-        class="product-card-icon-button">
-        <svg
-            class="product-card-icon-button-img"
-            xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-            <path d="M15.8322 0.824341C15.6914 0.50285 15.429 0.250253 15.1023 0.121873C14.9416 0.0569658 14.7697 0.0241958 14.5963 0.0254163L1.33393 0.279165C0.98219 0.285895 0.647529 0.432078 0.40357 0.685556C0.15961 0.939033 0.0263351 1.27904 0.0330649 1.63078C0.0397948 1.98252 0.185978 2.31718 0.439455 2.56114C0.692932 2.8051 1.03294 2.93838 1.38468 2.93165L11.4509 2.73905L0.653408 13.9442C0.53146 14.0699 0.435602 14.2184 0.371363 14.3814C0.307124 14.5443 0.275774 14.7183 0.279124 14.8933C0.282474 15.0684 0.320456 15.2411 0.39088 15.4014C0.461304 15.5618 0.562775 15.7066 0.68944 15.8275C0.81511 15.9494 0.963681 16.0453 1.12658 16.1095C1.28949 16.1738 1.4635 16.2051 1.63858 16.2018C1.81366 16.1984 1.98634 16.1604 2.14667 16.09C2.30699 16.0196 2.45179 15.9181 2.5727 15.7914L13.3566 4.57327L13.5492 14.6394C13.556 14.9912 13.7021 15.3259 13.9556 15.5698C14.2091 15.8138 14.5491 15.947 14.9008 15.9403C15.2526 15.9336 15.5873 15.7874 15.8312 15.5339C16.0752 15.2804 16.2084 14.9404 16.2017 14.5887L15.948 1.32628C15.9426 1.15301 15.9032 0.982485 15.8322 0.824341Z" fill="#FFFFF0"/>
-        </svg>
+        <button
+            routerLink="/catalogo/{{product?.id}}"
+            class="product-card-icon-button">
+            <svg
+                class="product-card-icon-button-img"
+                xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                <path d="M15.8322 0.824341C15.6914 0.50285 15.429 0.250253 15.1023 0.121873C14.9416 0.0569658 14.7697 0.0241958 14.5963 0.0254163L1.33393 0.279165C0.98219 0.285895 0.647529 0.432078 0.40357 0.685556C0.15961 0.939033 0.0263351 1.27904 0.0330649 1.63078C0.0397948 1.98252 0.185978 2.31718 0.439455 2.56114C0.692932 2.8051 1.03294 2.93838 1.38468 2.93165L11.4509 2.73905L0.653408 13.9442C0.53146 14.0699 0.435602 14.2184 0.371363 14.3814C0.307124 14.5443 0.275774 14.7183 0.279124 14.8933C0.282474 15.0684 0.320456 15.2411 0.39088 15.4014C0.461304 15.5618 0.562775 15.7066 0.68944 15.8275C0.81511 15.9494 0.963681 16.0453 1.12658 16.1095C1.28949 16.1738 1.4635 16.2051 1.63858 16.2018C1.81366 16.1984 1.98634 16.1604 2.14667 16.09C2.30699 16.0196 2.45179 15.9181 2.5727 15.7914L13.3566 4.57327L13.5492 14.6394C13.556 14.9912 13.7021 15.3259 13.9556 15.5698C14.2091 15.8138 14.5491 15.947 14.9008 15.9403C15.2526 15.9336 15.5873 15.7874 15.8312 15.5339C16.0752 15.2804 16.2084 14.9404 16.2017 14.5887L15.948 1.32628C15.9426 1.15301 15.9032 0.982485 15.8322 0.824341Z" fill="#FFFFF0"/>
+            </svg>
+        </button>
     </a>
-
 </article>
