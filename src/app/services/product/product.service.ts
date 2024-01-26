@@ -51,7 +51,7 @@ export class ProductService {
   private getAllFromTokko():Observable<Product[]> {
 
     return this.http
-            .get<TokkoResponse>(`https://www.tokkobroker.com/api/v1/property/?lang=es_ar&key=${environment.tokkoBrokerKey}`)
+            .get<TokkoResponse>(`https://www.tokkobroker.com/api/v1/property/search?lang=es_ar&key=${environment.tokkoBrokerKey}&data=${this.filtersService.getTokkoQuery()}`)
             .pipe(
               catchError(error => {
                 return throwError(() => new Error(error.message))
@@ -132,7 +132,7 @@ export class ProductService {
             }),
             map((response) => {
               // Aquí puedes hacer alguna transformación de los datos si es necesario.
-              console.log(response.result[0])
+              /* console.log(response.result[0]) */
               return new Product( ).fromSanity(response.result[0])
             }))
   }
