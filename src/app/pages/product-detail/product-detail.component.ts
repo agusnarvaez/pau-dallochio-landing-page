@@ -32,15 +32,15 @@ export class ProductDetailComponent {
     this.route.params.subscribe(params => {
       this.productService.getById(params["id"]).subscribe(product => {
         this.product = product
-        this.titleService.setTitle(`${this.product?.title} - Paula Dallochio Inmobiliaria`)
-        this.metaTagService.updateTag({ name: 'description', content: this.product?.description ?? '' })
+        this.titleService.setTitle(`${this.product?.operation_type} ${this.product?.type} en ${this.product?.address.city} - Paula Dallochio Inmobiliaria`)
+        this.metaTagService.updateTag({ name: 'description', content: `${this.product?.title}, ${this.product?.rooms} ambientes, ${this.product?.area} m2 totales, ${this.product?.coveredArea} m2 cubiertos, ${this.product?.bathrooms} baños, ${this.product?.garage} cocheras`})
         this.metaTagService.updateTag({ name: 'keywords', content: ' Propiedad, inmueble, bien raíz, bienes raíces, inmobiliaria, Paula Dallochio, ' + this.product?.address ?? '' })
 
-        this.metaTagService.updateTag({ property: 'og:title', content: `${this.product?.title} - Paula Dallochio Inmobiliaria` })
+        this.metaTagService.updateTag({ property: 'og:title', content: `${this.product?.operation_type} ${this.product?.type} en ${this.product?.address.city} - Paula Dallochio Inmobiliaria` })
         this.metaTagService.updateTag({ property: 'og:description', content: this.product?.description ?? '' })
         this.metaTagService.updateTag({ property: 'og:url', content: `https://www.pauladallochio.com.ar/catalogo/${this.product?.id}` })
 
-        this.metaTagService.updateTag({ name: 'twitter:title', content: `${this.product?.title} - Paula Dallochio Inmobiliaria` })
+        this.metaTagService.updateTag({ name: 'twitter:title', content: `${this.product?.operation_type} ${this.product?.type} en ${this.product?.address.city} - Paula Dallochio Inmobiliaria` })
         this.metaTagService.updateTag({ name: 'twitter:description', content: this.product?.description ?? '' })
         this.metaTagService.updateTag({ name: 'twitter:url', content: `https://www.pauladallochio.com.ar/catalogo/${this.product?.id}` })
       })
