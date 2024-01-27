@@ -9,6 +9,7 @@ import { ProductService } from '../../services/product/product.service'
 import { Product } from '../../models/product'
 import { ActivatedRoute } from '@angular/router'
 import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
+import { Meta,Title  } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-product-detail',
@@ -22,15 +23,31 @@ export class ProductDetailComponent {
   showNotification = false
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private metaTagService: Meta,
+    private titleService: Title
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.productService.getById(params["id"]).subscribe(product => {
         this.product = product
+        this.titleService.setTitle(`${this.product?.title} - Paula Dallochio Inmobiliaria`)
+        this.metaTagService.updateTag({ name: 'description', content: this.product?.description ?? '' })
+        this.metaTagService.updateTag({ name: 'keywords', content: ' Propiedad, inmueble, bien raíz, bienes raíces, inmobiliaria, Paula Dallochio, ' + this.product?.address ?? '' })
+
+        this.metaTagService.updateTag({ property: 'og:title', content: `${this.product?.title} - Paula Dallochio Inmobiliaria` })
+        this.metaTagService.updateTag({ property: 'og:description', content: this.product?.description ?? '' })
+        this.metaTagService.updateTag({ property: 'og:url', content: `https://www.pauladallochio.com.ar/catalogo/${this.product?.id}` })
+
+        this.metaTagService.updateTag({ name: 'twitter:title', content: `${this.product?.title} - Paula Dallochio Inmobiliaria` })
+        this.metaTagService.updateTag({ name: 'twitter:description', content: this.product?.description ?? '' })
+        this.metaTagService.updateTag({ name: 'twitter:url', content: `https://www.pauladallochio.com.ar/catalogo/${this.product?.id}` })
       })
     })
+
+
+
   }
   copyActualRoute() {
     const url = "www.pauladallochio.com.ar/catalogo/" + this.product?.id
