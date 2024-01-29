@@ -1,7 +1,7 @@
 @if (noImages()) {
     <div class="no-images">
         <p>
-            No se encuentran imágenes para mostrar
+            No se encuentran imágenes o videos para mostrar
         </p>
     </div>
 }
@@ -9,27 +9,56 @@
     <section>
         <div class="carousel">
             <div class="main-image_desktop">
-                <img class="main-image_desktop--principal" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                <img class="main-image_desktop--background" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                @if(isVideo(actualImage())){
+                    <!-- Youtube player -->
+                    <iframe
+                    width="100%"
+                    height="100%"
+                    [src]="getSafeYoutubeUrl(getYoutubeVideoId(actualImage()))"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                }
+                @else {
+                    <img class="main-image_desktop--principal" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                    <img class="main-image_desktop--background" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                }
             </div>
             <div class="carousel__container"
                 [style.transform]="transformStyle()"
                 [style.width]="carouselContainerWidth"
                 [style.height]="carouselContainerHeight"
             >
-                @for (image of images; track $index) {
-                    <article
-                        class="carousel__item"
-                        [style.width]="carouselItemWidth"
-                        [style.height]="carouselItemHeight"
-                        [ngClass]="{'active': isImageSelected($index)}"
-                        (click)="selectImage($index)"
-                        >
-                            <img
-                                src="{{ image }}"
-                                alt="Imagen de propiedad"
-                                title="Imagen de la propiedad"/>
-                    </article>
+                @for (item of allMedia(); track $index) {
+                    @if(isVideo(item)){
+                        <article
+                            class="carousel__item"
+                            [style.width]="carouselItemWidth"
+                            [style.height]="carouselItemHeight"
+                            [ngClass]="{'active': isImageSelected($index)}"
+                            (click)="selectImage($index)"
+                            >
+                                <!-- Mostrar la imagen de stock de YouTube -->
+                                <img
+                                    src="https://img.youtube.com/vi/{{ getYoutubeVideoId(item) }}/0.jpg"
+                                    alt="Miniatura del video"
+                                    title="Video de la propiedad"/>
+                        </article>
+                    }
+                    @else {
+                        <article
+                            class="carousel__item"
+                            [style.width]="carouselItemWidth"
+                            [style.height]="carouselItemHeight"
+                            [ngClass]="{'active': isImageSelected($index)}"
+                            (click)="selectImage($index)"
+                            >
+                                <img
+                                    src="{{ item }}"
+                                    alt="Imagen de propiedad"
+                                    title="Imagen de la propiedad"/>
+                        </article>
+                    }
                 }
             </div>
         </div>
