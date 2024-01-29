@@ -18,6 +18,7 @@ export class Product{
     geo_lat: number = 0
     geo_long: number = 0
     images: string[] = []
+    videos: string[] = []
 
     fromTokko( product: TokkoProduct ){
         this.id = product.id
@@ -40,7 +41,7 @@ export class Product{
         this.garage = product.parking_lot_amount
         this.description = product.description_only
         this.images = product.photos.map( photo => photo.image )
-
+        this.videos = product.videos.map( video => video.url )
         return this
     }
 
@@ -102,6 +103,7 @@ export interface TokkoProduct {
       }
     ]
     description_only: string
+    videos: { url: string }[]
 }
 export interface SanityProduct {
     area: number,
