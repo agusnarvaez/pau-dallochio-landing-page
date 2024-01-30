@@ -1,7 +1,7 @@
-article{
+.product-card{
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: stretch;
     flex-wrap: wrap;
     border-radius: 1rem;
@@ -9,18 +9,28 @@ article{
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
-article:hover{
+.product-card:hover{
     transform: scale(1.01);
 }
+.product-card > a{
+    cursor: pointer;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-decoration: none;
+}
 
-article img{
+.product-card img{
     width: 100%;
-    min-height: 250px;
+    height: 250px;
+
     object-fit: cover;
     border-radius: 1rem;
 }
 
-article section{
+.product-card section{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -30,10 +40,10 @@ article section{
     gap: 1rem;
 }
 
-article section h2{
+.product-card section h2{
     width: 100%;
 }
-article section h3{
+.product-card section h3{
     width: 45%;
 }
 
@@ -57,27 +67,32 @@ article section h3{
     height: 20px;
     transition: all 0.3s ease-in-out;
 }
-
+.product-card:hover  .product-card-icon-button,
+.product-card:hover  .product-card-icon-button .product-card-icon-button-img path{
+    transition: all 0.3s ease-in-out;
+}
 
 @media (min-width: 530px) {
 
-    .product-card-icon-button:hover{
+    .product-card:hover .product-card-icon-button{
+        transition: all 0.3s ease-in-out;
         background-color: var(--secondary-color);
     }
-    .product-card-icon-button:hover .product-card-icon-button-img path{
+    .product-card:hover  .product-card-icon-button .product-card-icon-button-img path{
         /* stroke: var(--primary-color); */
         fill: var(--primary-color);
+        transition: all 0.3s ease-in-out;
     }
-    article h2{
+    .product-card h2{
         font-size: 1.5rem;
     }
-    article .price{
+    .product-card .price{
         font-size: 2rem;
     }
-    article h3{
+    .product-card h3{
         font-size: 1.3rem;
     }
-    /* article img{
+    /* .product-card img{
         min-height: 250px;
     } */
 

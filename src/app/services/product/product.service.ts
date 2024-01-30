@@ -3,7 +3,7 @@ import { FiltersService } from '../filters/filters.service'
 import { Observable, catchError, forkJoin, map,throwError } from 'rxjs'
 import { Product, SanityProduct, TokkoProduct } from '../../models/product'
 import { HttpClient } from '@angular/common/http'
-import { enviroment } from '../../../../enviroment.prod'
+import { environment } from '../../../../enviroment.prod'
 
 interface TokkoResponse {
   objects: TokkoProduct[]
@@ -51,7 +51,7 @@ export class ProductService {
   private getAllFromTokko():Observable<Product[]> {
 
     return this.http
-            .get<TokkoResponse>(`https://www.tokkobroker.com/api/v1/property/?lang=es_ar&key=${enviroment.tokkoBrokerKey}`)
+            .get<TokkoResponse>(`https://www.tokkobroker.com/api/v1/property/search?lang=es_ar&key=${environment.tokkoBrokerKey}&data=${this.filtersService.getTokkoQuery()}`)
             .pipe(
               catchError(error => {
                 return throwError(() => new Error(error.message))
@@ -68,7 +68,7 @@ export class ProductService {
 
     const encodedQuery = encodeURIComponent(this.filtersService.getSanityQuery())
     return this.http
-            .get<SanityResponse>(`https://${enviroment.sanityKey}.api.sanity.io/v2022-03-07/data/query/production?query=${encodedQuery}`)
+            .get<SanityResponse>(`https://${environment.sanityKey}.api.sanity.io/v2022-03-07/data/query/production?query=${encodedQuery}`)
             .pipe(
               catchError(error => {
                 return throwError(() => new Error(error.message))
@@ -90,7 +90,7 @@ export class ProductService {
 
   private getTokkoProductById(id: string): Observable<Product> {
     return this.http
-      .get<TokkoProduct>(`https://www.tokkobroker.com/api/v1/property/${id}/?lang=es_ar&key=${enviroment.tokkoBrokerKey}`)
+      .get<TokkoProduct>(`https://www.tokkobroker.com/api/v1/property/${id}/?lang=es_ar&key=${environment.tokkoBrokerKey}`)
       .pipe(
         catchError(error => {
           return throwError(() => new Error(error.message))
@@ -125,14 +125,14 @@ export class ProductService {
       }
     }`
     return this.http
-          .get<SanityResponse>(`https://${enviroment.sanityKey}.api.sanity.io/v2022-03-07/data/query/production?query=${query}`)
+          .get<SanityResponse>(`https://${environment.sanityKey}.api.sanity.io/v2022-03-07/data/query/production?query=${query}`)
           .pipe(
             catchError(error => {
               return throwError(() => new Error(error.message))
             }),
             map((response) => {
               // Aquí puedes hacer alguna transformación de los datos si es necesario.
-              console.log(response.result[0])
+              /* console.log(response.result[0]) */
               return new Product( ).fromSanity(response.result[0])
             }))
   }

@@ -101,6 +101,8 @@ section{
         background: linear-gradient(to bottom, transparent, white);
         z-index: 2;
     } */
+
+    .main-image_desktop iframe,
     .main-image_desktop img{
         width: 100%;
         height: 100%;
@@ -109,6 +111,9 @@ section{
         transition: all 0.3s ease-in-out;
         position: relative;
         z-index: 1;
+    }
+    .main-image_desktop iframe{
+        z-index: 0;
     }
     .main-image_desktop .main-image_desktop--background{
         position: absolute;
