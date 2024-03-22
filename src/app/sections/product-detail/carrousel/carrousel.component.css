@@ -52,6 +52,7 @@ section{
 }
 
 .carousel__controls{
+    pointer-events: none;
     width: 100%;
     padding: 0 1rem;
     display: flex;
@@ -62,6 +63,10 @@ section{
     top: 50%;
     z-index: 50;
     transform: translateY(-25%);
+}
+.carousel__controls app-button,
+.carousel__controls button{
+    pointer-events: auto;
 }
 .main-image_desktop{
     display: none;
