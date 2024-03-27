@@ -21,7 +21,7 @@ export class CarrouselComponent {
 
   getYoutubeVideoId = (url: string) => {
     const splittedUrl = url.split('/')
-    const youtubeId = splittedUrl[splittedUrl.length - 1]
+    const youtubeId = splittedUrl[splittedUrl.length - 1].split('=')[1]
     return youtubeId
   }
 
@@ -103,8 +103,6 @@ export class CarrouselComponent {
     const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       'https://www.youtube.com/embed/' + id,
     )
-
-    /* console.log(safeUrl) */
     return safeUrl
   }
 
