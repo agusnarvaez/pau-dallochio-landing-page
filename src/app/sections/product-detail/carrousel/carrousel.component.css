@@ -43,6 +43,46 @@ section{
     cursor:pointer;
     transition: all 0.3s ease-in-out;
 }
+.main-image_desktop .tour-view-container,
+.carousel__item .tour-view-container,
+.carousel__item .tour-view-container_desktop{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    gap: 2rem;
+}
+.main-image_desktop .tour-view-container::after,
+.carousel__item .tour-view-container::after,
+.carousel__item .tour-view-container_desktop::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--tertiary-color);
+    z-index: -1;
+}
+.main-image_desktop .tour-view-container img,
+.carousel__item .tour-view-container img,
+.carousel__item .tour-view-container_desktop img{
+    object-fit: contain;
+    width: 40%;
+    height: 40%;
+}
+.main-image_desktop .tour-view-container h3,
+.carousel__item .tour-view-container h3,
+.carousel__item .tour-view-container_desktop h3{
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
 .carousel__container img{
     width: 100%;
     height: 100%;
@@ -51,7 +91,9 @@ section{
     border-radius: 1rem;
 }
 
+
 .carousel__controls{
+    pointer-events: none;
     width: 100%;
     padding: 0 1rem;
     display: flex;
@@ -63,7 +105,14 @@ section{
     z-index: 50;
     transform: translateY(-25%);
 }
+.carousel__controls app-button,
+.carousel__controls button{
+    pointer-events: auto;
+}
 .main-image_desktop{
+    display: none;
+}
+.carousel__item .tour-view-container_desktop{
     display: none;
 }
 
@@ -101,6 +150,12 @@ section{
         background: linear-gradient(to bottom, transparent, white);
         z-index: 2;
     } */
+    .carousel__item .tour-view-container{
+        pointer-events: stroke;
+    }
+    .carousel__item .tour-view-container h3{
+        display: none;
+    }
 
     .main-image_desktop iframe,
     .main-image_desktop img{
@@ -145,6 +200,12 @@ section{
         left: 0;
         transform: translate(-3.5%, -50%);
     }
+    .carousel__item .tour-view-container{
+        display: none;
+    }
+    .carousel__item .tour-view-container_desktop{
+        display: flex;
+    }
 }
 
 
@@ -162,6 +223,7 @@ section{
         transform: scale(0.95);
 
     }
+
 }
 
 @media (min-width: 1100px) {

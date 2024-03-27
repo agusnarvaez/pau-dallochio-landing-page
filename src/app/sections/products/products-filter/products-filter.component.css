@@ -12,6 +12,46 @@ section{
     width: 47%;
 }
 
+.filter-form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.filter-form.showFilters{
+    max-height: 10000px;
+    overflow: visible;
+}
+.input-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    flex-direction: column;
+}
+
+.input-container label{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+.input-container select,
+.input-container input{
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+    padding: 1rem;
+}
+
 
 .secondary-filter-btn{
     width: 65%;
@@ -20,6 +60,10 @@ section{
 .search-btn{
     width: 30%;
     height: 100%;
+}
+.clear-filters-btn{
+    width: 100%;
+    margin-top: 1rem;
 }
 
 
@@ -36,6 +80,9 @@ section{
     .secondary-filter-btn{
         width: 30%;
     }
+    .input-container{
+        width: 23%;
+    }
 }
 
 @media (min-width: 950px) {
@@ -49,4 +96,13 @@ section{
 
 @media (min-width: 1150px) {
 
+    .input-container{
+        width: 15%;
+    }
+    .clear-filters-btn{
+        width: 20%;
+    }
+    section{
+        gap: 2rem;
+    }
 }

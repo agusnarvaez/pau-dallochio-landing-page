@@ -5,9 +5,9 @@ import { RouterLink, RouterModule } from '@angular/router'
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterModule],
+  imports: [CommonModule, RouterLink, RouterModule],
   templateUrl: './button.component.html',
-  styleUrl: './button.component.css'
+  styleUrl: './button.component.css',
 })
 export class ButtonComponent {
   @Input() type: string = ''
@@ -20,11 +20,11 @@ export class ButtonComponent {
   @Input() rounded = false
   @Input() disabled: boolean | null = false
 
-  isSecondary = ()=> this.type === 'secondary'
+  isSecondary = () => this.type === 'secondary'
 
-  isTertiary = ()=> this.type === 'tertiary'
+  isTertiary = () => this.type === 'tertiary'
 
-  buttonType = () => this.isSecondary() ? 'button' : 'submit'
+  buttonType = () => (this.isSecondary() ? 'button' : 'submit')
 
   isLink = () => this.link !== ''
 
@@ -37,8 +37,7 @@ export class ButtonComponent {
   goToTop(): void {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
-
 }

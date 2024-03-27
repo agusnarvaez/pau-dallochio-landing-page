@@ -20,8 +20,15 @@
                     allowfullscreen></iframe>
                 }
                 @else {
-                    <img class="main-image_desktop--principal" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                    <img class="main-image_desktop--background" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                    @if(isRender(actualImage())){
+                        <a class="tour-view-container" [href]="actualImage()" target="_blank" rel="noreferrer">
+                            <img class="main-image_desktop--principal" src="../../../../assets/icons/360-view.png" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                            <h3>Haz click para realizar un tour 360°</h3>
+                        </a>
+                    }@else {
+                        <img class="main-image_desktop--principal" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                        <img class="main-image_desktop--background" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                    }
                 }
             </div>
             <div class="carousel__container"
@@ -53,10 +60,21 @@
                             [ngClass]="{'active': isImageSelected($index)}"
                             (click)="selectImage($index)"
                             >
+                            @if(isRender(item)){
+                                <!-- Render -->
+                                <a class="tour-view-container" [href]="actualImage()" target="_blank" rel="noreferrer">
+                                    <img src="../../../../assets/icons/360-view.png" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                                    <h3>Haz click para realizar un tour 360°</h3>
+                                </a>
+                                <div class="tour-view-container_desktop"  target="_blank" rel="noreferrer">
+                                    <img src="../../../../assets/icons/360-view.png" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
+                                </div>
+                            }@else {
                                 <img
                                     src="{{ item }}"
-                                    alt="Imagen de propiedad"
+                                    alt="Imagen de propiedaad"
                                     title="Imagen de la propiedad"/>
+                            }
                         </article>
                     }
                 }
