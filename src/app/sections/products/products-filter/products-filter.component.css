@@ -65,6 +65,16 @@ section{
     width: 100%;
     margin-top: 1rem;
 }
+.input-container.order_by{
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.input-container.order_by label{
+    width: 100%;
+}
+.input-container.order_by select{
+    width: 48%;
+}
 
 
 @media (min-width: 530px) {
@@ -83,6 +93,10 @@ section{
     .input-container{
         width: 23%;
     }
+    .input-container.order_by{
+        width: 50%;
+    }
+
 }
 
 @media (min-width: 950px) {
