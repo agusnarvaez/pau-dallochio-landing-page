@@ -3,7 +3,7 @@
         <img [src]="product?.cover" alt="Imagen principal">
         <section>
             <h2>{{product?.type}} en {{product?.address?.street}} {{product?.address?.city}}</h2>
-            <h2 class="price"><span class="bold">{{product?.currency}} {{product?.price}}</span></h2>
+            <h2 class="price"><span class="bold">{{product?.currency}} {{ product?.price | number:'1.0-0':'es-ES' }}</span></h2>
             <h3><span class="bold">{{product?.area}}</span> m2 totales</h3>
             <h3><span class="bold">{{product?.coveredArea}}</span> m2 cubiertos</h3>
             <h3><span class="bold">{{product?.rooms}}</span> ambientes</h3>
