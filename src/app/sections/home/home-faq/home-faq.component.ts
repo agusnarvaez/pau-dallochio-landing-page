@@ -21,7 +21,7 @@ export class HomeFaqComponent {
       question:
         '¿Cuáles son los gastos estimados en una operación de compraventa?',
       answer:
-        'PARA OPERACIONES DE VENTA: IMPUESTOS: (se abonan en pesos al equivalente del valor del dólar oficial) Retiene el escribano actuante. Se liquidan sobre el valor de escrituración + Sellos 1.75% (por parte), I.T.I. (en caso de corresponder) 1,5%, IVA. <br> - GASTOS DE ESCRIBANÍA: 1-2% (Se solicita presupuesto al escribano actuante) - HONORARIOS INMOBILIARIA: 3%  <br> • IVA (cliente vendedor); 4% + IVA (cliente comprador) <br> • HONORARIOS ESCRIBANÍA: Solo le corresponden al cliente comprador',
+        'PARA OPERACIONES DE VENTA: <br> • IMPUESTOS: (se abonan en pesos al equivalente del valor del dólar oficial) Retiene el escribano actuante. Se liquidan sobre el valor de escrituración . Sellos 1.75% (por parte), I.T.I. (en caso de corresponder) 1,5%, IVA. <br> • GASTOS DE ESCRIBANÍA: 1-2% (Se solicita presupuesto al escribano actuante) <br> • HONORARIOS INMOBILIARIA PARA EL CLIENTE VENDEDOR: 3%  (más IVA)<br> • HONORARIOS INMOBILIARIA PARA EL CLIENTE COMPRADOR: 4% (más IVA) <br> • HONORARIOS ESCRIBANÍA: Solo le corresponden al cliente comprador',
     },
     /* {
       question: '¿Cuál es la inversión inicial para un alquiler?',
