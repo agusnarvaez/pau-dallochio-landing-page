@@ -85,13 +85,14 @@ nav{
     height: 90vh;
     position: absolute;
     top: 10vh;
-    right: -100%;
+    /* right: -100%; */
+    transform: translateX(100%);
     display: flex;
     justify-content: center;
     align-items: flex-start;
     z-index: 999;
     background-color: var(--tertiary-color);
-    transition: all 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 ul{
@@ -106,9 +107,10 @@ ul{
 }
 nav.show{
     /* top: 10vh; */
-    right: 0;
+    /* right: 0; */
     /* opacity: 1; */
     visibility: visible;
+    transform: translateX(0%);
 }
 
 ul li{
@@ -189,6 +191,7 @@ nav ul li a.active{
 
     nav{
         right: 0;
+        transform: translateX(0%);
         top: 0;
         position: relative;
         background-color: transparent;
