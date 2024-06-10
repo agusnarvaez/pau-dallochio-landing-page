@@ -96,6 +96,9 @@ a{
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
+.faq-item a{
+    font-size: inherit;
+}
 
 a:hover{
     text-decoration: underline;
