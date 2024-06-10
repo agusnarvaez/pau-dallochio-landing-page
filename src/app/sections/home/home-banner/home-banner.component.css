@@ -37,7 +37,7 @@
     backdrop-filter: blur(50px);
 }
 .banner header img{
-    width: 65%;
+    width: 60%;
     object-fit: contain;
 }
 .banner-slogan-desktop{
@@ -66,6 +66,9 @@
         padding: 2% 3%;
         transform: translate(-50%, 15%);
     }
+    .banner header img{
+        width: 50%;
+    }
 }
 
 @media (min-width: 950px) {
@@ -85,7 +88,7 @@
     }
 
     .banner header img{
-        width: 35%;
+        width: 30%;
     }
 
     .banner header section{
