@@ -2,25 +2,25 @@
     <img class="logo-footer" src="../../../assets/logos/logo-footer.svg" alt="logo-paula-dallochio">
     <section class="footer-primary">
         <ul>
-            <li>
+            <!-- <li>
                 <h2>Cómo trabajamos</h2>
                 <ul>
                     <li><a href="/" >Vender un inmueble</a></li>
                     <li><a href="/" >Comprar un inmueble</a></li>
                     <li><a href="/" >Alquilar un inmueble</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li>
                 <h2>Solicitar tasación</h2>
                 <ul>
                     <li>
-                        <a href="/" >Vender</a>
+                        <a [routerLink]="['vender']" >Vender</a>
                     </li>
                     <li>
-                        <a href="/" >Comprar</a>
+                        <a [routerLink]="['catalogo']" >Comprar</a>
                     </li>
                     <li>
-                        <a href="/" >Alquilar</a>
+                        <a [routerLink]="['catalogo']" >Alquilar</a>
                     </li>
                 </ul>
             </li>
@@ -31,11 +31,15 @@
                         <a href="mailto:estudioinmobiliario@pauladallochio.com.ar" target="_blank" rel="noreferrer">estudioinmobiliario&#64;pauladallochio.com.ar</a>
                     </li>
                     <li>
-                        <a href="https://api.whatsapp.com/send?phone=5491140856083&text=Hola!%20Quisiera%20saber%20mas%20sobre%20las%20propiedades" target="_blank" rel="noreferrer">+54 9 11 4085-6083</a>
+                        <a href="https://api.whatsapp.com/send?phone=5491140856083&text=Hola!%20Quisiera%20saber%20mas%20sobre%20las%20propiedades" >+54 9 11 4085-6083</a>
+                    </li>
+                    <li>
+                        <a href="https://maps.app.goo.gl/nd41iHQazLP6VuV78" target="_blank" rel="noreferrer"> Avenida Álvarez Thomas 925, piso 6to. depto. "C", CABA</a>
                     </li>
                     <li class="social-icons">
                         <a href="https://www.instagram.com/pauladallochio/" class="social-icon" target="_blank" rel="noreferrer"><i class="fa-brands fa-instagram"></i></a>
                         <a href="http://www.linkedin.com/in/pauladallochioestudioinmobiliario" class="social-icon" target="_blank" rel="noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://linktr.ee/pauladallochioestudioinmob" class="social-icon" target="_blank" rel="noreferrer"><i class="fa fa-share-nodes"></i></a>
                     </li>
                 </ul>
             </li>

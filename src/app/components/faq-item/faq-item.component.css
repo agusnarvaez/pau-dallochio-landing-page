@@ -49,7 +49,8 @@
 .faq-item.show div::after{
     transform: rotate(135deg);
 }
-.faq-item p{
+.faq-item p,
+.faq-item p a{
     font-size: 1rem;
     line-height: 1.5rem;
     color: var(--dark-color);
@@ -105,6 +106,10 @@
     .faq-item p{
         font-size: 2rem;
         line-height: 2.5rem;
-
+    }
+    .faq-item p a,
+    .faq-item a{
+        font-size: 2rem;
+        line-height: 2.5rem;
     }
 }

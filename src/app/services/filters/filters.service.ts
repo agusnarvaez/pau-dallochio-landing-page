@@ -24,7 +24,7 @@ interface TokkoQuery {
   providedIn: 'root',
 })
 export class FiltersService {
-  private _filters: Filters = {}
+  _filters: Filters = {}
 
   get = (): Filters => this._filters
 
@@ -83,14 +83,14 @@ export class FiltersService {
       currency: 'ANY',
       filters: [],
     }
+    let order_by: string | number | true = ''
+    let order: string | number | true = ''
 
     if (this._filters['operation_type'] == 'Venta')
       base_query.operation_types = [1]
 
     if (this._filters['operation_type'] == 'Alquiler')
       base_query.operation_types = [2, 3]
-
-    /* if(this._filters['rooms'] > '0') base_query.filters.push(['room_amount', '=', this._filters['rooms']]) */
 
     if (
       typeof this._filters['rooms'] === 'number' &&
@@ -108,8 +108,12 @@ export class FiltersService {
     if (this._filters['maxPrice'])
       base_query.price_to = Number(this._filters['maxPrice'])
 
-    console.log(JSON.stringify(base_query))
-    return JSON.stringify(base_query)
+    if (this._filters['order_by']) order_by = this._filters['order_by']
+    if (this._filters['order']) order = this._filters['order']
+
+    return `data=${JSON.stringify(base_query)}
+            &order_by=${order_by}
+            &order=${order}`
   }
 
   add(filterObj: FilterObject): void {

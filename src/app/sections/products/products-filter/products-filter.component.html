@@ -1,11 +1,11 @@
 <section>
     <app-button text="Comprar" class="main-filter-btn" [type]="isSellFilterActive ? '' : 'secondary'" (click)="toggleFilter({name: 'operation_type', value:'Venta'})"></app-button>
     <app-button text="Alquilar" class="main-filter-btn" [type]="isRentFilterActive ? '' : 'secondary'" (click)="toggleFilter({name: 'operation_type', value:'Alquiler'})"></app-button>
-    <app-button [text]="showFilters ? 'Menos filtros' : 'Más filtros (3)'" class="secondary-filter-btn" icon="fa-solid fa-filter" type="secondary" (click)="toggleFilters()"></app-button>
-    <app-button (click)='onSubmit()' class="search-btn" icon="fa fa-search fa-solid fa-magnifying-glass" ></app-button>
+    <app-button [text]="showFilters ? 'Menos filtros' : 'Más filtros (4)'" class="secondary-filter-btn" icon="fa-solid fa-filter" type="secondary" (click)="toggleFilters()"></app-button>
+    <app-button (click)='search()' class="search-btn" icon="fa fa-search fa-solid fa-magnifying-glass" ></app-button>
     <form
         class="filter-form" [ngClass]="{'showFilters': showFilters}"
-        #myForm="ngForm" (ngSubmit)="onSubmit()"
+        #myForm="ngForm" (ngSubmit)="search()"
     >
         <div class="input-container">
             <label for="typeFilter">Tipo</label>
@@ -20,6 +20,7 @@
                 <option value="PH">PH</option>
             </select>
         </div>
+
         <div class="input-container">
             <label for="roomsFilter">Habitaciones</label>
             <input
@@ -51,6 +52,7 @@
                     <small *ngIf="minPriceField.errors?.['min']">El precio mínimo debe ser mayor a 0.</small>
                 </div>
         </div>
+
         <div class="input-container">
             <label for="maxPriceFilter">Precio Max</label>
             <input
@@ -66,6 +68,37 @@
                     <small *ngIf="maxPriceField.errors?.['min']">El precio mínimo debe ser mayor a 0.</small>
                 </div>
         </div>
+
+        <div class="input-container order_by">
+            <label for="order_by">Ordenar por</label>
+            <select
+                id="order_by"
+                name="order_by"
+                [(ngModel)]="order_by"
+            >
+                <option value="" disabled selected>Ordenar por</option>
+                <option value="price">Precio</option>
+                <option value="location">Ubicación</option>
+                <option value="age">Año</option>
+                <option value="age">Expenses</option>
+                <option value="room_amount">Habitaciones</option>
+                <option value="bathroom_amount">Baños</option>
+                <option value="parking_lot_amount">Cocheras</option>
+                <option value="surface">Superficie</option>
+                <option value="roofed_surface">Superficie Cubierta</option>
+                <option value="total_surface">Superficie Total</option>
+            </select>
+            <select
+                id="order"
+                name="order"
+                [(ngModel)]="order"
+            >
+                <option value="" disabled selected>---</option>
+                <option value="ASC">Ascendente</option>
+                <option value="DESC">Descendente</option>
+            </select>
+        </div>
+
         <app-button (click)='clearFilters()' type="secondary" text="Limpiar Filtros" class="clear-filters-btn" icon="fa fa-solid fa-arrow-rotate-right"  ></app-button>
     </form>
 </section>

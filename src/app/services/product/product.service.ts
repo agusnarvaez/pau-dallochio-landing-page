@@ -50,7 +50,7 @@ export class ProductService {
       .get<TokkoResponse>(
         `https://www.tokkobroker.com/api/v1/property/search?lang=es_ar&key=${
           environment.tokkoBrokerKey
-        }&data=${this.filtersService.getTokkoQuery()}`,
+        }&${this.filtersService.getTokkoQuery()}`,
       )
       .pipe(
         catchError((error) => {

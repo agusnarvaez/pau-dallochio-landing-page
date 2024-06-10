@@ -21,13 +21,13 @@ export class ProductsFilterComponent {
   rooms: number = 0
   minPrice: number = 0
   maxPrice: number = Infinity
-  // Propiedades para almacenar el estado de los filtros
+  order_by: string = ''
+  order: string = ''
   isSellFilterActive: boolean = false
   isRentFilterActive: boolean = false
 
   showFilters: boolean = false
   toggleFilters(): void {
-    console.log('toggleFilters')
     this.showFilters = !this.showFilters
   }
   constructor(private filtersService: FiltersService) {
@@ -57,7 +57,7 @@ export class ProductsFilterComponent {
     )
     this.filterChange.emit()
   }
-  onSubmit(): void {
+  search(): void {
     console.log('onSubmit')
     if (this.myForm.value.type != '')
       this.filtersService.add({ name: 'type', value: this.myForm.value.type })
@@ -73,6 +73,18 @@ export class ProductsFilterComponent {
         name: 'maxPrice',
         value: this.myForm.value.maxPrice,
       })
+
+    if (this.myForm.value.order_by != '') {
+      this.filtersService.add({
+        name: 'order_by',
+        value: this.myForm.value.order_by,
+      })
+    }
+
+    if (this.myForm.value.order != '') {
+      this.filtersService.add({ name: 'order', value: this.myForm.value.order })
+    }
+
     this.filterChange.emit()
   }
   clearFilters(): void {

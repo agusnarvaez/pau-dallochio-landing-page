@@ -5,10 +5,8 @@ import { ButtonComponent } from '../../components/button/button.component'
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [CommonModule,ButtonComponent],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  styleUrl: './not-found.component.css',
 })
-export class NotFoundComponent {
-
-}
+export class NotFoundComponent {}

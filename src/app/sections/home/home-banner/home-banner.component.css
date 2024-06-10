@@ -37,7 +37,7 @@
     backdrop-filter: blur(50px);
 }
 .banner header img{
-    width: 95%;
+    width: 60%;
     object-fit: contain;
 }
 .banner-slogan-desktop{
@@ -52,19 +52,6 @@
 .search-btn{
     width: 15%;
 }
-/* .banner header section{
-    hei
-} */
-/* .banner header::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-
-    z-index: 10;
-} */
 
 
 
@@ -79,6 +66,9 @@
         padding: 2% 3%;
         transform: translate(-50%, 15%);
     }
+    .banner header img{
+        width: 50%;
+    }
 }
 
 @media (min-width: 950px) {
@@ -90,24 +80,25 @@
     .banner header{
         transform: translate(-50%, 40%);
         justify-content: space-between;
-        min-height: 20vh;
+        min-height: 15vh;
         max-height: 20vh;
         border-radius: 2rem;
         padding: 0% 2%;
+        flex-wrap: nowrap;
     }
 
     .banner header img{
-        width: 35%;
+        width: 30%;
     }
 
     .banner header section{
         width: 60%;
     }
-    .banner-slogan-mobile{
+/*     .banner-slogan-mobile{
         display: none;
-    }
-    .banner-slogan-desktop{
+    } */
+ /*    .banner-slogan-desktop{
         display: block;
-    }
+    } */
 
 }
