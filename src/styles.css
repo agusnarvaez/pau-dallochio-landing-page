@@ -118,6 +118,7 @@ a.whatsapp-button{
     padding: 1rem;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    z-index: 1000;
 }
 a.whatsapp-button:hover{
     background-color: var(--primary-color);
