@@ -10,6 +10,7 @@ import { Product } from '../../models/product'
 import { ActivatedRoute } from '@angular/router'
 import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
 import { Meta, Title } from '@angular/platform-browser'
+import { PdfService } from '../../services/pdf/pdf.service'
 
 @Component({
   selector: 'app-product-detail',
@@ -34,6 +35,7 @@ export class ProductDetailComponent {
     private route: ActivatedRoute,
     private metaTagService: Meta,
     private titleService: Title,
+    private pdfService: PdfService,
   ) {}
 
   ngOnInit() {
@@ -90,5 +92,10 @@ export class ProductDetailComponent {
     setTimeout(() => {
       this.showNotification = false
     }, 2000)
+  }
+
+  downLoadPdf() {
+    console.log('downloading pdf')
+    this.pdfService.generatePropertyPdf(this.product!)
   }
 }
