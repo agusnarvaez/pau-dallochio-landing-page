@@ -104,7 +104,6 @@ export class ProductService {
         }),
         map((response) => {
           // Aquí puedes hacer alguna transformación de los datos si es necesario.
-          /* console.log(response) */
           return new Product().fromTokko(response)
         }),
       )
