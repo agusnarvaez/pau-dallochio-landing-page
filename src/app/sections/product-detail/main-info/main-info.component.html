@@ -1,7 +1,7 @@
 <section>
     <span>{{product?.operation_type}}</span>
     <h1>{{product?.title}}</h1>
-    <h2>{{product?.currency + " " + product?.price}}</h2>
+    <h2>{{product?.currency + " " + (product?.price | number:'1.0-0':'es-ES')}}</h2>
     <ul>
         <li><i class="fa fa-solid fa-house-chimney-window"></i> {{product?.rooms}} ambientes</li>
         <li><i class="fa fa-solid fa-maximize"></i> {{product?.area}} m2</li>

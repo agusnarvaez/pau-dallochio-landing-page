@@ -48,7 +48,7 @@ export class ProductService {
   private getAllFromTokko(): Observable<Product[]> {
     return this.http
       .get<TokkoResponse>(
-        `https://www.tokkobroker.com/api/v1/property/search?lang=es_ar&key=${
+        `https://www.tokkobroker.com/api/v1/property/search?limit=50&lang=es_ar&key=${
           environment.tokkoBrokerKey
         }&${this.filtersService.getTokkoQuery()}`,
       )
@@ -104,7 +104,6 @@ export class ProductService {
         }),
         map((response) => {
           // Aquí puedes hacer alguna transformación de los datos si es necesario.
-          /* console.log(response) */
           return new Product().fromTokko(response)
         }),
       )
