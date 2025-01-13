@@ -58,9 +58,7 @@ export class ProductService {
         }),
         map((response) => {
           // Aquí puedes hacer alguna transformación de los datos si es necesario.
-          return response.objects.map((p) => {
-            return new Product().fromTokko(p)
-          })
+          return response.objects.map((p) => new Product().fromTokko(p))
         }),
       )
   }

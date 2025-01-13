@@ -21,4 +21,6 @@ export class ProductsCardComponent {
   @Input() product?: Product
 
   iconButton = '../../../../assets/icons/arrow-up-right.svg'
+
+  expenses = () => (this.product?.expenses ? `Expensas: $${this.product?.expenses}` : 'Sin expensas')
 }

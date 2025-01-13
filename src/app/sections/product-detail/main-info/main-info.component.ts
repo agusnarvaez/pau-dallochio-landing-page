@@ -6,9 +6,9 @@ import { environment } from '../../../../../enviroment.prod'
 @Component({
   selector: 'app-main-info',
   standalone: true,
-  imports: [CommonModule,GoogleMapsModule],
+  imports: [CommonModule, GoogleMapsModule],
   templateUrl: './main-info.component.html',
-  styleUrl: './main-info.component.css'
+  styleUrl: './main-info.component.css',
 })
 export class MainInfoComponent {
   @Input() product: Product | undefined
@@ -16,7 +16,7 @@ export class MainInfoComponent {
   marker: google.maps.MarkerOptions = {
     draggable: false,
     position: this.center,
-    title: 'Property Location'
+    title: 'Property Location',
   }
 
   ngOnChanges(): void {
@@ -28,6 +28,10 @@ export class MainInfoComponent {
       this.marker.position = this.center
     }
   }
+  expenses = () =>
+    this.product?.expenses
+      ? `Expensas: $${this.product?.expenses}`
+      : 'Sin expensas'
 
   ngOnInit(): void {
     if (document.getElementById('googleMapsScript')) return
@@ -37,7 +41,7 @@ export class MainInfoComponent {
     script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.maps_key}`
     script.async = true // Carga el script de forma asíncrona.
     script.defer = true // Diferir la ejecución del script hasta que la carga de la página haya terminado.
-    
+
     document.head.appendChild(script)
   }
 }

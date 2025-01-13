@@ -20,7 +20,7 @@ export class Product {
   images: string[] = []
   videos: string[] = []
   pdfDescription: string = ''
-
+  expenses: number = 0
   fromTokko(product: TokkoProduct) {
     this.id = product.id
     this.type = product.type.name
@@ -41,6 +41,7 @@ export class Product {
     this.pdfDescription = product.description
     this.images = product.photos.map((photo) => photo.image)
     this.videos = product.videos.map((video) => video.url)
+    this.expenses = product.expenses
     return this
   }
 
@@ -102,6 +103,7 @@ export interface TokkoProduct {
   description_only: string
   description: string
   videos: { url: string }[]
+  expenses: number
 }
 export interface SanityProduct {
   area: number

@@ -8,6 +8,7 @@
         <li><i class="fa fa-solid fa-person-shelter"></i>{{product?.coveredArea}} m2</li>
         <li><i class="fa fa-solid fa-square-parking"></i>{{product?.garage==0?"Sin cochera":product?.garage + " Cochera"}}</li>
         <li><i class="fa fa-solid fa-bath"></i>{{product?.bathrooms}} Baño</li>
+        <li><i class="fa fa-solid fa-building"></i>{{expenses()}}</li>
     </ul>
     <h2>Descripción</h2>
     <p class="description" [innerHTML]="product?.description"></p>
