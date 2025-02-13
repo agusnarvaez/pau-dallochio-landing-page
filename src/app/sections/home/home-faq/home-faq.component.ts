@@ -31,7 +31,7 @@ export class HomeFaqComponent {
     {
       question: '¿Cómo calculo el índice de ajuste de mi alquiler?',
       answer:
-        '<a href="https://cpicalq.portalcucicba.com.ar/calculocasapropia_add.php" target="_blank" rel="noreferer" >CALCULADORA DE ÍNDICE CASA PROPIA <i class="fa fa-arrow-up-right-from-square"></i></a> <br> <a href="https://cpicalq.portalcucicba.com.ar/calculoipc_variacion_add.php" target="_blank" rel="noreferer" >CALCULADORA DE ÍNDICE IPC <i class="fa fa-arrow-up-right-from-square"></i></a> <br> <a href="https://cpicalq.portalcucicba.com.ar/calculo_add.php" target="_blank" rel="noreferer" >CALCULADORA DE ÍNDICE ICL <i class="fa fa-arrow-up-right-from-square"></i></a>',
+        '<a href="https://cabaprop.com.ar/calculadora-casa-propia" target="_blank" rel="noreferer" >CALCULADORA DE ÍNDICE CASA PROPIA <i class="fa fa-arrow-up-right-from-square"></i></a> <br> <a href="https://cabaprop.com.ar/calculadora-ipc" target="_blank" rel="noreferer" >CALCULADORA DE ÍNDICE IPC <i class="fa fa-arrow-up-right-from-square"></i></a> <br> <a href="https://cabaprop.com.ar/calculadora-de-alquileres" target="_blank" rel="noreferer" >CALCULADORA DE ÍNDICE ICL <i class="fa fa-arrow-up-right-from-square"></i></a>',
     },
     {
       question:
