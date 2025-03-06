@@ -6,6 +6,7 @@ import { ProductsFilterComponent } from '../../sections/products/products-filter
 import { ProductsCardComponent } from '../../sections/products/products-card/products-card.component'
 import { Product } from '../../models/product'
 import { Meta, Title } from '@angular/platform-browser'
+import { ButtonComponent } from '../../components/button/button.component'
 
 @Component({
   selector: 'app-products',
@@ -15,6 +16,7 @@ import { Meta, Title } from '@angular/platform-browser'
     ProductsBannerComponent,
     ProductsFilterComponent,
     ProductsCardComponent,
+    ButtonComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',

@@ -1,6 +1,11 @@
 <main>
     <app-products-filter (filterChange)="onFilterChange()"></app-products-filter>
-
+    @if(typeOfOperation() === 'alquiler'){
+        <!-- AGREGAR BOTÓN DE CALCULADORA DE ÍNDICES -->
+         <div class="secondary-buttons">
+             <app-button text="Calculadora de Índices" class="main-filter-btn" type="secondary" link="https://cabaprop.com.ar/calculadoras" [isExternalLink]="true"></app-button>
+         </div>
+    }
     @if (listIsEmpty()) {
         <h3>No se encontraron propiedades para su {{typeOfOperation()}}</h3>
     }@else{
