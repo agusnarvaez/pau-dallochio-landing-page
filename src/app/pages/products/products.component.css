@@ -7,6 +7,14 @@ section{
     gap: 2.5rem;
     padding: 0% 3% 3% 3%;
 }
+.secondary-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 3% 0%;
+}
 
 h3{
     width: 100%;
