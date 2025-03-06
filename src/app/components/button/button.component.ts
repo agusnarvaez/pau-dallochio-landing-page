@@ -19,6 +19,7 @@ export class ButtonComponent {
   @Input() iconClass: string | undefined
   @Input() rounded = false
   @Input() disabled: boolean | null = false
+  @Input() isExternalLink: boolean = false
 
   isSecondary = () => this.type === 'secondary'
 
