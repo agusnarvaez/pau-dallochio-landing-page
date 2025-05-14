@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router'
 import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
 import { Meta, Title } from '@angular/platform-browser'
 import { PdfService } from '../../services/pdf/pdf.service'
+import { LoaderService } from '../../services/loader/loader.service'
 
 @Component({
   selector: 'app-product-detail',
@@ -36,12 +37,18 @@ export class ProductDetailComponent {
     private metaTagService: Meta,
     private titleService: Title,
     private pdfService: PdfService,
+    private loaderService: LoaderService,
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
+      this.loaderService.showLoading()
+
       this.productService.getById(params['id']).subscribe((product) => {
         this.product = product
+        if (this.product) {
+          this.loaderService.hideLoading()
+        }
         this.titleService.setTitle(
           `${this.product?.operation_type} ${this.product?.type} en ${this.product?.address.city} - Paula Dallochio Inmobiliaria`,
         )
@@ -53,7 +60,7 @@ export class ProductDetailComponent {
           name: 'keywords',
           content:
             ' Propiedad, inmueble, bien raíz, bienes raíces, inmobiliaria, Paula Dallochio, ' +
-              this.product?.address ?? '',
+            (this.product?.address ? `, ${this.product?.address.city}` : ''),
         })
 
         this.metaTagService.updateTag({
