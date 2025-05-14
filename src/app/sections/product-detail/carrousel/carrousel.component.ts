@@ -20,9 +20,9 @@ export class CarrouselComponent {
   isVideo = (url: string) => url.includes('youtube') || url.includes('youtu.be')
 
   getYoutubeVideoId = (url: string) => {
-    const splittedUrl = url.split('/')
-    const youtubeId = splittedUrl[splittedUrl.length - 1].split('=')[1]
-    return youtubeId
+    const regex = /(?:v=|shorts\/|be\/)([^&?/]+)/
+    const match = url.match(regex)
+    return match ? match[1] : ''
   }
 
   //* Esta variable se usa para saber qué imagen se está mostrando actualmente
