@@ -4,29 +4,29 @@
     <h2>{{product?.currency + " " + (product?.price | number:'1.0-0':'es-ES')}}</h2>
     <ul>
         <li><i class="fa fa-solid fa-house-chimney-window"></i> {{product?.rooms}} ambientes</li>
-        <li *ngIf="product?.area">
+        <li *ngIf="product && product?.area && product.area > 0">
             <i class="fa fa-solid fa-maximize"></i>
-            {{product?.area | number:'1.2-2':'es-ES'}} m² totales
+            {{product.area | number:'1.2-2':'es-ES'}} m² totales
         </li>
 
-        <li *ngIf="product?.coveredArea">
+        <li *ngIf="product && product?.coveredArea && product.coveredArea > 0">
             <i class="fa fa-solid fa-person-shelter"></i>
-            {{product?.coveredArea | number:'1.2-2':'es-ES'}} m² cubiertos
+            {{product.coveredArea | number:'1.2-2':'es-ES'}} m² cubiertos
         </li>
 
-        <li *ngIf="product?.semiCoveredArea">
+        <li *ngIf="product && product?.semiCoveredArea && product.semiCoveredArea > 0">
             <i class="fa fa-solid fa-border-top-left"></i>
-            {{product?.semiCoveredArea | number:'1.2-2':'es-ES'}} m² semicubiertos
+            {{product.semiCoveredArea | number:'1.2-2':'es-ES'}} m² semicubiertos
         </li>
 
-        <li *ngIf="product?.uncoveredArea">
+        <li *ngIf="product && product?.uncoveredArea && product.uncoveredArea > 0">
             <i class="fa fa-solid fa-sun"></i>
-            {{product?.uncoveredArea | number:'1.2-2':'es-ES'}} m² descubiertos
+            {{product.uncoveredArea | number:'1.2-2':'es-ES'}} m² descubiertos
         </li>
 
-        <li *ngIf="product?.lotArea">
+        <li *ngIf="product && product?.lotArea && product.lotArea > 0">
             <i class="fa fa-solid fa-tree"></i>
-            {{product?.lotArea | number:'1.2-2':'es-ES'}} m² terreno
+            {{product.lotArea | number:'1.2-2':'es-ES'}} m² terreno
         </li>
 
         <li><i class="fa fa-solid fa-square-parking"></i>{{product?.garage==0?"Sin cochera":product?.garage + " Cochera"}}</li>
