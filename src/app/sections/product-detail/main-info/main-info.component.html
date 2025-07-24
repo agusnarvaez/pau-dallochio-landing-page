@@ -4,10 +4,35 @@
     <h2>{{product?.currency + " " + (product?.price | number:'1.0-0':'es-ES')}}</h2>
     <ul>
         <li><i class="fa fa-solid fa-house-chimney-window"></i> {{product?.rooms}} ambientes</li>
-        <li><i class="fa fa-solid fa-maximize"></i> {{product?.area}} m2</li>
-        <li><i class="fa fa-solid fa-person-shelter"></i>{{product?.coveredArea}} m2</li>
+        <li *ngIf="product?.area">
+            <i class="fa fa-solid fa-maximize"></i>
+            {{product?.area | number:'1.2-2':'es-ES'}} m² totales
+        </li>
+
+        <li *ngIf="product?.coveredArea">
+            <i class="fa fa-solid fa-person-shelter"></i>
+            {{product?.coveredArea | number:'1.2-2':'es-ES'}} m² cubiertos
+        </li>
+
+        <li *ngIf="product?.semiCoveredArea">
+            <i class="fa fa-solid fa-border-top-left"></i>
+            {{product?.semiCoveredArea | number:'1.2-2':'es-ES'}} m² semicubiertos
+        </li>
+
+        <li *ngIf="product?.uncoveredArea">
+            <i class="fa fa-solid fa-sun"></i>
+            {{product?.uncoveredArea | number:'1.2-2':'es-ES'}} m² descubiertos
+        </li>
+
+        <li *ngIf="product?.lotArea">
+            <i class="fa fa-solid fa-tree"></i>
+            {{product?.lotArea | number:'1.2-2':'es-ES'}} m² terreno
+        </li>
+
         <li><i class="fa fa-solid fa-square-parking"></i>{{product?.garage==0?"Sin cochera":product?.garage + " Cochera"}}</li>
-        <li><i class="fa fa-solid fa-bath"></i>{{product?.bathrooms}} Baño</li>
+        <li>
+            <i class="fa fa-solid fa-bath"></i> {{product?.bathrooms}} Baño{{product && product.bathrooms > 1 ? 's' : ''}}
+        </li>
         <li><i class="fa fa-solid fa-building"></i>{{expenses()}}</li>
     </ul>
     <h2>Descripción</h2>

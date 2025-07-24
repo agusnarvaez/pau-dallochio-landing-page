@@ -7,6 +7,9 @@ export class Product {
   price: number = 0
   area: number = 0
   coveredArea: number = 0
+  lotArea: number = 0 // superficie terreno
+  semiCoveredArea: number = 0 // semicubierta
+  uncoveredArea: number = 0 // descubierta
   rooms: number = 0
   bathrooms: number = 0
   cover: string = ''
@@ -28,7 +31,13 @@ export class Product {
     this.price = product.operations[0].prices[0].price
     this.currency = product.operations[0].prices[0].currency
     this.area = product.total_surface
+
     this.coveredArea = product.roofed_surface
+    this.lotArea = product.surface
+    this.coveredArea = product.roofed_surface
+    this.semiCoveredArea = product.semiroofed_surface
+    this.uncoveredArea = product.unroofed_surface
+    this.area = product.total_surface
     this.rooms = product.room_amount
     this.bathrooms = product.bathroom_amount
     this.cover = product.photos[0].image
@@ -81,6 +90,9 @@ export interface TokkoProduct {
   ]
   total_surface: number
   roofed_surface: number
+  surface: number
+  semiroofed_surface: number
+  unroofed_surface: number
   room_amount: number
   rich_description: string
   bathroom_amount: number
