@@ -40,7 +40,7 @@ export class Product {
     this.area = product.total_surface
     this.rooms = product.room_amount
     this.bathrooms = product.bathroom_amount
-    this.cover = product.photos[0].image
+    this.cover = product.photos[0]?.image ?? ''
     this.operation_type = product.operations[0].operation_type
     this.title = product.publication_title
     this.geo_lat = product.geo_lat
@@ -64,13 +64,13 @@ export class Product {
     this.coveredArea = product.coveredArea
     this.rooms = product.rooms
     this.bathrooms = product.bathRooms
-    this.cover = product.cover.asset.url
+    this.cover = product.cover?.asset?.url ?? ''
     this.operation_type = product.operation_type.title
     this.title = product.title
     this.geo_lat = product.geo_lat
     this.geo_long = product.geo_long
     this.garage = product.garage
-    this.description = product.body[0].children[0].text
+    this.description = product.body[0]?.children?.[0]?.text ?? ''
     this.images = product.images.map((image) => image.asset.url)
 
     return this
@@ -120,7 +120,11 @@ export interface TokkoProduct {
 export interface SanityProduct {
   area: number
   bathRooms: number
-  body: any[]
+  body: Array<{
+    children?: Array<{
+      text?: string
+    }>
+  }>
   city: string
   cover: {
     asset: {

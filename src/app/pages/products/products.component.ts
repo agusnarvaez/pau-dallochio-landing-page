@@ -8,7 +8,14 @@ import { Product } from '../../models/product'
 import { Meta, Title } from '@angular/platform-browser'
 import { ButtonComponent } from '../../components/button/button.component'
 import { LoaderService } from '../../services/loader/loader.service'
-import { EMPTY, catchError, finalize } from 'rxjs'
+import {
+  EMPTY,
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  map,
+} from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Component({
@@ -35,10 +42,6 @@ export class ProductsComponent {
     private titleService: Title,
     private loaderService: LoaderService,
   ) {}
-
-  onFilterChange() {
-    this.updateProductsList()
-  }
 
   selectedFilters = () => this.productService.filters()
 
@@ -78,8 +81,16 @@ export class ProductsComponent {
   }
 
   ngOnInit() {
-    // Lógica para inicializar `this.list`
-    this.updateProductsList()
+    this.productService.filtersService.filters$
+      .pipe(
+        debounceTime(250),
+        map((filters) => JSON.stringify(filters)),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(() => {
+        this.updateProductsList()
+      })
 
     this.titleService.setTitle(
       'Catálogo de Propiedades - Paula Dallochio Inmobiliaria',

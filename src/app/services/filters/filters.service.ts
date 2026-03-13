@@ -1,138 +1,86 @@
 import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { buildSanityQuery, buildTokkoQuery } from './filter-query.builder'
+
+export type OperationType = 'Venta' | 'Alquiler'
+export type PropertyType = 'Departamento' | 'Casa' | 'PH'
+export type SortDirection = 'ASC' | 'DESC'
 
 export interface Filters {
-  [key: string]: string | boolean | number
+  operation_type?: OperationType
+  type?: PropertyType
+  rooms?: number
+  minPrice?: number
+  maxPrice?: number
+  order_by?: string
+  order?: SortDirection
+  [key: string]: string | boolean | number | undefined
 }
 
 export interface FilterObject {
   name: string
   value: string | boolean | number
 }
-type FilterCondition = [string, '=', string | number]
 
-interface TokkoQuery {
-  current_localization_id: number
-  current_localization_type: string
-  price_from: number
-  price_to: number
-  operation_types: number[]
-  property_types: number[]
-  currency: string
-  filters: FilterCondition[]
-}
 @Injectable({
   providedIn: 'root',
 })
 export class FiltersService {
-  _filters: Filters = {}
+  private readonly filtersSubject = new BehaviorSubject<Filters>({})
+  readonly filters$ = this.filtersSubject.asObservable()
 
-  get = (): Filters => this._filters
+  get = (): Filters => this.filtersSubject.value
+
+  private sanitizeFilters(filters: Filters): Filters {
+    return Object.entries(filters).reduce((cleaned, [key, value]) => {
+      if (value === undefined || value === null || value === '') {
+        return cleaned
+      }
+
+      if (typeof value === 'number' && value <= 0) {
+        return cleaned
+      }
+
+      cleaned[key] = value
+      return cleaned
+    }, {} as Filters)
+  }
+
+  private set(filters: Filters): void {
+    this.filtersSubject.next(this.sanitizeFilters(filters))
+  }
+
+  patch(filters: Partial<Filters>): void {
+    this.set({ ...this.get(), ...filters })
+  }
 
   getSanityQuery(): string {
-    const baseQuery = '*[_type == "property"'
-    const filterQuery = Object.keys(this._filters)
-      .map((key) => {
-        const value = this._filters[key]
-        if (typeof value === 'boolean' && value) {
-          return ` && ${key} == true`
-        } else if (typeof value === 'string') {
-          if (value == 'Venta' || value == 'Alquiler') {
-            return ` && operation_type->title == "${value}"`
-          }
-          return ` && ${key} == "${value}"`
-        }
-        return ''
-      })
-      .join('')
-
-    return `${baseQuery}${filterQuery}]{
-      ...,
-      operation_type->{
-          title
-      },
-      currency->{
-          title
-      },
-      type->{
-          title
-      },
-      images[]{
-          asset->{
-              path, url
-          }
-      },
-      cover{
-          asset->{
-              path, url
-          }
-      }
-    }`
+    return buildSanityQuery(this.get())
   }
 
   getTokkoQuery(): string {
-    const base_query: TokkoQuery = {
-      current_localization_id: 0,
-      current_localization_type: 'country',
-      price_from: 0,
-      price_to: 999999999,
-      operation_types: [1, 2, 3],
-      property_types: [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        21, 22, 23, 24, 25,
-      ],
-      currency: 'ANY',
-      filters: [],
-    }
-    let order_by: string | number | true = ''
-    let order: string | number | true = ''
-
-    if (this._filters['operation_type'] == 'Venta')
-      base_query.operation_types = [1]
-
-    if (this._filters['operation_type'] == 'Alquiler')
-      base_query.operation_types = [2, 3]
-
-    if (
-      typeof this._filters['rooms'] === 'number' &&
-      this._filters['rooms'] > 0
-    ) {
-      base_query.filters.push(['room_amount', '=', this._filters['rooms']])
-    }
-
-    if (this._filters['type'] == 'Departamento') base_query.property_types = [2]
-    else if (this._filters['type'] == 'Casa') base_query.property_types = [3]
-    else if (this._filters['type'] == 'PH') base_query.property_types = [13]
-
-    if (this._filters['minPrice'])
-      base_query.price_from = Number(this._filters['minPrice'])
-    if (this._filters['maxPrice'])
-      base_query.price_to = Number(this._filters['maxPrice'])
-
-    if (this._filters['order_by']) order_by = this._filters['order_by']
-    if (this._filters['order']) order = this._filters['order']
-
-    return `data=${JSON.stringify(base_query)}
-            &order_by=${order_by}
-            &order=${order}`
+    return buildTokkoQuery(this.get())
   }
 
   add(filterObj: FilterObject): void {
-    this._filters[filterObj.name] = filterObj.value
+    this.patch({ [filterObj.name]: filterObj.value })
   }
 
   remove(filterObj: FilterObject): void {
-    delete this._filters[filterObj.name]
+    const nextFilters = { ...this.get() }
+    delete nextFilters[filterObj.name]
+    this.set(nextFilters)
   }
 
   clear(): void {
-    this._filters = {}
+    this.filtersSubject.next({})
   }
 
   isActive(
     filterName: string,
     expectedValue?: string | boolean | number,
   ): boolean {
-    const actualValue = this._filters[filterName]
+    const actualValue = this.get()[filterName]
 
     if (expectedValue === undefined) {
       // Si no se especifica un valor esperado, solo verifica si la clave existe y no es falsa.

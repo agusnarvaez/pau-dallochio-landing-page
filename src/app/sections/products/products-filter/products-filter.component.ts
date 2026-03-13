@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core'
+import { Component, DestroyRef, ViewChild, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../../components/button/button.component'
 import {
+  Filters,
   FilterObject,
   FiltersService,
 } from '../../../services/filters/filters.service'
 import { FormsModule, NgForm } from '@angular/forms'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-products-filter',
@@ -16,15 +18,15 @@ import { FormsModule, NgForm } from '@angular/forms'
 })
 export class ProductsFilterComponent {
   @ViewChild('myForm') myForm!: NgForm
-  @Output() filterChange = new EventEmitter<void>()
   type: string = ''
   rooms: number = 0
   minPrice: number = 0
-  maxPrice: number = Infinity
+  maxPrice: number = 0
   order_by: string = ''
   order: string = ''
   isSellFilterActive: boolean = false
   isRentFilterActive: boolean = false
+  private destroyRef = inject(DestroyRef)
 
   showFilters: boolean = false
   toggleFilters(): void {
@@ -33,69 +35,52 @@ export class ProductsFilterComponent {
   constructor(private filtersService: FiltersService) {
     // Inicializar el estado de los filtros
   }
+
+  private syncLocalState(filters: Filters): void {
+    this.type = String(filters['type'] ?? '')
+    this.rooms = Number(filters['rooms'] ?? 0)
+    this.minPrice = Number(filters['minPrice'] ?? 0)
+    this.maxPrice = Number(filters['maxPrice'] ?? 0)
+    this.order_by = String(filters['order_by'] ?? '')
+    this.order = String(filters['order'] ?? '')
+
+    this.isSellFilterActive = filters['operation_type'] === 'Venta'
+    this.isRentFilterActive = filters['operation_type'] === 'Alquiler'
+  }
+
   ngOnInit(): void {
-    this.isSellFilterActive = this.filtersService.isActive(
-      'operation_type',
-      'Venta',
-    )
-    this.isRentFilterActive = this.filtersService.isActive(
-      'operation_type',
-      'Alquiler',
-    )
+    this.syncLocalState(this.filtersService.get())
+    this.filtersService.filters$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((filters) => {
+        this.syncLocalState(filters)
+      })
   }
 
   toggleFilter(filterObj: FilterObject): void {
     this.filtersService.toggle(filterObj)
-    // Actualizar el estado de los filtros después de cambiarlos
-    this.isSellFilterActive = this.filtersService.isActive(
-      'operation_type',
-      'Venta',
-    )
-    this.isRentFilterActive = this.filtersService.isActive(
-      'operation_type',
-      'Alquiler',
-    )
-    this.filterChange.emit()
-  }
-
-  private syncFilter(
-    name: string,
-    value: string | number,
-    isActive: boolean,
-  ): void {
-    if (isActive) {
-      this.filtersService.add({ name, value })
-      return
-    }
-
-    this.filtersService.remove({ name, value })
   }
 
   search(): void {
-    this.syncFilter('type', this.myForm.value.type, this.myForm.value.type !== '')
-    this.syncFilter('rooms', this.myForm.value.rooms, this.myForm.value.rooms > 0)
-    this.syncFilter(
-      'minPrice',
-      this.myForm.value.minPrice,
-      this.myForm.value.minPrice > 0,
-    )
-    this.syncFilter(
-      'maxPrice',
-      this.myForm.value.maxPrice,
-      this.myForm.value.maxPrice > 0,
-    )
-    this.syncFilter(
-      'order_by',
-      this.myForm.value.order_by,
-      this.myForm.value.order_by !== '',
-    )
-    this.syncFilter('order', this.myForm.value.order, this.myForm.value.order !== '')
-
-    this.filterChange.emit()
+    this.filtersService.patch({
+      type: this.myForm.value.type,
+      rooms: Number(this.myForm.value.rooms),
+      minPrice: Number(this.myForm.value.minPrice),
+      maxPrice: Number(this.myForm.value.maxPrice),
+      order_by: this.myForm.value.order_by,
+      order: this.myForm.value.order,
+    })
   }
+
   clearFilters(): void {
-    this.myForm.reset()
+    this.myForm.reset({
+      type: '',
+      rooms: 0,
+      minPrice: 0,
+      maxPrice: 0,
+      order_by: '',
+      order: '',
+    })
     this.filtersService.clear()
-    this.filterChange.emit()
   }
 }
