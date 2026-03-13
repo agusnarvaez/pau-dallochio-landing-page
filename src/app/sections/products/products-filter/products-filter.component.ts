@@ -57,33 +57,39 @@ export class ProductsFilterComponent {
     )
     this.filterChange.emit()
   }
+
+  private syncFilter(
+    name: string,
+    value: string | number,
+    isActive: boolean,
+  ): void {
+    if (isActive) {
+      this.filtersService.add({ name, value })
+      return
+    }
+
+    this.filtersService.remove({ name, value })
+  }
+
   search(): void {
-    console.log('onSubmit')
-    if (this.myForm.value.type != '')
-      this.filtersService.add({ name: 'type', value: this.myForm.value.type })
-    if (this.myForm.value.rooms > 0)
-      this.filtersService.add({ name: 'rooms', value: this.myForm.value.rooms })
-    if (this.myForm.value.minPrice > 0)
-      this.filtersService.add({
-        name: 'minPrice',
-        value: this.myForm.value.minPrice,
-      })
-    if (this.myForm.value.maxPrice > 0)
-      this.filtersService.add({
-        name: 'maxPrice',
-        value: this.myForm.value.maxPrice,
-      })
-
-    if (this.myForm.value.order_by != '') {
-      this.filtersService.add({
-        name: 'order_by',
-        value: this.myForm.value.order_by,
-      })
-    }
-
-    if (this.myForm.value.order != '') {
-      this.filtersService.add({ name: 'order', value: this.myForm.value.order })
-    }
+    this.syncFilter('type', this.myForm.value.type, this.myForm.value.type !== '')
+    this.syncFilter('rooms', this.myForm.value.rooms, this.myForm.value.rooms > 0)
+    this.syncFilter(
+      'minPrice',
+      this.myForm.value.minPrice,
+      this.myForm.value.minPrice > 0,
+    )
+    this.syncFilter(
+      'maxPrice',
+      this.myForm.value.maxPrice,
+      this.myForm.value.maxPrice > 0,
+    )
+    this.syncFilter(
+      'order_by',
+      this.myForm.value.order_by,
+      this.myForm.value.order_by !== '',
+    )
+    this.syncFilter('order', this.myForm.value.order, this.myForm.value.order !== '')
 
     this.filterChange.emit()
   }

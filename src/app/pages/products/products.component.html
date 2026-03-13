@@ -1,21 +1,36 @@
 <main>
-    <app-products-filter (filterChange)="onFilterChange()"></app-products-filter>
-    @if(typeOfOperation() === 'alquiler'){
-        <!-- AGREGAR BOTÓN DE CALCULADORA DE ÍNDICES -->
-         <div class="secondary-buttons">
-             <app-button text="Calculadora de Índices" class="main-filter-btn" type="secondary" link="https://cabaprop.com.ar/calculadoras" [isExternalLink]="true"></app-button>
-         </div>
-    }
-    @if (listIsEmpty()) {
-        <h3>No se encontraron propiedades para su {{typeOfOperation()}}</h3>
-    }@else{
-        <h3>Se encontraron  <span class="bold">{{propertiesAmount()}}</span> propiedades para su {{typeOfOperation()}}</h3>
-        <section>
-            @for (product of list; track $index) {
-                <app-products-card [product]="product"></app-products-card>
-            }
-        </section>
-    }
+  <app-products-filter (filterChange)="onFilterChange()"></app-products-filter>
+  @if (typeOfOperation() === 'alquiler') {
+    <!-- AGREGAR BOTÓN DE CALCULADORA DE ÍNDICES -->
+    <div class="secondary-buttons">
+      <app-button
+        text="Calculadora de Índices"
+        class="main-filter-btn"
+        type="secondary"
+        link="https://cabaprop.com.ar/calculadoras"
+        [isExternalLink]="true"
+      ></app-button>
+    </div>
+  }
+  @if (hasLoadError) {
+    <h3>
+      No pudimos cargar las propiedades en este momento. Por favor, intentá
+      nuevamente en unos instantes.
+    </h3>
+  } @else if (listIsEmpty()) {
+    <h3>No se encontraron propiedades para su {{ typeOfOperation() }}</h3>
+  } @else {
+    <h3>
+      Se encontraron
+      <span class="bold">{{ propertiesAmount() }}</span> propiedades para su
+      {{ typeOfOperation() }}
+    </h3>
+    <section>
+      @for (product of list; track product.id) {
+        <app-products-card [product]="product"></app-products-card>
+      }
+    </section>
+  }
 
-    <app-products-banner></app-products-banner>
+  <app-products-banner></app-products-banner>
 </main>

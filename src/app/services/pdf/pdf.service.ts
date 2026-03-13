@@ -9,7 +9,6 @@ export class PdfService {
   constructor(private http: HttpClient) {}
 
   generatePropertyPdf(product: Product) {
-    console.log('generating pdf', product)
     const doc = new jsPDF('p', 'mm', 'a4')
     // Background styling
     this.setBackground(doc)

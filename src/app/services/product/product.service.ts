@@ -86,7 +86,7 @@ export class ProductService {
 
   getById(id: string): Observable<Product> {
     if (id.length > 10) {
-      this.getSanityProductById(id)
+      return this.getSanityProductById(id)
     }
     return this.getTokkoProductById(id)
   }

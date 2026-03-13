@@ -1,9 +1,11 @@
-import { Component, Input, ViewChild } from '@angular/core'
+import { Component, DestroyRef, Input, ViewChild, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, NgForm } from '@angular/forms'
 import { ButtonComponent } from '../../../components/button/button.component'
 import { EmailService } from '../../../services/email/email.service'
 import { Mail } from '../../../models/mail'
+import { forkJoin } from 'rxjs'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-contact-form',
@@ -18,6 +20,8 @@ export class ContactFormComponent {
   fullName: string = ''
   email: string = ''
   phone: string = ''
+  isSubmitting = false
+  private destroyRef = inject(DestroyRef)
 
   @Input() subject: string = ''
   showSubject = true
@@ -30,20 +34,11 @@ export class ContactFormComponent {
     }
   }
 
-  sendMail = (mailToSend: Mail) => {
+  sendMail = (mailToSend: Mail) => this.emailService.sendEmail(mailToSend)
 
-    this.emailService.sendEmail(mailToSend).subscribe({
-      next: (response) => {
-        console.log(response)
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
+  onSubmit() {
+    this.isSubmitting = true
 
-  }
-
-  async onSubmit() {
     const notification = new Mail(
       'info@pauladallochio.com.ar',
       /* 'agus.narvaez@outlook.com', */
@@ -82,10 +77,18 @@ export class ContactFormComponent {
       `
     )
 
-    this.sendMail(notification)
-    this.sendMail(mailToSend)
-
-    alert('Mensaje enviado correctamente')
-    this.myForm.reset()
+    forkJoin([this.sendMail(notification), this.sendMail(mailToSend)])
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          alert('Mensaje enviado correctamente')
+          this.myForm.reset()
+          this.isSubmitting = false
+        },
+        error: () => {
+          alert('No pudimos enviar tu mensaje. Intentá nuevamente en unos minutos.')
+          this.isSubmitting = false
+        },
+      })
   }
 }

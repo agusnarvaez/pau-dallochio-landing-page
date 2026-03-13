@@ -14,7 +14,6 @@ export class EmailService {
   ) { }
 
   sendEmail(mail:Mail):Observable<any> {
-    console.log('Email sending')
     return this.http.post<any>(
       `${environment.mail_api_prod}/mail/send`,
       mail

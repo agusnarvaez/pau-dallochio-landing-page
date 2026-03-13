@@ -1,5 +1,5 @@
 import { ProductService } from './../../services/product/product.service'
-import { Component } from '@angular/core'
+import { Component, DestroyRef, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ProductsBannerComponent } from '../../sections/products/products-banner/products-banner.component'
 import { ProductsFilterComponent } from '../../sections/products/products-filter/products-filter.component'
@@ -8,6 +8,8 @@ import { Product } from '../../models/product'
 import { Meta, Title } from '@angular/platform-browser'
 import { ButtonComponent } from '../../components/button/button.component'
 import { LoaderService } from '../../services/loader/loader.service'
+import { EMPTY, catchError, finalize } from 'rxjs'
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-products',
@@ -24,6 +26,8 @@ import { LoaderService } from '../../services/loader/loader.service'
 })
 export class ProductsComponent {
   list: Product[] = []
+  hasLoadError = false
+  private destroyRef = inject(DestroyRef)
 
   constructor(
     private productService: ProductService,
@@ -39,19 +43,24 @@ export class ProductsComponent {
   selectedFilters = () => this.productService.filters()
 
   updateProductsList() {
-    // Lógica para filtrar la lista basada en `this.selectedFilters`
+    this.hasLoadError = false
     this.loaderService.showLoading()
-    this.productService.getAll().subscribe({
-      next: (products) => {
+    this.productService
+      .getAll()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        catchError(() => {
+          this.hasLoadError = true
+          this.list = []
+          return EMPTY
+        }),
+        finalize(() => {
+          this.loaderService.hideLoading()
+        }),
+      )
+      .subscribe((products) => {
         this.list = products
-      },
-      error: (err) => {
-        console.error(err)
-      },
-      complete: () => {
-        this.loaderService.hideLoading()
-      },
-    })
+      })
   }
 
   propertiesAmount = () => this.list.length
