@@ -1,0 +1,83 @@
+.toast-viewport {
+  position: fixed;
+  left: 50%;
+  bottom: max(2rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(92vw, 48rem);
+  z-index: 1400;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  justify-content: space-between;
+  padding: 1.4rem 1.6rem;
+  border-radius: 1.4rem;
+  border: 1px solid transparent;
+  box-shadow: 0 16px 40px rgba(33, 36, 39, 0.14);
+  backdrop-filter: blur(10px);
+  animation: toast-enter 0.22s ease-out;
+}
+
+.toast p {
+  font-size: 1.4rem;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.toast-success {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(157, 148, 128, 0.35);
+  color: var(--tertiary-color-darker);
+}
+
+.toast-error {
+  background: rgba(255, 245, 247, 0.97);
+  border-color: rgba(184, 14, 59, 0.22);
+  color: var(--primary-color);
+}
+
+.toast-info {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(51, 51, 51, 0.12);
+  color: var(--dark-color);
+}
+
+.toast-close {
+  flex: 0 0 auto;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toast-close:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 530px) {
+  .toast p {
+    font-size: 1.5rem;
+  }
+}

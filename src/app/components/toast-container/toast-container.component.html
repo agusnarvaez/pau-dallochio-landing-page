@@ -1,0 +1,23 @@
+@if (toastService.toast(); as toast) {
+  <div class="toast-viewport" aria-live="polite" aria-atomic="true">
+    <div
+      class="toast"
+      [ngClass]="{
+        'toast-success': toast.type === 'success',
+        'toast-error': toast.type === 'error',
+        'toast-info': toast.type === 'info'
+      }"
+      [attr.role]="toast.type === 'error' ? 'alert' : 'status'"
+    >
+      <p>{{ toast.message }}</p>
+      <button
+        type="button"
+        class="toast-close"
+        aria-label="Cerrar notificacion"
+        (click)="toastService.dismiss()"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+}

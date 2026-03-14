@@ -14,6 +14,7 @@ import { PdfService } from '../../services/pdf/pdf.service'
 import { LoaderService } from '../../services/loader/loader.service'
 import { switchMap } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { ToastService } from '../../services/toast/toast.service'
 
 @Component({
   selector: 'app-product-detail',
@@ -32,9 +33,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 })
 export class ProductDetailComponent {
   product: Product | undefined
-  showNotification = false
-  notificationMessage = 'URL copiada con exito.'
-  private notificationTimeoutId: ReturnType<typeof setTimeout> | null = null
   private destroyRef = inject(DestroyRef)
 
   constructor(
@@ -44,6 +42,7 @@ export class ProductDetailComponent {
     private titleService: Title,
     private pdfService: PdfService,
     private loaderService: LoaderService,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -113,7 +112,10 @@ export class ProductDetailComponent {
   async copyActualRoute() {
     const propertyId = this.product?.id
     if (!propertyId) {
-      this.showNotificationMessage('No se pudo copiar la URL de la propiedad.')
+      this.toastService.show(
+        'No se pudo copiar la URL de la propiedad.',
+        'error',
+      )
       return
     }
 
@@ -121,26 +123,13 @@ export class ProductDetailComponent {
 
     try {
       await navigator.clipboard.writeText(url)
-      this.showNotificationMessage('URL copiada con exito.')
+      this.toastService.show('URL copiada con exito.', 'success', 2200)
     } catch {
-      this.showNotificationMessage(
+      this.toastService.show(
         'No se pudo copiar automaticamente. Copia la URL manualmente.',
+        'error',
       )
     }
-  }
-
-  private showNotificationMessage(message: string): void {
-    this.notificationMessage = message
-    this.showNotification = true
-
-    if (this.notificationTimeoutId) {
-      clearTimeout(this.notificationTimeoutId)
-    }
-
-    this.notificationTimeoutId = setTimeout(() => {
-      this.showNotification = false
-      this.notificationTimeoutId = null
-    }, 2200)
   }
 
   downLoadPdf() {
@@ -148,11 +137,5 @@ export class ProductDetailComponent {
       return
     }
     this.pdfService.generatePropertyPdf(this.product)
-  }
-
-  ngOnDestroy(): void {
-    if (this.notificationTimeoutId) {
-      clearTimeout(this.notificationTimeoutId)
-    }
   }
 }

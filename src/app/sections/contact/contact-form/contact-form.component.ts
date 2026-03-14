@@ -6,13 +6,14 @@ import { EmailService } from '../../../services/email/email.service'
 import { Mail } from '../../../models/mail'
 import { forkJoin } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
+import { ToastService } from '../../../services/toast/toast.service'
 
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [CommonModule,FormsModule,ButtonComponent],
+  imports: [CommonModule, FormsModule, ButtonComponent],
   templateUrl: './contact-form.component.html',
-  styleUrl: './contact-form.component.css'
+  styleUrl: './contact-form.component.css',
 })
 export class ContactFormComponent {
   @ViewChild('myForm') myForm!: NgForm
@@ -26,10 +27,11 @@ export class ContactFormComponent {
   @Input() subject: string = ''
   showSubject = true
   constructor(
-    public emailService: EmailService
+    public emailService: EmailService,
+    private toastService: ToastService,
   ) {}
   ngOnInit() {
-    if(this.subject !== '') {
+    if (this.subject !== '') {
       this.showSubject = false
     }
   }
@@ -43,7 +45,7 @@ export class ContactFormComponent {
       'info@pauladallochio.com.ar',
       /* 'agus.narvaez@outlook.com', */
       'no_reply@pauladallochio.com.ar',
-      `Nuevo mensaje de ${this.fullName} - ${this.subject}` ,
+      `Nuevo mensaje de ${this.fullName} - ${this.subject}`,
       this.message,
       `
       <body style="width:100%; height: 100%; background-color: #FFFFF0; font-size: 10px; padding: 5% 0;">
@@ -56,14 +58,14 @@ export class ContactFormComponent {
           <img src="https://pauladallochio.com.ar/assets/logos/logo-header.png" alt="Logo Paula Dallochio" style="width: 100px; height: auto;" />
         </div>
       </body>
-      `
+      `,
     )
     notification.cc = 'agus.narvaez@outlook.com'
 
     const mailToSend = new Mail(
       this.email,
       'no_reply@pauladallochio.com.ar',
-      `Solicitud de información - ${this.subject}` ,
+      `Solicitud de información - ${this.subject}`,
       'Gracias por contactarte con nosotros, en breve nos pondremos en contacto con vos.',
       `
       <body style="width:100%; height: 100%; background-color: #FFFFF0; font-size: 10px; padding: 5% 0;">
@@ -74,20 +76,26 @@ export class ContactFormComponent {
           <img src="https://pauladallochio.com.ar/assets/logos/logo-header.png" alt="Logo Paula Dallochio" style="width: 100px; height: auto;" />
         </div>
       </body>
-      `
+      `,
     )
 
     forkJoin([this.sendMail(notification), this.sendMail(mailToSend)])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
-          alert('Mensaje enviado correctamente')
           this.myForm.reset()
           this.isSubmitting = false
+          this.toastService.show(
+            'Mensaje enviado correctamente. Te responderemos a la brevedad.',
+            'success',
+          )
         },
         error: () => {
-          alert('No pudimos enviar tu mensaje. Intentá nuevamente en unos minutos.')
           this.isSubmitting = false
+          this.toastService.show(
+            'No pudimos enviar tu mensaje. Intenta nuevamente en unos minutos.',
+            'error',
+          )
         },
       })
   }

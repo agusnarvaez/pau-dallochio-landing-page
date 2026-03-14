@@ -114,6 +114,6 @@
   <app-button
     type="submit"
     [disabled]="myForm.invalid || isSubmitting"
-    text="Enviar"
+    [text]="isSubmitting ? 'Enviando...' : 'Enviar'"
   ></app-button>
 </form>
