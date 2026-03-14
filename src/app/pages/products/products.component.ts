@@ -34,6 +34,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 export class ProductsComponent {
   list: Product[] = []
   hasLoadError = false
+  isLoading = false
   private destroyRef = inject(DestroyRef)
 
   constructor(
@@ -45,8 +46,34 @@ export class ProductsComponent {
 
   selectedFilters = () => this.productService.filters()
 
+  private readonly filterLabelMap: Record<string, string> = {
+    operation_type: 'Operación',
+    type: 'Tipo',
+    rooms: 'Ambientes',
+    minPrice: 'Precio desde',
+    maxPrice: 'Precio hasta',
+    order_by: 'Ordenar por',
+    order: 'Dirección',
+  }
+
+  hasActiveFilters = () => Object.keys(this.selectedFilters()).length > 0
+
+  activeFiltersCount = () => Object.keys(this.selectedFilters()).length
+
+  clearAllFilters() {
+    this.productService.filtersService.clear()
+  }
+
+  activeFilterSummary = () => {
+    return Object.entries(this.selectedFilters()).map(([key, value]) => {
+      const label = this.filterLabelMap[key] ?? key
+      return `${label}: ${value}`
+    })
+  }
+
   updateProductsList() {
     this.hasLoadError = false
+    this.isLoading = true
     this.loaderService.showLoading()
     this.productService
       .getAll()
@@ -58,6 +85,7 @@ export class ProductsComponent {
           return EMPTY
         }),
         finalize(() => {
+          this.isLoading = false
           this.loaderService.hideLoading()
         }),
       )

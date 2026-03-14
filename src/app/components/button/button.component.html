@@ -1,57 +1,68 @@
-@if(isLink() && !isExternalLink){
-    <a
-        class="btn {{class}}"
-        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary(), 'rounded': rounded,
-        'disabled': disabled}"
-        [routerLink]="link"
-        (click)="goToTop()"
-    >
+@if (isLink() && !isExternalLink) {
+  <a
+    class="btn {{ class }}"
+    [ngClass]="{
+      'btn-tertiary': isTertiary(),
+      'btn-secondary': isSecondary(),
+      rounded: rounded,
+      disabled: disabled
+    }"
+    [routerLink]="link"
+    [attr.aria-label]="ariaLabel || null"
+    (click)="goToTop()"
+  >
     @if (isIcon()) {
-        <i class="{{icon}} {{iconClass}}"></i>
+      <i class="{{ icon }} {{ iconClass }}"></i>
     }
     @if (isSvgImage()) {
-        <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">
+      <img class="{{ iconClass }}" src="{{ svgIcon }}" alt="{{ text }}" />
     }
-        {{ text }}
-    </a>
-}
-@else if (isLink() && isExternalLink) {
-    <a
-        class="btn {{class}}"
-        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary(), 'rounded': rounded,
-        'disabled': disabled}"
-        [href]="link"
-        target="_blank"
-        rel="noreferrer"
-    >
+    {{ text }}
+  </a>
+} @else if (isLink() && isExternalLink) {
+  <a
+    class="btn {{ class }}"
+    [ngClass]="{
+      'btn-tertiary': isTertiary(),
+      'btn-secondary': isSecondary(),
+      rounded: rounded,
+      disabled: disabled
+    }"
+    [href]="link"
+    [attr.aria-label]="ariaLabel || null"
+    target="_blank"
+    rel="noreferrer"
+  >
     @if (isIcon()) {
-        <i class="{{icon}} {{iconClass}}"></i>
+      <i class="{{ icon }} {{ iconClass }}"></i>
     }
     @if (isSvgImage()) {
-        <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">
+      <img class="{{ iconClass }}" src="{{ svgIcon }}" alt="{{ text }}" />
     }
-        {{ text }}
-    </a>
-}
-@else{
-    <button *ngIf="!isLink()"
-        class="btn {{class}}"
-        [ngClass]="{
-            'btn-tertiary': isTertiary(),
-            'btn-secondary': isSecondary(),
-            'rounded': rounded,
-            'disabled': disabled
-        }"
-        type="{{buttonType()}}"
-    >
-        @if (isIcon()) {
-            <i class="{{icon}} {{iconClass}}"
-                [ngClass]="{'margin-right': hasText()}"
-            ></i>
-        }
-        @if (isSvgImage()) {
-            <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">
-        }
-        {{text}}
-    </button>
+    {{ text }}
+  </a>
+} @else {
+  <button
+    *ngIf="!isLink()"
+    class="btn {{ class }}"
+    [ngClass]="{
+      'btn-tertiary': isTertiary(),
+      'btn-secondary': isSecondary(),
+      rounded: rounded,
+      disabled: disabled
+    }"
+    [attr.aria-label]="ariaLabel || null"
+    type="{{ buttonType() }}"
+  >
+    @if (isIcon()) {
+      <i
+        class="{{ icon }} {{ iconClass }}"
+        [ngClass]="{ 'margin-right': hasText() }"
+      ></i>
+    }
+    @if (isSvgImage()) {
+      <img class="{{ iconClass }}" src="{{ svgIcon }}" alt="{{ text }}" />
+    }
+    {{ text }}
+  </button>
 }

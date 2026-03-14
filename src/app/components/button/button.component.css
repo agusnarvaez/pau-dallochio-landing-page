@@ -1,105 +1,113 @@
-.btn{
-    border-radius: 1rem;
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    border: 1px solid var(--primary-color);
-    z-index: 50;
-    position: relative;
-    padding: 1rem;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    min-height: 20px;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
+.btn {
+  border-radius: 1rem;
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color);
+  z-index: 50;
+  position: relative;
+  padding: 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  min-height: 20px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
 }
 
-.btn:hover{
-    background-color: var(--light-color);
-    color: var(--primary-color);
-    text-decoration: none;
+.btn:hover {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+  text-decoration: none;
 }
 
-.btn:active{
-    transform: scale(0.9);
+.btn:focus-visible {
+  outline: 3px solid rgba(184, 14, 59, 0.35);
+  outline-offset: 3px;
+}
+
+.btn:active {
+  transform: scale(0.9);
 }
 
 .btn .margin-right {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
-.btn.btn-secondary{
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+.btn.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
 
-.btn.btn-secondary:hover{
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    border: 1px solid var(--primary-color);
+.btn.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color);
 }
 
-.btn.btn-tertiary{
-    background-color: transparent;
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
+.btn.btn-tertiary {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
 }
 
-.btn.btn-tertiary:hover{
-    background-color: var(--secondary-color);
-    color: var(--dark-color);
-    border: 1px solid var(--secondary-color);
+.btn.btn-tertiary:hover {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  border: 1px solid var(--secondary-color);
 }
-.btn.rounded{
-    border-radius: 5rem;
-    aspect-ratio: 1/1;
-    border: none;
+.btn.rounded {
+  border-radius: 5rem;
+  aspect-ratio: 1/1;
+  border: none;
 }
-.btn.rounded:hover{
-    border: none;
+.btn.rounded:hover {
+  border: none;
 }
-.btn.rounded i{
-    font-size: 2rem;
+.btn.rounded i {
+  font-size: 2rem;
 }
 
-.btn.disabled, .btn:disabled {
-    background-color: #cccccc; /* Un color más tenue que el primario */
-    color: #666666; /* Un color de texto más tenue */
-    border: 1px solid #cccccc; /* Borde tenue para coincidir con el fondo */
-    cursor: not-allowed; /* Cambia el cursor para indicar que el botón está desactivado */
-    pointer-events: none; /* Evita que el botón responda a eventos del mouse */
-    opacity: 0.7; /* Opcional: reduce la opacidad para un efecto "desactivado" más claro */
-    filter: none; /* Elimina cualquier sombra o efecto para simplificar el aspecto */
+.btn.disabled,
+.btn:disabled {
+  background-color: #cccccc; /* Un color más tenue que el primario */
+  color: #666666; /* Un color de texto más tenue */
+  border: 1px solid #cccccc; /* Borde tenue para coincidir con el fondo */
+  cursor: not-allowed; /* Cambia el cursor para indicar que el botón está desactivado */
+  pointer-events: none; /* Evita que el botón responda a eventos del mouse */
+  opacity: 0.7; /* Opcional: reduce la opacidad para un efecto "desactivado" más claro */
+  filter: none; /* Elimina cualquier sombra o efecto para simplificar el aspecto */
 }
 
 /* Asegúrate de que los efectos de hover y active no se apliquen a los botones desactivados */
-.btn.disabled:hover, .btn:disabled:hover,
-.btn.disabled:active, .btn:disabled:active {
-    background-color: #cccccc; /* Mantén el color de fondo para hover y active */
-    color: #666666; /* Mantén el color del texto para hover y active */
-    transform: none; /* Evita cualquier transformación al hacer click */
+.btn.disabled:hover,
+.btn:disabled:hover,
+.btn.disabled:active,
+.btn:disabled:active {
+  background-color: #cccccc; /* Mantén el color de fondo para hover y active */
+  color: #666666; /* Mantén el color del texto para hover y active */
+  transform: none; /* Evita cualquier transformación al hacer click */
 }
 
 @media (min-width: 530px) {
-    .btn{
-        font-size: 1.7rem;
-    }
+  .btn {
+    font-size: 1.7rem;
+  }
 }
 
 @media (min-width: 950px) {
-    .btn{
-        font-size: 2rem;
-    }
+  .btn {
+    font-size: 2rem;
+  }
 }
 
 @media (min-width: 1150px) {
-    .btn{
-        font-size: 2.3rem;
-    }
+  .btn {
+    font-size: 2.3rem;
+  }
 }

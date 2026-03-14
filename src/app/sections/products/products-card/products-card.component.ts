@@ -22,5 +22,19 @@ export class ProductsCardComponent {
 
   iconButton = '../../../../assets/icons/arrow-up-right.svg'
 
-  expenses = () => (this.product?.expenses ? `Expensas: $${this.product?.expenses}` : 'Sin expensas')
+  cardAriaLabel = () => {
+    const type = this.product?.type ?? 'Propiedad'
+    const street = this.product?.address?.street ?? ''
+    const city = this.product?.address?.city ?? ''
+    const price = this.product?.price
+      ? `${this.product?.currency ?? ''} ${this.product.price}`
+      : 'precio no disponible'
+
+    return `Ver detalle de ${type} en ${street} ${city}. Precio ${price}`
+  }
+
+  expenses = () =>
+    this.product?.expenses
+      ? `Expensas: $${this.product?.expenses}`
+      : 'Sin expensas'
 }

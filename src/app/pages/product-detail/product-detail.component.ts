@@ -33,6 +33,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 export class ProductDetailComponent {
   product: Product | undefined
   showNotification = false
+  notificationMessage = 'URL copiada con exito.'
+  private notificationTimeoutId: ReturnType<typeof setTimeout> | null = null
   private destroyRef = inject(DestroyRef)
 
   constructor(
@@ -108,14 +110,37 @@ export class ProductDetailComponent {
     })
   }
 
-  copyActualRoute() {
-    const url = 'www.pauladallochio.com.ar/catalogo/' + this.product?.id
-    navigator.clipboard.writeText(url)
+  async copyActualRoute() {
+    const propertyId = this.product?.id
+    if (!propertyId) {
+      this.showNotificationMessage('No se pudo copiar la URL de la propiedad.')
+      return
+    }
+
+    const url = `https://www.pauladallochio.com.ar/catalogo/${propertyId}`
+
+    try {
+      await navigator.clipboard.writeText(url)
+      this.showNotificationMessage('URL copiada con exito.')
+    } catch {
+      this.showNotificationMessage(
+        'No se pudo copiar automaticamente. Copia la URL manualmente.',
+      )
+    }
+  }
+
+  private showNotificationMessage(message: string): void {
+    this.notificationMessage = message
     this.showNotification = true
 
-    setTimeout(() => {
+    if (this.notificationTimeoutId) {
+      clearTimeout(this.notificationTimeoutId)
+    }
+
+    this.notificationTimeoutId = setTimeout(() => {
       this.showNotification = false
-    }, 2000)
+      this.notificationTimeoutId = null
+    }, 2200)
   }
 
   downLoadPdf() {
@@ -123,5 +148,11 @@ export class ProductDetailComponent {
       return
     }
     this.pdfService.generatePropertyPdf(this.product)
+  }
+
+  ngOnDestroy(): void {
+    if (this.notificationTimeoutId) {
+      clearTimeout(this.notificationTimeoutId)
+    }
   }
 }

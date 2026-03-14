@@ -4,8 +4,9 @@ section {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 5%;
-  border-bottom: 1px solid var(--primary-color);
+  padding: 4% 5% 3% 5%;
+  border-bottom: 1px solid rgba(184, 14, 59, 0.2);
+  background: linear-gradient(180deg, #fff, #fdf9f3);
 }
 
 .main-filter-btn {
@@ -20,13 +21,25 @@ section {
   flex-wrap: wrap;
   gap: 1rem;
   max-height: 0;
+  opacity: 0;
+  transform: translateY(-0.4rem);
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
+  pointer-events: none;
+  transition:
+    max-height 0.38s ease,
+    opacity 0.22s ease,
+    transform 0.3s ease,
+    padding-top 0.3s ease;
+  border-top: 1px solid rgba(184, 14, 59, 0.15);
+  padding-top: 0;
 }
 
 .filter-form.showFilters {
-  max-height: 10000px;
-  overflow: visible;
+  max-height: 72rem;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  padding-top: 1.5rem;
 }
 .input-container {
   display: flex;
@@ -37,7 +50,7 @@ section {
 }
 
 .input-container label {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--primary-color);
 }
@@ -46,9 +59,10 @@ section {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid var(--primary-color);
-  border-radius: 5px;
+  border-radius: 0.8rem;
   font-size: 1.2rem;
   padding: 1rem;
+  background-color: #fff;
 }
 
 .input-container select:focus-visible,
@@ -62,12 +76,8 @@ section {
 }
 
 .search-btn {
-  width: 30%;
+  width: 35%;
   height: 100%;
-}
-.clear-filters-btn {
-  width: 100%;
-  margin-top: 1rem;
 }
 .input-container.order_by {
   flex-direction: row;
@@ -88,10 +98,10 @@ section {
     width: 25%;
   }
   .search-btn {
-    width: 10%;
+    width: 14%;
   }
   .secondary-filter-btn {
-    width: 30%;
+    width: 27%;
   }
   .input-container {
     width: 23%;
@@ -103,7 +113,7 @@ section {
 
 @media (min-width: 950px) {
   section {
-    padding: 3% 15%;
+    padding: 2.5% 15% 2% 15%;
   }
   .secondary-filter-btn {
     width: 30%;
@@ -113,9 +123,6 @@ section {
 @media (min-width: 1150px) {
   .input-container {
     width: 15%;
-  }
-  .clear-filters-btn {
-    width: 20%;
   }
   section {
     gap: 2rem;

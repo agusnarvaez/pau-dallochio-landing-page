@@ -29,6 +29,16 @@ export class ProductsFilterComponent {
   private destroyRef = inject(DestroyRef)
 
   showFilters: boolean = false
+
+  advancedFiltersCount = () => {
+    let count = 0
+    if (this.type !== '') count += 1
+    if (this.rooms > 0) count += 1
+    if (this.minPrice > 0 || this.maxPrice > 0) count += 1
+    if (this.order_by !== '' || this.order !== '') count += 1
+    return count
+  }
+
   toggleFilters(): void {
     this.showFilters = !this.showFilters
   }
@@ -70,17 +80,5 @@ export class ProductsFilterComponent {
       order_by: this.myForm.value.order_by,
       order: this.myForm.value.order,
     })
-  }
-
-  clearFilters(): void {
-    this.myForm.reset({
-      type: '',
-      rooms: 0,
-      minPrice: 0,
-      maxPrice: 0,
-      order_by: '',
-      order: '',
-    })
-    this.filtersService.clear()
   }
 }

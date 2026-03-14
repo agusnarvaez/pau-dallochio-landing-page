@@ -13,6 +13,7 @@ export class ButtonComponent {
   @Input() type: string = ''
   @Input() link: string | undefined = ''
   @Input() text: string = ''
+  @Input() ariaLabel: string = ''
   @Input() icon: string = ''
   @Input() class: string = ''
   @Input() svgIcon: string | undefined = ''

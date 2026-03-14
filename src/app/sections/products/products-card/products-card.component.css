@@ -1,99 +1,108 @@
-.product-card{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
-    border-radius: 1rem;
-    box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
+.product-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 26px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
-.product-card:hover{
-    transform: scale(1.01);
+.product-card:hover {
+  transform: scale(1.01);
 }
-.product-card > a{
-    cursor: pointer;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    text-decoration: none;
-}
-
-.product-card img{
-    width: 100%;
-    height: 250px;
-
-    object-fit: cover;
-    border-radius: 1rem;
+.product-card > a {
+  cursor: pointer;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-decoration: none;
+  border-radius: 1rem;
 }
 
-.product-card section{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 1rem;
-    gap: 1rem;
+.product-card > a:focus-visible {
+  outline: 3px solid rgba(184, 14, 59, 0.35);
+  outline-offset: 3px;
 }
 
-.product-card section h2{
-    width: 100%;
-}
-.product-card section h3{
-    width: 45%;
+.product-card img {
+  width: 100%;
+  height: 250px;
+
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
-.product-card-icon-button{
-    width: 45px;
-    height: 45px;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
-    background-color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom-right-radius: 1rem;
-    border-top-left-radius: 1rem;
-    cursor: pointer;
+.product-card section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+}
 
+.product-card section h2 {
+  width: 100%;
 }
-.product-card-icon-button-img{
-    width: 20px;
-    height: 20px;
-    transition: all 0.3s ease-in-out;
+.product-card section h3 {
+  width: 45%;
 }
-.product-card:hover  .product-card-icon-button,
-.product-card:hover  .product-card-icon-button .product-card-icon-button-img path{
-    transition: all 0.3s ease-in-out;
+
+.product-card-icon-button {
+  width: 45px;
+  height: 45px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  pointer-events: none;
+}
+.product-card-icon-button-img {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.product-card:hover .product-card-icon-button,
+.product-card:hover
+  .product-card-icon-button
+  .product-card-icon-button-img
+  path {
+  transition: all 0.3s ease-in-out;
 }
 
 @media (min-width: 530px) {
-
-    .product-card:hover .product-card-icon-button{
-        transition: all 0.3s ease-in-out;
-        background-color: var(--secondary-color);
-    }
-    .product-card:hover  .product-card-icon-button .product-card-icon-button-img path{
-        /* stroke: var(--primary-color); */
-        fill: var(--primary-color);
-        transition: all 0.3s ease-in-out;
-    }
-    .product-card h2{
-        font-size: 1.5rem;
-    }
-    .product-card .price{
-        font-size: 2rem;
-    }
-    .product-card h3{
-        font-size: 1.3rem;
-    }
-    /* .product-card img{
+  .product-card:hover .product-card-icon-button {
+    transition: all 0.3s ease-in-out;
+    background-color: var(--secondary-color);
+  }
+  .product-card:hover
+    .product-card-icon-button
+    .product-card-icon-button-img
+    path {
+    /* stroke: var(--primary-color); */
+    fill: var(--primary-color);
+    transition: all 0.3s ease-in-out;
+  }
+  .product-card h2 {
+    font-size: 1.5rem;
+  }
+  .product-card .price {
+    font-size: 2rem;
+  }
+  .product-card h3 {
+    font-size: 1.3rem;
+  }
+  /* .product-card img{
         min-height: 250px;
     } */
-
 }

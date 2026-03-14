@@ -1,41 +1,176 @@
-section{
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 2.5rem;
-    padding: 0% 3% 3% 3%;
-}
-.secondary-buttons{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    align-items: center;
-    padding: 3% 0%;
+.products-grid {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2.5rem;
+  margin-top: 1.6rem;
+  padding: 0 3% 3%;
 }
 
-h3{
-    width: 100%;
-    padding: 3% 5%;
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 2% 5% 1.5%;
+  border-bottom: 1px solid rgba(184, 14, 59, 0.15);
 }
-app-products-card{
-    width: 100%;
+
+.results-copy h1 {
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+  color: var(--dark-color);
+}
+
+.results-hint {
+  font-size: 1.35rem;
+  line-height: 1.9rem;
+  color: #5b5b5b;
+}
+
+.eyebrow {
+  font-size: 1.2rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  color: var(--tertiary-color-darker);
+  font-weight: 600;
+}
+
+.results-actions {
+  margin-left: auto;
+}
+
+.clear-all-filters-btn {
+  min-width: 18rem;
+}
+
+.active-filters {
+  width: 100%;
+  padding: 1.2rem 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.active-filters p {
+  font-size: 1.3rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chip {
+  padding: 0.6rem 1rem;
+  border-radius: 2rem;
+  background-color: rgba(184, 14, 59, 0.08);
+  border: 1px solid rgba(184, 14, 59, 0.25);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 600;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.secondary-buttons {
+  display: grid;
+  place-items: center;
+  padding: 2% 0%;
+}
+
+.feedback-card {
+  width: calc(100% - 10%);
+  margin: 1.6rem 5% 2rem 5%;
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(157, 148, 128, 0.35);
+  background: linear-gradient(180deg, #fff, #fcfaf6);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.feedback-card h4 {
+  font-size: 2rem;
+}
+
+.feedback-card p {
+  font-size: 1.5rem;
+}
+
+.feedback-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+app-products-card {
+  width: 100%;
+}
+
+@media (max-width: 529px) {
+  .products-grid {
+    margin-top: 1.2rem;
+  }
+
+  .feedback-card {
+    margin-top: 1.2rem;
+  }
+
+  .chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .chip {
+    max-width: 22rem;
+    flex: 0 0 auto;
+  }
 }
 
 @media (min-width: 530px) {
+  .results-toolbar {
+    padding: 2rem 5%;
+  }
 
-    app-products-card{
-        width: 47%;
-        display: flex;
-        align-items: stretch;
-    }
+  .results-copy h1 {
+    font-size: 2.4rem;
+  }
 
+  app-products-card {
+    width: 47%;
+    display: flex;
+    align-items: stretch;
+  }
 }
 
 @media (min-width: 950px) {
-    app-products-card{
-        width: 31%;
-    }
+  app-products-card {
+    width: 31%;
+  }
+
+  .active-filters {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .active-filters p {
+    min-width: 16rem;
+    padding-top: 0.5rem;
+  }
+
+  .chips {
+    flex: 1;
+  }
 }

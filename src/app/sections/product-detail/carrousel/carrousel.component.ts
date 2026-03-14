@@ -56,9 +56,31 @@ export class CarrouselComponent {
   }
   isRender = (src: string) => src.includes('https://kuula.co/share')
 
+  mediaLabel = (src: string, index: number) => {
+    if (this.isVideo(src)) {
+      return `Video ${index + 1} de la propiedad`
+    }
+
+    if (this.isRender(src)) {
+      return `Tour virtual 360 ${index + 1} de la propiedad`
+    }
+
+    return `Imagen ${index + 1} de la propiedad`
+  }
+
+  actualMediaLabel = () =>
+    this.mediaLabel(this.actualImage() || '', this.imageIndex)
+
   noImages = () => this.allMedia()?.length === 0
 
   selectImage = (index: number) => (this.imageIndex = index)
+
+  onThumbnailKeydown(event: KeyboardEvent, index: number): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      this.selectImage(index)
+    }
+  }
 
   nextImage = () => {
     if (this.allMedia())

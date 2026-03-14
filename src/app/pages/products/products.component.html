@@ -1,7 +1,52 @@
 <main>
   <app-products-filter></app-products-filter>
+
+  <div class="results-toolbar">
+    <div class="results-copy" aria-live="polite" aria-atomic="true">
+      <p class="eyebrow">Catálogo de propiedades</p>
+      @if (hasLoadError) {
+        <h1>No pudimos cargar propiedades en este momento</h1>
+      } @else if (listIsEmpty()) {
+        <h1>No se encontraron propiedades para {{ typeOfOperation() }}</h1>
+      } @else {
+        <h1>
+          <span class="bold">{{ propertiesAmount() }}</span> opciones para
+          {{ typeOfOperation() }}
+        </h1>
+        @if (hasActiveFilters()) {
+          <p class="results-hint">
+            Refinaste la búsqueda con {{ activeFiltersCount() }} filtro(s)
+            activo(s).
+          </p>
+        }
+      }
+    </div>
+
+    <div class="results-actions">
+      @if (hasActiveFilters() && !hasLoadError && !listIsEmpty()) {
+        <app-button
+          text="Limpiar filtros"
+          type="secondary"
+          class="clear-all-filters-btn"
+          icon="fa fa-solid fa-arrow-rotate-right"
+          (click)="clearAllFilters()"
+        ></app-button>
+      }
+    </div>
+  </div>
+
+  @if (hasActiveFilters()) {
+    <div class="active-filters" aria-label="Filtros activos">
+      <p>Filtros activos ({{ activeFiltersCount() }}):</p>
+      <ul class="chips" role="list">
+        @for (filterLabel of activeFilterSummary(); track filterLabel) {
+          <li class="chip" [attr.title]="filterLabel">{{ filterLabel }}</li>
+        }
+      </ul>
+    </div>
+  }
+
   @if (typeOfOperation() === 'alquiler') {
-    <!-- AGREGAR BOTÓN DE CALCULADORA DE ÍNDICES -->
     <div class="secondary-buttons">
       <app-button
         text="Calculadora de Índices"
@@ -12,22 +57,49 @@
       ></app-button>
     </div>
   }
+
   @if (hasLoadError) {
-    <h3>
-      No pudimos cargar las propiedades en este momento. Por favor, intentá
-      nuevamente en unos instantes.
-    </h3>
+    <div class="feedback-card error-card" role="alert" aria-live="assertive">
+      <h4>No pudimos cargar las propiedades</h4>
+      <p>
+        Puede ser un problema temporal de conexión. Probá reintentar en unos
+        segundos.
+      </p>
+      <app-button text="Reintentar" (click)="updateProductsList()"></app-button>
+    </div>
   } @else if (listIsEmpty()) {
-    <h3>No se encontraron propiedades para su {{ typeOfOperation() }}</h3>
+    <div class="feedback-card empty-card" role="status" aria-live="polite">
+      <h4>No encontramos resultados con esos criterios</h4>
+      <p>
+        Ajustá los filtros o limpialos para descubrir más propiedades
+        disponibles.
+      </p>
+      <div class="feedback-actions">
+        <app-button
+          text="Limpiar filtros"
+          type="secondary"
+          icon="fa fa-solid fa-arrow-rotate-right"
+          (click)="clearAllFilters()"
+        ></app-button>
+        <app-button
+          text="Quiero asesoramiento"
+          link="/contacto"
+          icon="fa fa-regular fa-comments"
+        ></app-button>
+      </div>
+    </div>
   } @else {
-    <h3>
-      Se encontraron
-      <span class="bold">{{ propertiesAmount() }}</span> propiedades para su
-      {{ typeOfOperation() }}
-    </h3>
-    <section>
+    <section
+      class="products-grid"
+      role="list"
+      [attr.aria-busy]="isLoading"
+      aria-label="Resultados de propiedades"
+    >
       @for (product of list; track product.id) {
-        <app-products-card [product]="product"></app-products-card>
+        <app-products-card
+          role="listitem"
+          [product]="product"
+        ></app-products-card>
       }
     </section>
   }

@@ -1,26 +1,36 @@
 {
-    "[javascript]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-      "editor.formatOnPaste": false, // required
-      "editor.formatOnType": false, // required
-      "editor.formatOnSave": true, // optional
-      "editor.formatOnSaveMode": "file", // required to format on save
+  "[javascript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": false, // required
+    "editor.formatOnType": false, // required
+    "editor.formatOnSave": true, // optional
+    "editor.formatOnSaveMode": "file" // required to format on save
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": false, // required
+    "editor.formatOnType": false, // required
+    "editor.formatOnSave": true, // optional
+    "editor.formatOnSaveMode": "file" // required to format on save
+  },
+  "[json]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": false, // required
+    "editor.formatOnType": false, // required
+    "editor.formatOnSave": true, // optional
+    "editor.formatOnSaveMode": "file" // required to format on save
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "chat.tools.terminal.autoApprove": {
+    "/^\\$i=1; Get-Content 'src/app/sections/product-detail/carrousel/carrousel\\.component\\.html' \\| ForEach-Object \\{ '\\{0,4\\}: \\{1\\}' -f \\$i, \\$_; \\$i\\+\\+ \\}$/": {
+      "approve": true,
+      "matchCommandLine": true
     },
-    "[typescript]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-      "editor.formatOnPaste": false, // required
-      "editor.formatOnType": false, // required
-      "editor.formatOnSave": true, // optional
-      "editor.formatOnSaveMode": "file", // required to format on save
-    },
-    "[json]": {
-      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-      "editor.formatOnPaste": false, // required
-      "editor.formatOnType": false, // required
-      "editor.formatOnSave": true, // optional
-      "editor.formatOnSaveMode": "file", // required to format on save
-    },
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "explicit"
+    "/^\\$i=1; Get-Content 'src/app/sections/product-detail/carrousel/carrousel\\.component\\.css' \\| ForEach-Object \\{ '\\{0,4\\}: \\{1\\}' -f \\$i, \\$_; \\$i\\+\\+ \\}$/": {
+      "approve": true,
+      "matchCommandLine": true
     }
+  }
 }

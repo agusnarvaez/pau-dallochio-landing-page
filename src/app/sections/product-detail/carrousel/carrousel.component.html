@@ -1,96 +1,149 @@
 @if (noImages()) {
-    <div class="no-images">
-        <p>
-            No se encuentran imágenes o videos para mostrar
-        </p>
-    </div>
-}
-@else {
-    <section>
-        <div class="carousel">
-            <div class="main-image_desktop">
-                @if(isVideo(actualImage())){
-                    <!-- Youtube player -->
-                    <iframe
-                    width="100%"
-                    height="100%"
-                    [src]="getSafeYoutubeUrl(getYoutubeVideoId(actualImage()))"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                }
-                @else {
-                    @if(isRender(actualImage())){
-                        <a class="tour-view-container" [href]="actualImage()" target="_blank" rel="noreferrer">
-                            <img class="main-image_desktop--principal" src="../../../../assets/icons/360-view.png" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                            <h3>Haz click para realizar un tour 360°</h3>
-                        </a>
-                    }@else {
-                        <img class="main-image_desktop--principal" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                        <img class="main-image_desktop--background" src="{{ actualImage() }}" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                    }
-                }
-            </div>
-            <div class="carousel__container"
-                [style.transform]="transformStyle()"
-                [style.width]="carouselContainerWidth"
-                [style.height]="carouselContainerHeight"
+  <div class="no-images">
+    <p>No se encuentran imágenes o videos para mostrar</p>
+  </div>
+} @else {
+  <section aria-label="Galeria de la propiedad">
+    <div
+      class="carousel"
+      role="region"
+      aria-label="Vista principal y miniaturas de la propiedad"
+    >
+      <div class="main-image_desktop">
+        @if (isVideo(actualImage())) {
+          <!-- Youtube player -->
+          <iframe
+            width="100%"
+            height="100%"
+            [src]="getSafeYoutubeUrl(getYoutubeVideoId(actualImage()))"
+            [title]="actualMediaLabel()"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        } @else {
+          @if (isRender(actualImage())) {
+            <a
+              class="tour-view-container"
+              [href]="actualImage()"
+              target="_blank"
+              rel="noreferrer"
             >
-                @for (item of allMedia(); track $index) {
-                    @if(isVideo(item)){
-                        <article
-                            class="carousel__item"
-                            [style.width]="carouselItemWidth"
-                            [style.height]="carouselItemHeight"
-                            [ngClass]="{'active': isImageSelected($index)}"
-                            (click)="selectImage($index)"
-                            >
-                                <!-- Mostrar la imagen de stock de YouTube -->
-                                <img
-                                    src="https://img.youtube.com/vi/{{ getYoutubeVideoId(item) }}/0.jpg"
-                                    alt="Miniatura del video"
-                                    title="Video de la propiedad"/>
-                        </article>
-                    }
-                    @else {
-                        <article
-                            class="carousel__item"
-                            [style.width]="carouselItemWidth"
-                            [style.height]="carouselItemHeight"
-                            [ngClass]="{'active': isImageSelected($index)}"
-                            (click)="selectImage($index)"
-                            >
-                            @if(isRender(item)){
-                                <!-- Render -->
-                                <a class="tour-view-container" [href]="actualImage()" target="_blank" rel="noreferrer">
-                                    <img src="../../../../assets/icons/360-view.png" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                                    <h3>Haz click para realizar un tour 360°</h3>
-                                </a>
-                                <div class="tour-view-container_desktop"  target="_blank" rel="noreferrer">
-                                    <img src="../../../../assets/icons/360-view.png" alt="Imagen de propiedad" title="Imagen de la propiedad"/>
-                                </div>
-                            }@else {
-                                <img
-                                    src="{{ item }}"
-                                    alt="Imagen de propiedaad"
-                                    title="Imagen de la propiedad"/>
-                            }
-                        </article>
-                    }
-                }
-            </div>
-        </div>
-        <div class="carousel__controls">
-            <app-button
-                (click)="prevImage()"
-                type="secondary"
-                [rounded]="true"
-                icon="fa fa-solid fa-chevron-left"></app-button>
-            <app-button
-                [rounded]="true"
-                (click)="nextImage()"
-                type="secondary"
-                icon="fa fa-solid fa-chevron-right"></app-button>
-        </div>
-    </section>
+              <img
+                class="main-image_desktop--principal"
+                src="../../../../assets/icons/360-view.png"
+                alt="Icono de tour virtual"
+                title="Tour virtual de la propiedad"
+              />
+              <h3>Haz click para realizar un tour 360°</h3>
+            </a>
+          } @else {
+            <img
+              class="main-image_desktop--principal"
+              src="{{ actualImage() }}"
+              [alt]="actualMediaLabel()"
+              [title]="actualMediaLabel()"
+            />
+            <img
+              class="main-image_desktop--background"
+              src="{{ actualImage() }}"
+              alt=""
+              aria-hidden="true"
+            />
+          }
+        }
+      </div>
+      <div
+        class="carousel__container"
+        role="list"
+        aria-label="Miniaturas de la propiedad"
+        [style.transform]="transformStyle()"
+        [style.width]="carouselContainerWidth"
+        [style.height]="carouselContainerHeight"
+      >
+        @for (item of allMedia(); track $index) {
+          @if (isVideo(item)) {
+            <article
+              class="carousel__item"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="mediaLabel(item, $index)"
+              [style.width]="carouselItemWidth"
+              [style.height]="carouselItemHeight"
+              [ngClass]="{ active: isImageSelected($index) }"
+              (click)="selectImage($index)"
+              (keydown)="onThumbnailKeydown($event, $index)"
+            >
+              <!-- Mostrar la imagen de stock de YouTube -->
+              <img
+                src="https://img.youtube.com/vi/{{
+                  getYoutubeVideoId(item)
+                }}/0.jpg"
+                [alt]="mediaLabel(item, $index)"
+                [title]="mediaLabel(item, $index)"
+              />
+            </article>
+          } @else {
+            <article
+              class="carousel__item"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="mediaLabel(item, $index)"
+              [style.width]="carouselItemWidth"
+              [style.height]="carouselItemHeight"
+              [ngClass]="{ active: isImageSelected($index) }"
+              (click)="selectImage($index)"
+              (keydown)="onThumbnailKeydown($event, $index)"
+            >
+              @if (isRender(item)) {
+                <!-- Render -->
+                <a
+                  class="tour-view-container"
+                  [href]="item"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src="../../../../assets/icons/360-view.png"
+                    alt="Icono de tour virtual"
+                    title="Tour virtual de la propiedad"
+                  />
+                  <h3>Haz click para realizar un tour 360°</h3>
+                </a>
+                <div class="tour-view-container_desktop">
+                  <img
+                    src="../../../../assets/icons/360-view.png"
+                    alt="Icono de tour virtual"
+                    title="Tour virtual de la propiedad"
+                  />
+                </div>
+              } @else {
+                <img
+                  src="{{ item }}"
+                  [alt]="mediaLabel(item, $index)"
+                  [title]="mediaLabel(item, $index)"
+                />
+              }
+            </article>
+          }
+        }
+      </div>
+    </div>
+    <div class="carousel__controls">
+      <app-button
+        (click)="prevImage()"
+        ariaLabel="Imagen anterior"
+        type="secondary"
+        [rounded]="true"
+        icon="fa fa-solid fa-chevron-left"
+      ></app-button>
+      <app-button
+        [rounded]="true"
+        (click)="nextImage()"
+        ariaLabel="Imagen siguiente"
+        type="secondary"
+        icon="fa fa-solid fa-chevron-right"
+      ></app-button>
+    </div>
+  </section>
 }
