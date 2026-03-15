@@ -9,12 +9,12 @@ import { ProductService } from '../../services/product/product.service'
 import { Product } from '../../models/product'
 import { ActivatedRoute, Params } from '@angular/router'
 import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
-import { Meta, Title } from '@angular/platform-browser'
 import { PdfService } from '../../services/pdf/pdf.service'
 import { LoaderService } from '../../services/loader/loader.service'
 import { switchMap } from 'rxjs'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ToastService } from '../../services/toast/toast.service'
+import { SeoService } from '../../services/seo/seo.service'
 
 @Component({
   selector: 'app-product-detail',
@@ -38,11 +38,10 @@ export class ProductDetailComponent {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private metaTagService: Meta,
-    private titleService: Title,
     private pdfService: PdfService,
     private loaderService: LoaderService,
     private toastService: ToastService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit() {
@@ -57,56 +56,19 @@ export class ProductDetailComponent {
       .subscribe({
         next: (product: Product) => {
           this.product = product
-          this.updateSeoTags(product)
+          this.seoService.setProductPageSeo(product)
           this.loaderService.hideLoading()
         },
         error: () => {
           this.product = undefined
+          this.seoService.clearProductStructuredData()
           this.loaderService.hideLoading()
         },
       })
   }
 
-  private updateSeoTags(product: Product): void {
-    this.titleService.setTitle(
-      `${product.operation_type} ${product.type} en ${product.address.city} - Paula Dallochio Inmobiliaria`,
-    )
-    this.metaTagService.updateTag({
-      name: 'description',
-      content: `${product.title}, ${product.rooms} ambientes, ${product.area} m2 totales, ${product.coveredArea} m2 cubiertos, ${product.bathrooms} baños, ${product.garage} cocheras`,
-    })
-    this.metaTagService.updateTag({
-      name: 'keywords',
-      content:
-        ' Propiedad, inmueble, bien raíz, bienes raíces, inmobiliaria, Paula Dallochio, ' +
-        (product.address ? `, ${product.address.city}` : ''),
-    })
-
-    this.metaTagService.updateTag({
-      property: 'og:title',
-      content: `${product.operation_type} ${product.type} en ${product.address.city} - Paula Dallochio Inmobiliaria`,
-    })
-    this.metaTagService.updateTag({
-      property: 'og:description',
-      content: product.description ?? '',
-    })
-    this.metaTagService.updateTag({
-      property: 'og:url',
-      content: `https://www.pauladallochio.com.ar/catalogo/${product.id}`,
-    })
-
-    this.metaTagService.updateTag({
-      name: 'twitter:title',
-      content: `${product.operation_type} ${product.type} en ${product.address.city} - Paula Dallochio Inmobiliaria`,
-    })
-    this.metaTagService.updateTag({
-      name: 'twitter:description',
-      content: product.description ?? '',
-    })
-    this.metaTagService.updateTag({
-      name: 'twitter:url',
-      content: `https://www.pauladallochio.com.ar/catalogo/${product.id}`,
-    })
+  ngOnDestroy(): void {
+    this.seoService.clearProductStructuredData()
   }
 
   async copyActualRoute() {

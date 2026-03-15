@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { jsPDF } from 'jspdf'
+import type { jsPDF } from 'jspdf'
 import { Product } from '../../models/product'
+
+type PdfDocument = jsPDF
+
 @Injectable({
   providedIn: 'root',
 })
 export class PdfService {
-  constructor(private http: HttpClient) {}
-
-  generatePropertyPdf(product: Product) {
+  async generatePropertyPdf(product: Product): Promise<void> {
+    const { jsPDF } = await import('jspdf')
     const doc = new jsPDF('p', 'mm', 'a4')
+
     // Background styling
     this.setBackground(doc)
 
@@ -52,7 +54,7 @@ export class PdfService {
     )
   }
 
-  setBackground(doc: jsPDF) {
+  setBackground(doc: PdfDocument) {
     doc.setFillColor('#FFFFF0')
     doc.rect(
       0,
@@ -63,7 +65,7 @@ export class PdfService {
     )
   }
 
-  createTitle(doc: jsPDF, text: string) {
+  createTitle(doc: PdfDocument, text: string) {
     doc.setTextColor('#B80E3B')
     doc.setFontSize(14)
     const title = text
@@ -74,7 +76,7 @@ export class PdfService {
     doc.text(splitTitle, titleX, titleY)
   }
 
-  createHeader(doc: jsPDF) {
+  createHeader(doc: PdfDocument) {
     doc.addImage('../../../assets/logos/logo-header.png', 'PNG', 10, 10, 50, 25)
 
     // Header Styling
@@ -97,7 +99,7 @@ export class PdfService {
     doc.line(10, 50, 200, 50)
   }
 
-  createPrice(doc: jsPDF, product: Product) {
+  createPrice(doc: PdfDocument, product: Product) {
     function formatNumber(num: number): string {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     }
@@ -113,7 +115,7 @@ export class PdfService {
     doc.setFont('helvetica', 'normal')
   }
 
-  createLocation(doc: jsPDF, product: Product) {
+  createLocation(doc: PdfDocument, product: Product) {
     const detailX = 10
     let detailY = 80
 
@@ -142,7 +144,7 @@ export class PdfService {
     )
   }
 
-  createPropertyDetails(doc: jsPDF, product: Product) {
+  createPropertyDetails(doc: PdfDocument, product: Product) {
     doc.setTextColor(0, 0, 0)
     doc.setFontSize(12)
     const detailX = 10
@@ -214,12 +216,12 @@ export class PdfService {
     )
   }
 
-  createMainImage(doc: jsPDF, product: Product) {
+  createMainImage(doc: PdfDocument, product: Product) {
     const imageUrl = product.cover
     doc.addImage(imageUrl, 'JPEG', 10, 130, 190, 90) // Adjust dimensions as necessary
   }
 
-  createDescription(doc: jsPDF, product: Product) {
+  createDescription(doc: PdfDocument, product: Product) {
     let y = 230
     const description = this.decodeHtmlEntities(product.pdfDescription)
 
@@ -243,7 +245,7 @@ export class PdfService {
     })
   }
 
-  createGallery(doc: jsPDF, product: Product) {
+  createGallery(doc: PdfDocument, product: Product) {
     let galleryY = 60 // Posición inicial de la primera página de la galería
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(16)

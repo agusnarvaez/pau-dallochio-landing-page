@@ -1,9 +1,8 @@
 form {
   width: 100%;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
   padding: 5% 3%;
   gap: 2.3rem;
@@ -67,8 +66,6 @@ form .input-container:focus-within label {
 @media (min-width: 530px) {
   form {
     padding: 0;
-    order: 1;
-    height: 100%;
   }
 
   form .input-container textarea,

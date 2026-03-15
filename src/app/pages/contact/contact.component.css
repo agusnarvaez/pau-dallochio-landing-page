@@ -2,9 +2,17 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
   gap: 2.8rem;
-  padding: 2.4rem 3% 4rem;
+  padding: 2.4rem 3% 5.6rem;
   align-items: start;
+}
+
+.contact-left {
+  width: 100%;
+  display: grid;
+  gap: 2.8rem;
+  align-content: start;
 }
 
 .contact-title {
@@ -29,20 +37,12 @@
   font-size: 1.5rem;
   text-align: center;
 }
-h2 {
-  font-size: 3rem;
-  line-height: 3.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  z-index: 50;
-  color: var(--light-color);
-  font-weight: 800;
-  text-align: center;
-}
-
 app-contact-form {
   display: block;
   width: 100%;
+  align-self: start;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-socials {
@@ -53,6 +53,7 @@ app-contact-form {
   list-style: none;
   padding: 0;
   gap: 2.3rem;
+  margin-top: 0.2rem;
 }
 .contact-socials li h3,
 .contact-socials li {
@@ -81,29 +82,18 @@ app-contact-form {
 @media (min-width: 530px) {
   .contact-page {
     grid-template-columns: minmax(26rem, 0.95fr) minmax(30rem, 1.05fr);
-    grid-template-areas:
-      'title form'
-      'social form';
-    column-gap: 2.8rem;
-    row-gap: 2rem;
-    padding: 2.6rem 3% 4.2rem;
-  }
-
-  .contact-title {
-    grid-area: title;
-    width: 100%;
+    column-gap: 3.2rem;
+    row-gap: 2.2rem;
+    padding: 2.8rem 3% 4.8rem;
   }
 
   app-contact-form {
-    grid-area: form;
     width: 100%;
-    padding-top: 0;
+    margin-top: 0;
   }
 
   .contact-socials {
-    grid-area: social;
-    width: 100%;
-    gap: 1.8rem;
+    margin-top: 0;
   }
 
   .contact-socials li h3 {
@@ -119,12 +109,16 @@ app-contact-form {
   .contact-page {
     grid-template-columns: minmax(32rem, 0.9fr) minmax(36rem, 1.1fr);
     column-gap: 4.8rem;
-    row-gap: 2.2rem;
-    padding: 3rem 3.5% 4.6rem;
+    row-gap: 2.6rem;
+    padding: 3.2rem 3.5% 5rem;
   }
 
   .contact-title {
     align-items: start;
+  }
+
+  .contact-left {
+    gap: 3.2rem;
   }
   .contact-slogan {
     width: 70%;
