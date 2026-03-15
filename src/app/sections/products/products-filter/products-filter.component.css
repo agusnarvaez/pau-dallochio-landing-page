@@ -11,6 +11,10 @@ section {
 
 .main-filter-btn {
   width: 47%;
+  --btn-font-size-mobile: 1.2rem;
+  --btn-font-size-tablet: 1.45rem;
+  --btn-font-size-desktop: 1.65rem;
+  --btn-font-size-wide: 1.8rem;
 }
 
 .filter-form {
@@ -73,11 +77,19 @@ section {
 
 .secondary-filter-btn {
   width: 65%;
+  --btn-font-size-mobile: 1.2rem;
+  --btn-font-size-tablet: 1.4rem;
+  --btn-font-size-desktop: 1.6rem;
+  --btn-font-size-wide: 1.7rem;
 }
 
 .search-btn {
   width: 35%;
   height: 100%;
+  --btn-font-size-mobile: 1.2rem;
+  --btn-font-size-tablet: 1.35rem;
+  --btn-font-size-desktop: 1.55rem;
+  --btn-font-size-wide: 1.65rem;
 }
 .input-container.order_by {
   flex-direction: row;

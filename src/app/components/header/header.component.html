@@ -1,15 +1,44 @@
 <header [ngClass]="showHeader ? 'show' : ''">
-    <a class="header-logo" [routerLink]="['']">
-        <img src="../../../assets/logos/logo-header.png" alt="logo-paula-dallochio" />
-    </a>
-    <div class="header-button" [ngClass]="showHeader ? 'show' : ''" (click)="toggleHeader()" >
-        <div></div>
-    </div>
-    <nav [ngClass]="showHeader ? 'show' : ''">
-        <ul>
-            <li (click)="toggleHeader()" ><a [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
-            <li (click)="toggleHeader()" ><a [routerLink]="['como-trabajamos']" [routerLinkActive]="['active']">Cómo trabajamos</a></li>
-            <li (click)="toggleHeader()" ><a [routerLink]="['contacto']" [routerLinkActive]="['active']">Contacto</a></li>
-        </ul>
-    </nav>
+  <a class="header-logo" [routerLink]="['']" (click)="navigateAndScrollTop()">
+    <img
+      src="../../../assets/logos/logo-header.png"
+      alt="logo-paula-dallochio"
+    />
+  </a>
+  <div
+    class="header-button"
+    [ngClass]="showHeader ? 'show' : ''"
+    (click)="toggleHeader()"
+  >
+    <div></div>
+  </div>
+  <nav [ngClass]="showHeader ? 'show' : ''">
+    <ul>
+      <li>
+        <a
+          [routerLink]="['']"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="navigateAndScrollTop()"
+          >Inicio</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['como-trabajamos']"
+          [routerLinkActive]="['active']"
+          (click)="navigateAndScrollTop()"
+          >Cómo trabajamos</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['contacto']"
+          [routerLinkActive]="['active']"
+          (click)="navigateAndScrollTop()"
+          >Contacto</a
+        >
+      </li>
+    </ul>
+  </nav>
 </header>

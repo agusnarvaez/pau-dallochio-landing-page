@@ -37,4 +37,10 @@ export class ProductsCardComponent {
     this.product?.expenses
       ? `Expensas: $${this.product?.expenses}`
       : 'Sin expensas'
+
+  scrollToTopOnNavigate(): void {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+  }
 }

@@ -2,6 +2,7 @@
   <a
     routerLink="/catalogo/{{ product?.id }}"
     [attr.aria-label]="cardAriaLabel()"
+    (click)="scrollToTopOnNavigate()"
   >
     <img
       [src]="product?.cover"

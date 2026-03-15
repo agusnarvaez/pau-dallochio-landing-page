@@ -1,6 +1,12 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { RouterLink, RouterModule } from '@angular/router'
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterModule,
+} from '@angular/router'
+import { filter, take } from 'rxjs'
 
 @Component({
   selector: 'app-button',
@@ -22,6 +28,8 @@ export class ButtonComponent {
   @Input() disabled: boolean | null = false
   @Input() isExternalLink: boolean = false
 
+  constructor(private router: Router) {}
+
   isSecondary = () => this.type === 'secondary'
 
   isTertiary = () => this.type === 'tertiary'
@@ -37,9 +45,27 @@ export class ButtonComponent {
   hasText = () => this.text !== ''
 
   goToTop(): void {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
+    this.scrollToPageTop()
+
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        take(1),
+      )
+      .subscribe(() => {
+        this.scrollToPageTop()
+      })
+  }
+
+  private scrollToPageTop(): void {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
     })
   }
 }

@@ -8,25 +8,37 @@ import { FilterObject } from '../../../services/filters/filters.service'
 @Component({
   selector: 'app-home-banner',
   standalone: true,
-  imports: [CommonModule,ButtonComponent],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './home-banner.component.html',
-  styleUrl: './home-banner.component.css'
+  styleUrl: './home-banner.component.css',
 })
 export class HomeBannerComponent {
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+  ) {}
   isRentFilterActive = false
   isSellFilterActive = false
 
   isFilterActive = (filterText: string): boolean => {
-    return this.productService.filtersService.isActive("operation_type",filterText)
+    return this.productService.filtersService.isActive(
+      'operation_type',
+      filterText,
+    )
   }
 
-  toggleFilter = (filterText: FilterObject): void => this.productService.filtersService.toggle(filterText)
+  toggleFilter = (filterText: FilterObject): void =>
+    this.productService.filtersService.toggle(filterText)
 
-  searchProducts = () => this.router.navigate(['/catalogo'])
+  searchProducts = () => {
+    this.router.navigate(['/catalogo']).then(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    })
+  }
   ngInInit() {
     this.isRentFilterActive = this.isFilterActive('Alquiler')
     this.isSellFilterActive = this.isFilterActive('Venta')
-    
   }
 }

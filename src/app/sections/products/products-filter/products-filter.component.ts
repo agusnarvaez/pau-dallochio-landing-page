@@ -29,6 +29,7 @@ export class ProductsFilterComponent {
   private destroyRef = inject(DestroyRef)
 
   showFilters: boolean = false
+  private readonly availableAdvancedFilters = 4
 
   advancedFiltersCount = () => {
     let count = 0
@@ -37,6 +38,11 @@ export class ProductsFilterComponent {
     if (this.minPrice > 0 || this.maxPrice > 0) count += 1
     if (this.order_by !== '' || this.order !== '') count += 1
     return count
+  }
+
+  advancedFiltersBadgeCount = () => {
+    const active = this.advancedFiltersCount()
+    return active > 0 ? active : this.availableAdvancedFilters
   }
 
   toggleFilters(): void {
