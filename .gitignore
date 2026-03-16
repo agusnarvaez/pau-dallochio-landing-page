@@ -92,3 +92,9 @@ Thumbs.db
 .angular
 .env
 enviroment.prod.ts
+environment.prod.ts
+
+# Local environment overrides (do not commit secrets)
+src/environments/environment.local.ts
+src/environments/environment.*
+src/environments/environment.prod.local.ts

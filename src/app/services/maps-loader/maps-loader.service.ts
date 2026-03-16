@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { environment } from '../../../../enviroment.prod'
+import { environment } from '../../../environments/environment'
 
 type WindowWithGoogle = Window & {
   google?: {

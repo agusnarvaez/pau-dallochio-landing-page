@@ -8,7 +8,10 @@ const DIST_SITEMAP_PATH = resolve(
   'browser',
   'sitemap.xml',
 )
-const ENV_PATH = resolve('enviroment.prod.ts')
+const ENV_PATHS = [
+  resolve('src', 'environments', 'environment.prod.ts'),
+  resolve('enviroment.prod.ts'),
+]
 
 const STATIC_ROUTES = ['', 'como-trabajamos', 'vender', 'catalogo', 'contacto']
 
@@ -36,14 +39,32 @@ function buildUrlEntry(url, lastmod, changefreq = 'weekly', priority = '0.7') {
 }
 
 async function getTokkoKey() {
-  const envFile = await readFile(ENV_PATH, 'utf-8')
-  const keyMatch = envFile.match(/tokkoBrokerKey:\s*'([^']+)'/)
+  let envFile = ''
 
-  if (!keyMatch?.[1]) {
-    throw new Error('No se encontro tokkoBrokerKey en enviroment.prod.ts')
+  for (const envPath of ENV_PATHS) {
+    try {
+      envFile = await readFile(envPath, 'utf-8')
+      break
+    } catch {
+      // Intenta con la siguiente ruta.
+    }
   }
 
-  return keyMatch[1]
+  if (!envFile) {
+    throw new Error('No se encontro archivo de environment para sitemap')
+  }
+
+  const keyMatch = envFile.match(
+    /(TOKKOBROKER_KEY|tokkobroker_key):\s*'([^']+)'/,
+  )
+
+  const tokkoKey = keyMatch?.[2]
+
+  if (!tokkoKey) {
+    throw new Error('No se encontro TOKKOBROKER_KEY en environment.prod.ts')
+  }
+
+  return tokkoKey
 }
 
 async function fetchDynamicProductRoutes() {

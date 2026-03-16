@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing'
 
 import { EmailService } from './email.service'
-import { environment } from '../../../../enviroment.prod'
+import { environment } from '../../../environments/environment'
 import { Mail } from '../../models/mail'
 
 describe('EmailService', () => {

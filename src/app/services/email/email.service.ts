@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Observable, catchError, throwError } from 'rxjs'
-import { environment } from '../../../../enviroment.prod'
+import { environment } from '../../../environments/environment'
 import { HttpClient } from '@angular/common/http'
 import { Mail } from '../../models/mail'
 

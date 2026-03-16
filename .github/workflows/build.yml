@@ -32,6 +32,26 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate production environment
+        shell: bash
+        env:
+          TOKKOBROKER_KEY: ${{ secrets.TOKKOBROKER_KEY }}
+          SANITY_KEY: ${{ secrets.SANITY_KEY }}
+          MAPS_KEY: ${{ secrets.MAPS_KEY }}
+          MAIL_API_PROD: ${{ secrets.MAIL_API_PROD }}
+        run: |
+          mkdir -p src/environments
+          cat > src/environments/environment.prod.ts <<EOF
+          export const environment = {
+            production: true,
+            tokkobroker_key: '${TOKKOBROKER_KEY}',
+            sanity_key: '${SANITY_KEY}',
+            mail_api_dev: 'http://localhost:3000',
+            mail_api_prod: '${MAIL_API_PROD:-https://mailing-api.fly.dev}',
+            maps_key: '${MAPS_KEY}',
+          }
+          EOF
+
       - name: Run lint
         run: |
           npm run lint
