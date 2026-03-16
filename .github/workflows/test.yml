@@ -1,16 +1,17 @@
-name: Build
+name: Tests
+
 on:
   pull_request:
     branches:
       - main
-      - dev
+      - develop
   push:
     branches:
       - main
-      - dev
+      - develop
 
 jobs:
-  lint-and-build:
+  unit-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,9 +33,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run lint
-        run: |
-          npm run lint
+      - name: Run unit tests with coverage
+        run: npm run test:prod
 
-      - name: Run production build
-        run: npm run build
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+          files: ./coverage/pau-dallochio-landing-page/lcov.info

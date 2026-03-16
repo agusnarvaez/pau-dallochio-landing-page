@@ -1,6 +1,8 @@
 # Landing Page - Paula Dallochio
 
 [![Build](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/build.yml/badge.svg)](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/build.yml)
+[![Tests](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/test.yml/badge.svg)](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/test.yml)
+[![Coverage](https://codecov.io/gh/agusnarvaez/pau-dallochio-landing-page/graph/badge.svg)](https://codecov.io/gh/agusnarvaez/pau-dallochio-landing-page)
 
 <!-- ![Coverage](./badges/pau-dallochio-landing-page/coverage.svg) -->
 

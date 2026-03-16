@@ -209,4 +209,63 @@ describe('ProductsService', () => {
       byIdMisses: 0,
     })
   })
+
+  it('should evict list cache entry on getAll error and retry network request', () => {
+    const errors: Error[] = []
+
+    service.getAll().subscribe({
+      error: (error) => errors.push(error),
+    })
+
+    const firstRequest = httpMock.expectOne((req) =>
+      req.url.includes('/property/search'),
+    )
+    firstRequest.flush(
+      { message: 'Boom' },
+      { status: 500, statusText: 'Server Error' },
+    )
+
+    service.getAll().subscribe({
+      error: (error) => errors.push(error),
+    })
+
+    const secondRequest = httpMock.expectOne((req) =>
+      req.url.includes('/property/search'),
+    )
+    secondRequest.flush({ objects: [tokkoProductMock] })
+
+    expect(errors.length).toBe(1)
+    expect(errors[0].message).toContain('Http failure response')
+
+    const stats = service.getCacheStats()
+    expect(stats.listMisses).toBe(2)
+  })
+
+  it('should evict by id cache entry on error and request again', () => {
+    const errors: Error[] = []
+
+    service.getById('123').subscribe({
+      error: (error) => errors.push(error),
+    })
+
+    const firstRequest = httpMock.expectOne((req) =>
+      req.url.includes('/property/123/'),
+    )
+    firstRequest.flush(
+      { message: 'Boom' },
+      { status: 500, statusText: 'Server Error' },
+    )
+
+    service.getById('123').subscribe()
+    const secondRequest = httpMock.expectOne((req) =>
+      req.url.includes('/property/123/'),
+    )
+    secondRequest.flush(tokkoProductMock)
+
+    expect(errors.length).toBe(1)
+    expect(errors[0].message).toContain('Http failure response')
+
+    const stats = service.getCacheStats()
+    expect(stats.byIdMisses).toBe(2)
+  })
 })
