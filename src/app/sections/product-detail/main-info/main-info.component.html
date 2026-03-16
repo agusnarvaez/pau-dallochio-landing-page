@@ -9,29 +9,29 @@
       <i class="fa fa-solid fa-house-chimney-window"></i>
       {{ product?.rooms }} ambientes
     </li>
-    <li *ngIf="product && product?.area && product.area > 0">
+    <li *ngIf="product && product.area && product.area > 0">
       <i class="fa fa-solid fa-maximize"></i>
       {{ product.area | number: '1.2-2' : 'es-ES' }} m² totales
     </li>
 
-    <li *ngIf="product && product?.coveredArea && product.coveredArea > 0">
+    <li *ngIf="product && product.coveredArea && product.coveredArea > 0">
       <i class="fa fa-solid fa-person-shelter"></i>
       {{ product.coveredArea | number: '1.2-2' : 'es-ES' }} m² cubiertos
     </li>
 
     <li
-      *ngIf="product && product?.semiCoveredArea && product.semiCoveredArea > 0"
+      *ngIf="product && product.semiCoveredArea && product.semiCoveredArea > 0"
     >
       <i class="fa fa-solid fa-border-top-left"></i>
       {{ product.semiCoveredArea | number: '1.2-2' : 'es-ES' }} m² semicubiertos
     </li>
 
-    <li *ngIf="product && product?.uncoveredArea && product.uncoveredArea > 0">
+    <li *ngIf="product && product.uncoveredArea && product.uncoveredArea > 0">
       <i class="fa fa-solid fa-sun"></i>
       {{ product.uncoveredArea | number: '1.2-2' : 'es-ES' }} m² descubiertos
     </li>
 
-    <li *ngIf="product && product?.lotArea && product.lotArea > 0">
+    <li *ngIf="product && product.lotArea && product.lotArea > 0">
       <i class="fa fa-solid fa-tree"></i>
       {{ product.lotArea | number: '1.2-2' : 'es-ES' }} m² terreno
     </li>
@@ -54,11 +54,23 @@
   <div class="product-map" *ngIf="product && mapsApiLoaded">
     <google-map height="300px" width="100%" [center]="center" [zoom]="15">
       <map-marker
-        *ngIf="product?.geo_lat && product?.geo_long"
+        *ngIf="markerApiLoaded && product.geo_lat && product.geo_long"
         [position]="marker.position ?? center"
         [title]="marker.title ?? ''"
       >
       </map-marker>
     </google-map>
+  </div>
+
+  <div class="product-map" *ngIf="product && !mapsApiLoaded && mapEmbedUrl()">
+    <iframe
+      title="Ubicacion de la propiedad"
+      width="100%"
+      height="300"
+      style="border: 0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      [attr.src]="mapEmbedUrl()"
+    ></iframe>
   </div>
 </section>

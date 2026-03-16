@@ -2,7 +2,18 @@ import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Product } from '../../../models/product'
 import { GoogleMapsModule } from '@angular/google-maps'
-import { environment } from '../../../../../enviroment.prod'
+import { MapsLoaderService } from '../../../services/maps-loader/maps-loader.service'
+
+type WindowWithGoogle = Window & {
+  google?: {
+    maps?: {
+      importLibrary?: (libraryName: string) => Promise<unknown>
+      Map?: unknown
+      Marker?: unknown
+    }
+  }
+}
+
 @Component({
   selector: 'app-main-info',
   standalone: true,
@@ -13,6 +24,7 @@ import { environment } from '../../../../../enviroment.prod'
 export class MainInfoComponent {
   @Input() product: Product | undefined
   mapsApiLoaded = false
+  markerApiLoaded = false
 
   center: google.maps.LatLngLiteral = { lat: 0, lng: 0 } // Default to Buenos Aires city center, for example
   marker: google.maps.MarkerOptions = {
@@ -20,6 +32,8 @@ export class MainInfoComponent {
     position: this.center,
     title: 'Property Location',
   }
+
+  constructor(private mapsLoader: MapsLoaderService) {}
 
   ngOnChanges(): void {
     if (this.product) {
@@ -36,39 +50,62 @@ export class MainInfoComponent {
       : 'Sin expensas'
 
   ngOnInit(): void {
-    if (this.isGoogleMapsReady()) {
-      this.mapsApiLoaded = true
-      return
-    }
-
-    const existingScript = document.getElementById(
-      'googleMapsScript',
-    ) as HTMLScriptElement | null
-
-    if (existingScript) {
-      existingScript.addEventListener('load', () => {
-        this.mapsApiLoaded = this.isGoogleMapsReady()
-      })
-      return
-    }
-
-    const script = document.createElement('script')
-    script.id = 'googleMapsScript' // Asegúrate de que el script no se añada más de una vez.
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.maps_key}&loading=async`
-    script.async = true // Carga el script de forma asíncrona.
-    script.defer = true // Diferir la ejecución del script hasta que la carga de la página haya terminado.
-    script.addEventListener('load', () => {
-      this.mapsApiLoaded = this.isGoogleMapsReady()
-    })
-
-    document.head.appendChild(script)
+    void this.initializeMapsApi()
   }
 
-  private isGoogleMapsReady(): boolean {
-    const windowWithGoogle = window as Window & {
-      google?: { maps?: unknown }
+  private async initializeMapsApi(): Promise<void> {
+    const win = window as WindowWithGoogle
+
+    try {
+      await this.mapsLoader.load()
+
+      if (typeof win.google?.maps?.importLibrary === 'function') {
+        await win.google.maps.importLibrary('maps')
+
+        try {
+          await win.google.maps.importLibrary('marker')
+        } catch {
+          // Si marker no esta disponible, mostramos el mapa igual sin pin.
+        }
+      }
+
+      this.mapsApiLoaded = true
+      this.markerApiLoaded = this.isMarkerReady(win)
+    } catch {
+      this.mapsApiLoaded = this.isMapReady(win)
+      this.markerApiLoaded = this.isMarkerReady(win)
+    }
+  }
+
+  private isMapReady(win: WindowWithGoogle): boolean {
+    return typeof win.google?.maps?.Map === 'function'
+  }
+
+  private isMarkerReady(win: WindowWithGoogle): boolean {
+    return typeof win.google?.maps?.Marker === 'function'
+  }
+
+  mapEmbedUrl(): string {
+    const lat = this.product?.geo_lat
+    const lng = this.product?.geo_long
+
+    if (!lat || !lng) {
+      const address = [
+        this.product?.address?.street,
+        this.product?.address?.city,
+      ]
+        .filter(Boolean)
+        .join(', ')
+
+      if (!address) {
+        return ''
+      }
+
+      return `https://www.google.com/maps?q=${encodeURIComponent(
+        address,
+      )}&z=15&output=embed`
     }
 
-    return !!windowWithGoogle.google?.maps
+    return `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`
   }
 }
