@@ -48,7 +48,9 @@ export class ProductDetailComponent {
     this.route.params
       .pipe(
         switchMap((params: Params) => {
-          this.loaderService.showLoading()
+          queueMicrotask(() => {
+            this.loaderService.showLoading()
+          })
           return this.productService.getById(params['id'])
         }),
         takeUntilDestroyed(this.destroyRef),

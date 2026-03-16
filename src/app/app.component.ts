@@ -30,5 +30,5 @@ export class AppComponent {
   show = false
   title = 'pau-dallochio-landing-page'
 
-  isLoading = () => this.loaderService.loading
+  isLoading$ = this.loaderService.loading$
 }

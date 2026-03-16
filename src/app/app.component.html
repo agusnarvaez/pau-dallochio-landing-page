@@ -1,6 +1,6 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
-<main *ngIf="isLoading()" class="loading">
+<main *ngIf="isLoading$ | async" class="loading">
   <h2>Cargando...</h2>
   <span class="loader"></span>
 </main>
