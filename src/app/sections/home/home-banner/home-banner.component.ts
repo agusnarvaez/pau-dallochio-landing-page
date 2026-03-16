@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../../components/button/button.component'
 import { Router } from '@angular/router'
 import { FilterObject } from '../../../services/filters/filters.service'
+import { ScrollService } from '../../../services/scroll/scroll.service'
 
 @Component({
   selector: 'app-home-banner',
@@ -16,6 +17,7 @@ export class HomeBannerComponent {
   constructor(
     private router: Router,
     private productService: ProductService,
+    private scrollService: ScrollService,
   ) {}
   isRentFilterActive = false
   isSellFilterActive = false
@@ -31,11 +33,8 @@ export class HomeBannerComponent {
     this.productService.filtersService.toggle(filterText)
 
   searchProducts = () => {
-    this.router.navigate(['/catalogo']).then(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-    })
+    this.scrollService.scrollToTopAfterNextNavigation(this.router)
+    this.router.navigate(['/catalogo'])
   }
   ngInInit() {
     this.isRentFilterActive = this.isFilterActive('Alquiler')

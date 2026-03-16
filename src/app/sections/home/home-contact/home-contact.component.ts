@@ -5,10 +5,8 @@ import { ButtonComponent } from '../../../components/button/button.component'
 @Component({
   selector: 'app-home-contact',
   standalone: true,
-  imports: [CommonModule,ButtonComponent],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './home-contact.component.html',
-  styleUrl: './home-contact.component.css'
+  styleUrl: './home-contact.component.css',
 })
-export class HomeContactComponent {
-
-}
+export class HomeContactComponent {}

@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Product } from '../../../models/product'
-import { RouterLink } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
+import { ScrollService } from '../../../services/scroll/scroll.service'
 
 // Importa locales adicionales
 import localeEs from '@angular/common/locales/es'
@@ -18,6 +19,11 @@ registerLocaleData(localeEs)
   styleUrl: './products-card.component.css',
 })
 export class ProductsCardComponent {
+  constructor(
+    private router: Router,
+    private scrollService: ScrollService,
+  ) {}
+
   @Input() product?: Product
 
   iconButton = '../../../../assets/icons/arrow-up-right.svg'
@@ -39,8 +45,6 @@ export class ProductsCardComponent {
       : 'Sin expensas'
 
   scrollToTopOnNavigate(): void {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-    document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
+    this.scrollService.scrollToTopAfterNextNavigation(this.router)
   }
 }

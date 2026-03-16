@@ -1,12 +1,7 @@
 import { Component } from '@angular/core'
 import { CommonModule, NgClass } from '@angular/common'
-import {
-  NavigationEnd,
-  Router,
-  RouterLink,
-  RouterLinkActive,
-} from '@angular/router'
-import { filter } from 'rxjs'
+import { Router, RouterLink, RouterLinkActive } from '@angular/router'
+import { ScrollService } from '../../services/scroll/scroll.service'
 
 @Component({
   selector: 'app-header',
@@ -17,18 +12,11 @@ import { filter } from 'rxjs'
 })
 export class HeaderComponent {
   showHeader = false
-  private shouldScrollAfterNavigation = false
 
-  constructor(private router: Router) {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        if (this.shouldScrollAfterNavigation) {
-          this.scrollToPageTop()
-          this.shouldScrollAfterNavigation = false
-        }
-      })
-  }
+  constructor(
+    private router: Router,
+    private scrollService: ScrollService,
+  ) {}
 
   toggleHeader() {
     this.showHeader = !this.showHeader
@@ -36,19 +24,6 @@ export class HeaderComponent {
 
   navigateAndScrollTop(): void {
     this.showHeader = false
-    this.shouldScrollAfterNavigation = true
-    this.scrollToPageTop()
-  }
-
-  private scrollToPageTop(): void {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-    document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
-
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-    })
+    this.scrollService.scrollToTopAfterNextNavigation(this.router)
   }
 }
