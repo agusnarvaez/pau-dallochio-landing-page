@@ -96,5 +96,5 @@ environment.prod.ts
 
 # Local environment overrides (do not commit secrets)
 src/environments/environment.local.ts
-src/environments/environment.*
+src/environments/environment.prod.ts
 src/environments/environment.prod.local.ts
