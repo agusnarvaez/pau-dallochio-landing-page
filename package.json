@@ -9,6 +9,7 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --code-coverage",
+    "test:coverage": "npm run test:prod",
     "lint": "eslint \"**/*.{ts,tsx}\" ",
     "lint:fix": "eslint --fix \"**/*.{ts,tsx}\" ",
     "build:prod": "ng build --configuration production && npm run sitemap",

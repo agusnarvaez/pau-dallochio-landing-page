@@ -1,33 +1,38 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { Router } from '@angular/router'
+import { ScrollService } from '../../services/scroll/scroll.service'
 
 import { HeaderComponent } from './header.component'
-import { ActivatedRoute } from '@angular/router'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
   let fixture: ComponentFixture<HeaderComponent>
+  let scrollServiceSpy: jasmine.SpyObj<ScrollService>
+  let routerStub: Router
 
   beforeEach(async () => {
+    scrollServiceSpy = jasmine.createSpyObj<ScrollService>('ScrollService', [
+      'scrollToTopAfterNextNavigation',
+    ])
+    routerStub = {
+      navigate: jasmine.createSpy('navigate'),
+      events: { pipe: () => ({ subscribe: () => undefined }) },
+    } as unknown as Router
+
     await TestBed.configureTestingModule({
       imports: [HeaderComponent],
       providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              data: {
-                title: 'pau-dallochio-landing-page'
-              }
-            }
-          }
-        }
-      ]
+        { provide: Router, useValue: routerStub },
+        { provide: ScrollService, useValue: scrollServiceSpy },
+      ],
+    }).compileComponents()
+
+    TestBed.overrideComponent(HeaderComponent, {
+      set: { template: '' },
     })
-    .compileComponents()
 
     fixture = TestBed.createComponent(HeaderComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
   })
 
   it('should create', () => {
@@ -38,5 +43,16 @@ describe('HeaderComponent', () => {
     const initialShowHeader = component.showHeader
     component.toggleHeader()
     expect(component.showHeader).toBe(!initialShowHeader)
+  })
+
+  it('should close menu and delegate scroll behavior on navigation', () => {
+    component.showHeader = true
+
+    component.navigateAndScrollTop()
+
+    expect(component.showHeader).toBeFalse()
+    expect(
+      scrollServiceSpy.scrollToTopAfterNextNavigation,
+    ).toHaveBeenCalledWith(routerStub)
   })
 })

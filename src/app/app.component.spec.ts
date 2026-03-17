@@ -1,27 +1,16 @@
 import { TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
-import './app.module'
-import { ActivatedRoute } from '@angular/router'
 
 describe('AppComponent', () => {
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        AppComponent,
+    TestBed.overrideComponent(AppComponent, {
+      set: {
+        template: '',
+      },
+    })
 
-      ],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              data: {
-                title: 'pau-dallochio-landing-page'
-              }
-            }
-          }
-        }
-      ]
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
     }).compileComponents()
   })
 
@@ -36,5 +25,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance
     expect(app.title).toEqual('pau-dallochio-landing-page')
   })
-
 })

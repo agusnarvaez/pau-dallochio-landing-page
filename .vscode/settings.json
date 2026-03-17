@@ -31,6 +31,7 @@
     "/^\\$i=1; Get-Content 'src/app/sections/product-detail/carrousel/carrousel\\.component\\.css' \\| ForEach-Object \\{ '\\{0,4\\}: \\{1\\}' -f \\$i, \\$_; \\$i\\+\\+ \\}$/": {
       "approve": true,
       "matchCommandLine": true
-    }
+    },
+    "ForEach-Object": true
   }
 }

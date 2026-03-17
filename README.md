@@ -1,6 +1,8 @@
 # Landing Page - Paula Dallochio
 
 [![Build](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/build.yml/badge.svg)](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/build.yml)
+[![Tests](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/test.yml/badge.svg)](https://github.com/agusnarvaez/pau-dallochio-landing-page/actions/workflows/test.yml)
+[![Coverage](https://codecov.io/gh/agusnarvaez/pau-dallochio-landing-page/graph/badge.svg)](https://codecov.io/gh/agusnarvaez/pau-dallochio-landing-page)
 
 <!-- ![Coverage](./badges/pau-dallochio-landing-page/coverage.svg) -->
 
@@ -11,3 +13,24 @@ Para el desarrollo del frontend de la página, se utilizó Angular, un marco de 
 TokkoBrokers, por otro lado, es un CRM para desarrolladores inmobiilarios.
 
 Por lo tanto, la pila de tecnología para la página de Paula Dallochio incluye Angular, TypeScript y TokkoBrokers.
+
+## Manejo de credenciales
+
+Los archivos de entorno versionados en el repo son solo plantillas sin secretos reales:
+
+- `src/environments/environment.ts`
+- `src/environments/environment.prod.ts`
+
+En CI (GitHub Actions), esos valores se inyectan antes de compilar usando Secrets del repositorio.
+
+Secrets requeridos:
+
+- `TOKKO_BROKER_KEY`
+- `SANITY_KEY`
+- `MAPS_KEY`
+- `MAIL_API_PROD`
+
+Los overrides locales con credenciales reales no se deben commitear:
+
+- `src/environments/environment.local.ts`
+- `src/environments/environment.prod.local.ts`

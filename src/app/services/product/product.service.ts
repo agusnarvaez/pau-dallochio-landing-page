@@ -10,7 +10,7 @@ import {
 } from 'rxjs'
 import { Product, SanityProduct, TokkoProduct } from '../../models/product'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../../enviroment.prod'
+import { environment } from '../../../environments/environment'
 
 interface TokkoResponse {
   objects: TokkoProduct[]
@@ -150,7 +150,7 @@ export class ProductService {
   private getAllFromTokko(tokkoQuery: string): Observable<Product[]> {
     return this.http
       .get<TokkoResponse>(
-        `https://www.tokkobroker.com/api/v1/property/search?limit=50&lang=es_ar&key=${environment.tokkoBrokerKey}&${tokkoQuery}`,
+        `https://www.tokkobroker.com/api/v1/property/search?limit=50&lang=es_ar&key=${environment.TOKKOBROKER_KEY}&${tokkoQuery}`,
       )
       .pipe(
         catchError((error) => {
@@ -171,7 +171,7 @@ export class ProductService {
     )
     return this.http
       .get<SanityResponse>(
-        `https://${environment.sanityKey}.api.sanity.io/v2022-03-07/data/query/production?query=${encodedQuery}`,
+        `https://${environment.sanity_key}.api.sanity.io/v2022-03-07/data/query/production?query=${encodedQuery}`,
       )
       .pipe(
         catchError((error) => {
@@ -231,7 +231,7 @@ export class ProductService {
   private getTokkoProductById(id: string): Observable<Product> {
     return this.http
       .get<TokkoProduct>(
-        `https://www.tokkobroker.com/api/v1/property/${id}/?lang=es_ar&key=${environment.tokkoBrokerKey}`,
+        `https://www.tokkobroker.com/api/v1/property/${id}/?lang=es_ar&key=${environment.TOKKOBROKER_KEY}`,
       )
       .pipe(
         catchError((error) => {
@@ -274,7 +274,7 @@ export class ProductService {
     }`
     return this.http
       .get<SanityResponse>(
-        `https://${environment.sanityKey}.api.sanity.io/v2022-03-07/data/query/production?query=${query}`,
+        `https://${environment.sanity_key}.api.sanity.io/v2022-03-07/data/query/production?query=${query}`,
       )
       .pipe(
         catchError((error) => {
