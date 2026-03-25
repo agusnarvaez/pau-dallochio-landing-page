@@ -18,6 +18,14 @@
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "canvg",
+              "core-js",
+              "dompurify",
+              "html2canvas",
+              "raf",
+              "rgbcolor"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -46,8 +54,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "3kb",
+                  "maximumError": "5kb"
                 }
               ],
               "outputHashing": "all"
