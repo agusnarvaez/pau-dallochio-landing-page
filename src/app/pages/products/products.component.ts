@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common'
 import { ProductsBannerComponent } from '../../sections/products/products-banner/products-banner.component'
 import { ProductsFilterComponent } from '../../sections/products/products-filter/products-filter.component'
 import { ProductsCardComponent } from '../../sections/products/products-card/products-card.component'
+import { ProductsMapComponent } from './components/products-map/products-map.component'
 import { Product } from '../../models/product'
 import { ButtonComponent } from '../../components/button/button.component'
 import { LoaderService } from '../../services/loader/loader.service'
@@ -26,6 +27,7 @@ import { SeoService } from '../../services/seo/seo.service'
     ProductsBannerComponent,
     ProductsFilterComponent,
     ProductsCardComponent,
+    ProductsMapComponent,
     ButtonComponent,
   ],
   templateUrl: './products.component.html',
@@ -33,6 +35,7 @@ import { SeoService } from '../../services/seo/seo.service'
 })
 export class ProductsComponent {
   list: Product[] = []
+  viewMode: 'list' | 'map' = 'list'
   hasLoadError = false
   isLoading = false
   private destroyRef = inject(DestroyRef)
@@ -44,6 +47,10 @@ export class ProductsComponent {
   ) {}
 
   selectedFilters = () => this.productService.filters()
+
+  toggleView(): void {
+    this.viewMode = this.viewMode === 'list' ? 'map' : 'list'
+  }
 
   private readonly filterLabelMap: Record<string, string> = {
     operation_type: 'Operación',

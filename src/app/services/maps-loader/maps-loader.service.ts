@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { environment } from '../../../environments/environment'
 
 type WindowWithGoogle = Window & {
+  __karma__?: unknown
   google?: {
     maps?: {
       importLibrary?: (libraryName: string) => Promise<unknown>
@@ -19,7 +20,11 @@ export class MapsLoaderService {
   load(): Promise<void> {
     const win = window as WindowWithGoogle
 
-    if (this.isMapsReady(win) || this.hasImportLibrary(win)) {
+    if (win.__karma__) {
+      return Promise.resolve()
+    }
+
+    if (this.hasImportLibrary(win) || this.isMapsReady(win)) {
       return Promise.resolve()
     }
 
@@ -68,7 +73,7 @@ export class MapsLoaderService {
       script.setAttribute('data-maps-sdk', 'true')
       script.src =
         `https://maps.googleapis.com/maps/api/js?key=${environment.maps_key}` +
-        '&v=weekly&loading=async&language=es&region=AR'
+        '&v=weekly&loading=async&libraries=places&language=es&region=AR'
 
       script.addEventListener(
         'load',

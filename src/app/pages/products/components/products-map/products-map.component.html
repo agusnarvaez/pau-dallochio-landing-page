@@ -1,0 +1,57 @@
+@if (mapsLoaded) {
+  <google-map
+    height="100%"
+    width="100%"
+    [center]="mapCenter"
+    [zoom]="mapZoom"
+    [options]="mapOptions"
+  >
+    @for (markerData of productsWithCoords; track markerData.product.id; let i = $index) {
+      <map-marker
+        [position]="markerData.position"
+        [icon]="getPriceIcon(markerData.product)"
+        (mapClick)="openInfo(i, markerData.product)"
+      ></map-marker>
+    }
+
+    <map-info-window>
+      @if (selectedProduct) {
+        <a class="map-popup" [routerLink]="['/catalogo', selectedProduct.id]">
+          @if (selectedProduct.cover) {
+            <img
+              class="map-popup__img"
+              [src]="selectedProduct.cover"
+              [alt]="selectedProduct.title || 'Propiedad'"
+              loading="lazy"
+            />
+          }
+          <div class="map-popup__body">
+            <p class="map-popup__price">
+              {{
+                formatPriceForMap(
+                  selectedProduct.price,
+                  selectedProduct.currency
+                )
+              }}
+            </p>
+            <p class="map-popup__details">
+              @if (selectedProduct.rooms) {
+                {{ selectedProduct.rooms }} amb
+              }
+              @if (selectedProduct.rooms && selectedProduct.area) {
+                &middot;
+              }
+              @if (selectedProduct.area) {
+                {{ selectedProduct.area }} m2
+              }
+            </p>
+            <p class="map-popup__address">{{ selectedProduct.address.city }}</p>
+            <span class="map-popup__cta">Ver propiedad -></span>
+          </div>
+        </a>
+      }
+    </map-info-window>
+  </google-map>
+} @else {
+  <div class="map-loading">Cargando mapa...</div>
+}

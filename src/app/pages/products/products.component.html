@@ -32,6 +32,24 @@
           (click)="clearAllFilters()"
         ></app-button>
       }
+      @if (!hasLoadError && !listIsEmpty()) {
+        <button
+          class="view-toggle-btn"
+          type="button"
+          (click)="toggleView()"
+          [attr.aria-label]="
+            viewMode === 'list' ? 'Cambiar a vista de mapa' : 'Cambiar a vista de listado'
+          "
+        >
+          <i
+            class="fa-solid"
+            [class.fa-map-location-dot]="viewMode === 'list'"
+            [class.fa-bars]="viewMode === 'map'"
+            aria-hidden="true"
+          ></i>
+          {{ viewMode === 'list' ? 'Ver mapa' : 'Ver listado' }}
+        </button>
+      }
     </div>
   </div>
 
@@ -89,19 +107,25 @@
       </div>
     </div>
   } @else {
-    <section
-      class="products-grid"
-      role="list"
-      [attr.aria-busy]="isLoading"
-      aria-label="Resultados de propiedades"
-    >
-      @for (product of list; track product.id) {
-        <app-products-card
-          role="listitem"
-          [product]="product"
-        ></app-products-card>
-      }
-    </section>
+    @if (viewMode === 'map') {
+      <div class="map-view-container">
+        <app-products-map [products]="list"></app-products-map>
+      </div>
+    } @else {
+      <section
+        class="products-grid"
+        role="list"
+        [attr.aria-busy]="isLoading"
+        aria-label="Resultados de propiedades"
+      >
+        @for (product of list; track product.id) {
+          <app-products-card
+            role="listitem"
+            [product]="product"
+          ></app-products-card>
+        }
+      </section>
+    }
   }
 
   <app-products-banner></app-products-banner>

@@ -1,22 +1,48 @@
 import { TestBed } from '@angular/core/testing'
-
 import { MapsLoaderService } from './maps-loader.service'
+
+type MapsWindow = Window & {
+  __karma__?: unknown
+  google?: {
+    maps?: {
+      importLibrary?: (...args: unknown[]) => Promise<unknown>
+      Map?: () => unknown
+    }
+  }
+}
 
 describe('MapsLoaderService', () => {
   let service: MapsLoaderService
+  let win: MapsWindow
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
     service = TestBed.inject(MapsLoaderService)
+    win = window as MapsWindow
 
-    delete (window as Window & { google?: unknown }).google
+    win.__karma__ = undefined
+    delete win.google
     document
       .querySelectorAll('script[data-maps-sdk="true"]')
       .forEach((script) => script.remove())
   })
 
+  afterEach(() => {
+    win.__karma__ = undefined
+    delete win.google
+    document
+      .querySelectorAll('script[data-maps-sdk="true"]')
+      .forEach((script) => script.remove())
+  })
+
+  it('should resolve immediately in karma environment', async () => {
+    win.__karma__ = {}
+    await expectAsync(service.load()).toBeResolved()
+    expect(document.querySelector('script[data-maps-sdk="true"]')).toBeNull()
+  })
+
   it('should resolve immediately when Google Maps is already available', async () => {
-    ;(window as Window & { google?: unknown }).google = {
+    win.google = {
       maps: {
         Map: () => ({}),
       },
@@ -27,7 +53,7 @@ describe('MapsLoaderService', () => {
   })
 
   it('should resolve immediately when importLibrary is available', async () => {
-    ;(window as Window & { google?: unknown }).google = {
+    win.google = {
       maps: {
         importLibrary: async () => undefined,
       },
@@ -39,18 +65,16 @@ describe('MapsLoaderService', () => {
 
   it('should append script and resolve after load when api becomes available', async () => {
     const loadPromise = service.load()
-
     const script = document.querySelector(
       'script[data-maps-sdk="true"]',
     ) as HTMLScriptElement
 
     expect(script).toBeTruthy()
-    ;(window as Window & { google?: unknown }).google = {
+    win.google = {
       maps: {
         Map: () => ({}),
       },
     }
-
     script.dispatchEvent(new Event('load'))
 
     await expectAsync(loadPromise).toBeResolved()
@@ -64,12 +88,12 @@ describe('MapsLoaderService', () => {
     expect(
       document.querySelectorAll('script[data-maps-sdk="true"]').length,
     ).toBe(1)
-    ;(window as Window & { google?: unknown }).google = {
+
+    win.google = {
       maps: {
         Map: () => ({}),
       },
     }
-
     const script = document.querySelector(
       'script[data-maps-sdk="true"]',
     ) as HTMLScriptElement
@@ -80,7 +104,6 @@ describe('MapsLoaderService', () => {
 
   it('should reject when script fails to load', async () => {
     const loadPromise = service.load()
-
     const script = document.querySelector(
       'script[data-maps-sdk="true"]',
     ) as HTMLScriptElement
@@ -96,7 +119,8 @@ describe('MapsLoaderService', () => {
     existingScript.setAttribute('data-maps-sdk', 'true')
     existingScript.setAttribute('data-loaded', '1')
     document.head.appendChild(existingScript)
-    ;(window as Window & { google?: unknown }).google = {
+
+    win.google = {
       maps: {
         Map: () => ({}),
       },
