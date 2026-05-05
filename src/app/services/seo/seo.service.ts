@@ -248,7 +248,8 @@ export class SeoService {
       image: this.logoUrl,
       telephone: '+54 9 11 4085-6083',
       email: 'estudioinmobiliario@pauladallochio.com.ar',
-      hasMap: 'https://maps.app.goo.gl/nd41iHQazLP6VuV78',
+      hasMap:
+        'https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%205694%2C%20piso%203ro.%20departamento%20A%2C%20Ciudad%20Autonoma%20de%20Buenos%20Aires%2C%20CP%201417',
       knowsLanguage: ['es-AR'],
       areaServed: 'Buenos Aires, Argentina',
       sameAs: [
@@ -258,9 +259,10 @@ export class SeoService {
       ],
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Avenida Alvarez Thomas 925, piso 6to. depto. C',
+        streetAddress: 'Av. San Martin 5694, piso 3ro. departamento A',
         addressLocality: 'Buenos Aires',
         addressRegion: 'CABA',
+        postalCode: '1417',
         addressCountry: 'AR',
       },
       contactPoint: [
