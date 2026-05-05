@@ -5,8 +5,8 @@ type MapsWindow = Window & {
   __karma__?: unknown
   google?: {
     maps?: {
-      importLibrary?: (...args: unknown[]) => Promise<unknown>
-      Map?: () => unknown
+      importLibrary?: unknown
+      Map?: unknown
     }
   }
 }
