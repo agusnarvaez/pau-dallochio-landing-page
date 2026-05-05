@@ -10,6 +10,7 @@ const DIST_SITEMAP_PATH = resolve(
 )
 const ENV_PATHS = [
   resolve('src', 'environments', 'environment.prod.ts'),
+  resolve('src', 'environments', 'environment.prod.local.ts'),
   resolve('enviroment.prod.ts'),
 ]
 
@@ -55,13 +56,15 @@ async function getTokkoKey() {
   }
 
   const keyMatch = envFile.match(
-    /(TOKKOBROKER_KEY|tokkobroker_key):\s*'([^']+)'/,
+    /(TOKKOBROKER_KEY|tokkobroker_key|tokkoBrokerKey):\s*'([^']+)'/,
   )
 
   const tokkoKey = keyMatch?.[2]
 
   if (!tokkoKey) {
-    throw new Error('No se encontro TOKKOBROKER_KEY en environment.prod.ts')
+    throw new Error(
+      'No se encontro TOKKOBROKER_KEY o tokkoBrokerKey en el environment cargado',
+    )
   }
 
   return tokkoKey
@@ -70,6 +73,11 @@ async function getTokkoKey() {
 async function fetchDynamicProductRoutes() {
   try {
     const tokkoKey = await getTokkoKey()
+
+    if (!tokkoKey || tokkoKey === 'tokkoKey') {
+      return []
+    }
+
     const tokkoBaseQuery = {
       current_localization_id: 0,
       current_localization_type: 'country',

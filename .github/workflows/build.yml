@@ -1,61 +1,41 @@
-name: Build
+name: QA
 on:
-  pull_request:
+  push:
     branches:
       - main
       - dev
-  push:
+  pull_request:
     branches:
       - main
       - dev
 
 jobs:
-  lint-and-build:
+  lint-build-test:
     runs-on: ubuntu-latest
-    environment: prod
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: '22'
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate production environment
-        shell: bash
-        env:
-          TOKKOBROKER_KEY: ${{ secrets.TOKKOBROKER_KEY }}
-          SANITY_KEY: ${{ secrets.SANITY_KEY }}
-          MAPS_KEY: ${{ secrets.MAPS_KEY }}
-          MAIL_API_PROD: ${{ secrets.MAIL_API_PROD }}
-        run: |
-          mkdir -p src/environments
-          cat > src/environments/environment.prod.ts <<EOF
-          export const environment = {
-            production: true,
-            TOKKOBROKER_KEY: '${TOKKOBROKER_KEY}',
-            sanity_key: '${SANITY_KEY}',
-            mail_api_dev: 'http://localhost:3000',
-            mail_api_prod: '${MAIL_API_PROD:-https://mailing-api.fly.dev}',
-            maps_key: '${MAPS_KEY}',
-          }
-          EOF
+      - name: Lint
+        run: npm run lint
 
-      - name: Run lint
-        run: |
-          npm run lint
-
-      - name: Run production build
+      - name: Build
         run: npm run build
+
+      - name: Run tests with coverage
+        run: npm run test:ci
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/pau-dallochio-landing-page/lcov.info
+          fail_ci_if_error: false
