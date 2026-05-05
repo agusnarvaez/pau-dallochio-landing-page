@@ -91,8 +91,9 @@ Thumbs.db
 # Angular cache
 .angular
 .env
-enviroment.prod.ts
-environment.prod.ts
+/environment.prod.ts
+/enviroment.prod.ts
+src/environments/environment.prod.ts
 
 # Local environment overrides (do not commit secrets)
 src/environments/environment.local.ts

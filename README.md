@@ -52,6 +52,7 @@ Versioned environment files are safe templates without real secrets:
 
 - `src/environments/environment.ts`
 - `src/environments/environment.prod.ts`
+- `src/environments/environment.example.ts`
 
 Ignored local overrides for real credentials:
 
