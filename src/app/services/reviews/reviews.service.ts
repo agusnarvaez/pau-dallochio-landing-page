@@ -32,7 +32,8 @@ export class ReviewsService {
   getReviews(): Observable<ReviewsResponse | null> {
     return this.http
       .get<ReviewsResponse>(`${environment.reviews_api_prod}/reviews`, {
-        params: { placeId: environment.place_id },
+        // minStars=4: no mostrar reseñas negativas en el home.
+        params: { placeId: environment.place_id, minStars: '4' },
       })
       .pipe(catchError(() => of(null)))
   }
