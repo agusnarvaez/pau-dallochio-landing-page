@@ -38,6 +38,9 @@ jobs:
             mail_api_dev: 'http://localhost:3000',
             mail_api_prod: '${{ secrets.MAIL_API_PROD }}',
             maps_key: '${{ secrets.MAPS_KEY }}',
+            reviews_api_dev: 'http://localhost:3000',
+            reviews_api_prod: '${{ secrets.REVIEWS_API_PROD }}',
+            place_id: '${{ secrets.PLACE_ID }}',
           }
           EOF
 
