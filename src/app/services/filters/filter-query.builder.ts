@@ -102,7 +102,11 @@ export const buildTokkoQuery = (filters: Filters): string => {
   if (filters.order_by) orderBy = filters.order_by
   if (filters.order) order = filters.order
 
-  return `data=${JSON.stringify(baseQuery)}
-            &order_by=${orderBy}
-            &order=${order}`
+  const params = new URLSearchParams({
+    data: JSON.stringify(baseQuery),
+    order_by: String(orderBy),
+    order: String(order),
+  })
+
+  return params.toString()
 }

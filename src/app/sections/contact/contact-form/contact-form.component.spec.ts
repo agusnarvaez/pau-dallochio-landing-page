@@ -93,6 +93,7 @@ describe('ContactFormComponent', () => {
     expect(toastServiceSpy.show).toHaveBeenCalledWith(
       'Mensaje enviado correctamente. Te responderemos a la brevedad.',
       'success',
+      4000,
     )
   })
 

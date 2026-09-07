@@ -12,7 +12,6 @@
   --dark-color: #333;
   --light-color: #ffffff;
   --primary-font: 'Montserrat', sans-serif;
-  --secondary-font: 'Raleway', sans-serif;
   --primary-font-size: 1.6rem;
   --secondary-font-size: 1.4rem;
   --primary-border-radius: 1rem;
@@ -31,6 +30,18 @@
   --primary-transition: all 0.3s ease-in-out;
   --ambar-color: #ac977b;
   --icon-yellow-color: #efb810;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 * {

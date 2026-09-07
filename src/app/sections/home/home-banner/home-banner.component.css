@@ -38,6 +38,8 @@
 }
 .banner header img{
     width: 60%;
+    height: 100%;
+    aspect-ratio: auto;
     object-fit: contain;
 }
 .banner-slogan-desktop{
