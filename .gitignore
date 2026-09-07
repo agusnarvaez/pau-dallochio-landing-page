@@ -98,3 +98,7 @@ src/environments/environment.prod.ts
 # Local environment overrides (do not commit secrets)
 src/environments/environment.local.ts
 src/environments/environment.prod.local.ts
+
+# Google service account keys — NEVER commit
+*-service-account.json
+pau-dallochio-*.json

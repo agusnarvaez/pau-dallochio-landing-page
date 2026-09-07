@@ -1,0 +1,48 @@
+# Paula Dallochio — reglas de servidor (Hostinger/LiteSpeed/Apache)
+# Subir manualmente a la raíz del hosting junto con el contenido de dist/pau-dallochio-landing-page/browser
+# No se puede versionar/deployar desde este repo: no hay paso de deploy en CI.
+
+RewriteEngine On
+
+# 1) Forzar host canónico: apex -> www (el código y el sitemap ya asumen www.pauladallochio.com.ar)
+RewriteCond %{HTTP_HOST} ^pauladallochio\.com\.ar$ [NC]
+RewriteRule ^(.*)$ https://www.pauladallochio.com.ar/$1 [R=301,L]
+
+# 2) Rutas reales de la Angular SPA (src/app/app.routes.ts) -> index.html
+RewriteRule ^(como-trabajamos|vender|catalogo|contacto)/?$ /index.html [L]
+RewriteRule ^catalogo/[0-9]+/?$ /index.html [L]
+
+# 3) Cualquier otra ruta desconocida: 404 real (no soft-404).
+#    ErrorDocument sirve el mismo index.html (la SPA renderiza su propia pantalla
+#    de "no encontrado") pero el servidor responde con status 404 real.
+ErrorDocument 404 /index.html
+
+# Headers de seguridad
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+</IfModule>
+
+# Cache de assets estáticos: los archivos de dist/ salen con hash en el nombre
+# (outputHashing: all), así que un cache largo e inmutable es seguro.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|jpe?g|png|svg|ico|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

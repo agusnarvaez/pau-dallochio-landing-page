@@ -39,6 +39,10 @@ export class SeoService {
   }
 
   private updateFromCurrentRoute(path: string): void {
+    // Cada navegacion arranca indexable; setProductNotFoundSeo() lo pisa despues
+    // si la propiedad ya no existe. Sin este reset el noindex se arrastraba a la
+    // siguiente ruta al navegar dentro de la SPA.
+    this.meta.updateTag({ name: 'robots', content: 'index, follow' })
     this.updateUrlTags(path)
     this.updateSeoTags()
     this.setGlobalStructuredData()
@@ -135,6 +139,17 @@ export class SeoService {
     })
     this.updateUrlTags(productUrl)
     this.setProductStructuredData(product)
+  }
+
+  setProductNotFoundSeo(): void {
+    this.title.setTitle('Propiedad no disponible - Paula Dallochio Inmobiliaria')
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Esta propiedad ya no esta disponible. Consulta el catalogo completo de propiedades de Paula Dallochio.',
+    })
+    this.meta.updateTag({ name: 'robots', content: 'noindex, follow' })
+    this.clearProductStructuredData()
   }
 
   setProductStructuredData(product: Product): void {
@@ -331,7 +346,7 @@ export class SeoService {
           : [],
       url: productUrl,
       brand: {
-        '@type': 'RealEstateAgent',
+        '@type': 'Organization',
         name: 'Paula Dallochio Inmobiliaria',
       },
       offers: {
@@ -340,6 +355,11 @@ export class SeoService {
         priceCurrency: product.currency || 'USD',
         availability: 'https://schema.org/InStock',
         url: productUrl,
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          applicableCountry: 'AR',
+        },
       },
       address: {
         '@type': 'PostalAddress',

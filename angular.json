@@ -33,6 +33,16 @@
                 "glob": "robots.txt",
                 "input": "src",
                 "output": "/"
+              },
+              {
+                "glob": "llms.txt",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "sitemap.xml",
+                "input": "src",
+                "output": "/"
               }
             ],
             "styles": ["src/styles.css"],

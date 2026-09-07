@@ -63,7 +63,7 @@ export class ProductDetailComponent {
         },
         error: () => {
           this.product = undefined
-          this.seoService.clearProductStructuredData()
+          this.seoService.setProductNotFoundSeo()
           this.loaderService.hideLoading()
         },
       })
