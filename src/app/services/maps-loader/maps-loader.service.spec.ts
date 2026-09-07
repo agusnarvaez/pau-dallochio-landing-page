@@ -16,6 +16,22 @@ describe('MapsLoaderService', () => {
   let win: MapsWindow
 
   beforeEach(() => {
+    // Estos tests apagan el guard de __karma__ a proposito, asi que el
+    // servicio inyecta un <script> real apuntando a maps.googleapis.com.
+    // Con la key placeholder de environment.ts Google devuelve un payload
+    // que tira InvalidKeyMapError de forma asincrona; al ser cross-origin
+    // el browser lo enmascara como "Script error." y llega despues de que
+    // termino la suite, volteando Karma en CI. Lo dejamos entrar al DOM sin
+    // src: no hay descarga ni ejecucion, y las aserciones de querySelector
+    // sobre el elemento siguen valiendo.
+    const appendToHead = Node.prototype.appendChild.bind(document.head)
+    spyOn(document.head, 'appendChild').and.callFake(((node: Node) => {
+      if (node instanceof HTMLScriptElement) {
+        node.removeAttribute('src')
+      }
+      return appendToHead(node)
+    }) as typeof document.head.appendChild)
+
     TestBed.configureTestingModule({})
     service = TestBed.inject(MapsLoaderService)
     win = window as MapsWindow
