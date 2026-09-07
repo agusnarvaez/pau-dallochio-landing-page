@@ -61,6 +61,14 @@ section{
         color: var(--tertiary-color-darker);
     }
 
+    .review-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
     .review-stars {
         display: flex;
         align-items: center;
@@ -87,6 +95,13 @@ section{
     }
     .review-container_right .review-source{
         text-align: right;
+    }
+    a.review-source {
+        display: block;
+        text-decoration: none;
+    }
+    a.review-source:hover {
+        text-decoration: underline;
     }
 
     @media (min-width: 530px) {

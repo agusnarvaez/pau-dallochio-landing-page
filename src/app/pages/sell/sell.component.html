@@ -1,16 +1,81 @@
 <main>
-    <section>
-        <img  src="../../../assets/backgrounds/sell-slogan.png" alt="¿Querés vender una propiedad?" title="¿Querés vender una propiedad?"/>
-        <p>
-            ¡Juntos podemostrabajar para que tengas la mejor experiencia a la hora de vender tu propiedad!
-        </p>
-        <p>
-            Envianos un mensaje para solicitar una tasación y el equipo especialista se va a poner en contacto con vos para gestionar la venta de la mejor manera.
-        </p>
+    <h1 class="sr-only">Vendé tu propiedad</h1>
+    <div class="hero-row">
+        <section class="hero">
+            <img  src="../../../assets/backgrounds/sell-slogan.png" alt="¿Querés vender una propiedad?" title="¿Querés vender una propiedad?"/>
+            <h2>Vendé tu propiedad con acompañamiento profesional, de principio a fin</h2>
+            <p>
+                Vender no es solo publicar un aviso: es tomar buenas decisiones en cada paso, desde la tasación hasta la firma. Te acompañamos con un enfoque preventivo y proactivo para que el proceso sea simple, transparente y sin contratiempos.
+            </p>
 
+            <app-button type="secondary" text="Quiero tasar mi propiedad" link="/contacto"></app-button>
+        </section>
+        <div class="container">
+            <img class="sell-image" src="../../../assets/backgrounds/sell-image.jpg" width="1600" height="1201" alt="Imagen conceptual de venta" title="Imagen conceptual de venta"/>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <h2>Una tasación precisa, no una estimación al aire</h2>
+        <p>
+            Antes de poner un precio, hacemos un relevamiento detallado de tu propiedad: características, estado, entorno y comparables reales de la zona. Esa base es la que te permite vender en el plazo esperado sin resignar valor: ni pedir de más y espantar interesados, ni pedir de menos y dejar plata sobre la mesa.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>Cómo es el proceso de venta</h2>
+        <p class="section-intro">De la tasación a la escritura, sin que tengas que resolverlo todo vos.</p>
+        <ol class="process-list">
+            <li>
+                <h3>Reunión inicial</h3>
+                <p>Nos sentamos a escuchar: qué necesitás vender, por qué y en qué plazos. Prestamos atención incluso a lo que no se dice explícitamente. No arrancamos por el precio, arrancamos por tu situación.</p>
+            </li>
+            <li>
+                <h3>Estrategia de valor</h3>
+                <p>Te asesoramos sobre mejoras que suman antes de publicar, investigamos la zona y analizamos la competencia para posicionar tu propiedad en el precio correcto.</p>
+            </li>
+            <li>
+                <h3>Visitas y seguimiento</h3>
+                <p>Coordinamos las visitas y te mantenemos al tanto con comunicación constante y estadísticas reales sobre el interés que genera tu propiedad.</p>
+            </li>
+            <li>
+                <h3>Negociación</h3>
+                <p>Cada oferta la negociamos representando tus intereses a vos, no los del comprador.</p>
+            </li>
+            <li>
+                <h3>Gestión documental y escrituración</h3>
+                <!-- CONFIRMAR CON PAULA: los 5 pasos de este proceso siguen el detalle ya publicado en /como-trabajamos (Venta). Confirmar que la secuencia y el alcance de cada paso, sobre todo Negociación y Gestión documental, reflejan el proceso real actual. -->
+                <p>Coordinamos toda la documentación necesaria hasta el cierre de la operación.</p>
+            </li>
+        </ol>
+    </section>
+
+    <section class="content-section">
+        <h2>No vendemos con un cartel. Acompañamos con un equipo.</h2>
+        <p>
+            Trabajamos con un enfoque dedicado, preventivo y proactivo: anticipamos problemas antes de que aparezcan, en lugar de resolverlos sobre la marcha. Y no lo hacemos solos: cuando tu operación lo necesita, contás con equipos de diseño de interiores, asesoramiento contable-tributario, asesoramiento legal y jurídico, y asesoramiento notarial. Todo coordinado por un mismo interlocutor: nosotros.
+        </p>
+        <p>
+            Paula Dallochio es Martillera y Corredora Inmobiliaria (CUCICBA 9040), con base en Buenos Aires y trabajo activo en CABA y zona norte y oeste.
+        </p>
+    </section>
+
+    <section class="content-section faq-section">
+        <h2>Preguntas frecuentes</h2>
+        <!-- CONFIRMAR CON PAULA: las respuestas de honorarios y documentación se reutilizan del FAQ ya publicado en la home (HOME_FAQ_ITEMS). Confirmar que los porcentajes y requisitos siguen vigentes antes de publicar esta página. -->
+        @for (item of faqList; track $index) {
+            <app-faq-item
+                [question]="item.question"
+                [answer]="item.answer"
+                [ngClass]="{'last-item': $index === faqList.length - 1}"
+                ></app-faq-item>
+        }
+    </section>
+
+    <section class="content-section final-cta">
+        <h2>¿Lista, listo para vender?</h2>
+        <!-- CONFIRMAR CON PAULA: si la tasación inicial es sin cargo o tiene algún costo/condición, decinoslo para sumarlo acá como reductor de fricción (ej. "tasación sin cargo"). Queda neutro porque no está confirmado en el resto del sitio. -->
+        <p>Escribinos y arrancamos con tu tasación. Hagámoslo simple.</p>
         <app-button type="secondary" text="Contactame" link="/contacto"></app-button>
     </section>
-    <div class="container">
-        <img class="sell-image" src="../../../assets/backgrounds/sell-image.png" alt="Imagen conceptual de venta" title="Imagen conceptual de venta"/>
-    </div>
 </main>

@@ -52,6 +52,7 @@
       disabled: disabled
     }"
     [attr.aria-label]="ariaLabel || null"
+    [disabled]="!!disabled"
     type="{{ buttonType() }}"
   >
     @if (isIcon()) {

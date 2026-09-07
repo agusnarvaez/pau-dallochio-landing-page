@@ -2,6 +2,9 @@
     @for (item of reviews; track $index) {
         <div class="review-container" [ngClass]="{'review-container_right':isOdd($index)}">
             <div class="review-header">
+                @if (item.avatar) {
+                    <img class="review-avatar" [src]="item.avatar" [alt]="item.author" referrerpolicy="no-referrer">
+                }
                 <span class="review-author">{{item.author}}</span>
                 <div class="review-stars">
                     <!-- Aquí puedes insertar imágenes de estrellas o usar algún tipo de icono de una librería como FontAwesome -->
@@ -14,7 +17,11 @@
                 <p>{{item.content}}</p>
             </div>
 
-            <div class="review-source">Review de Google</div>
+            @if (item.url) {
+                <a class="review-source" [href]="item.url" target="_blank" rel="noopener noreferrer">Review de Google</a>
+            } @else {
+                <div class="review-source">Review de Google</div>
+            }
         </div>
     }
 

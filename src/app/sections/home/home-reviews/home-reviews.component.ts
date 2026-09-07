@@ -1,5 +1,14 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { ReviewsService } from '../../../services/reviews/reviews.service'
+
+interface DisplayReview {
+  author: string
+  stars: number
+  content: string
+  avatar?: string
+  url?: string
+}
 
 @Component({
   selector: 'app-home-reviews',
@@ -8,8 +17,8 @@ import { CommonModule } from '@angular/common'
   templateUrl: './home-reviews.component.html',
   styleUrl: './home-reviews.component.css'
 })
-export class HomeReviewsComponent {
-  reviews = [
+export class HomeReviewsComponent implements OnInit {
+  fallback: DisplayReview[] = [
     {
       author: "C.R.D.",
       stars: 5,
@@ -31,6 +40,24 @@ export class HomeReviewsComponent {
       content: "Excelentes profesionales! Muy atentos a todos los detalles!"
     }
   ]
+
+  reviews: DisplayReview[] = this.fallback
+
+  constructor(private reviewsSvc: ReviewsService) {}
+
+  ngOnInit() {
+    this.reviewsSvc.getReviews().subscribe((response) => {
+      if (response?.reviews?.length) {
+        this.reviews = response.reviews.map((review) => ({
+          author: review.author,
+          stars: review.rating,
+          content: review.content,
+          avatar: review.avatar,
+          url: review.url,
+        }))
+      }
+    })
+  }
 
   makeArray = (num:number) => new Array(Math.round(num))
 

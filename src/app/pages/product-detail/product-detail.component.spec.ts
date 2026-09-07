@@ -52,6 +52,7 @@ describe('ProductDetailComponent', () => {
     ])
     seoServiceSpy = jasmine.createSpyObj<SeoService>('SeoService', [
       'setProductPageSeo',
+      'setProductNotFoundSeo',
       'clearProductStructuredData',
     ])
 
@@ -110,7 +111,7 @@ describe('ProductDetailComponent', () => {
 
     expect(loaderServiceSpy.showLoading).toHaveBeenCalled()
     expect(component.product).toBeUndefined()
-    expect(seoServiceSpy.clearProductStructuredData).toHaveBeenCalled()
+    expect(seoServiceSpy.setProductNotFoundSeo).toHaveBeenCalled()
     expect(loaderServiceSpy.hideLoading).toHaveBeenCalled()
   }))
 

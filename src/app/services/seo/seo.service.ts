@@ -39,6 +39,10 @@ export class SeoService {
   }
 
   private updateFromCurrentRoute(path: string): void {
+    // Cada navegacion arranca indexable; setProductNotFoundSeo() lo pisa despues
+    // si la propiedad ya no existe. Sin este reset el noindex se arrastraba a la
+    // siguiente ruta al navegar dentro de la SPA.
+    this.meta.updateTag({ name: 'robots', content: 'index, follow' })
     this.updateUrlTags(path)
     this.updateSeoTags()
     this.setGlobalStructuredData()
@@ -135,6 +139,17 @@ export class SeoService {
     })
     this.updateUrlTags(productUrl)
     this.setProductStructuredData(product)
+  }
+
+  setProductNotFoundSeo(): void {
+    this.title.setTitle('Propiedad no disponible - Paula Dallochio Inmobiliaria')
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Esta propiedad ya no esta disponible. Consulta el catalogo completo de propiedades de Paula Dallochio.',
+    })
+    this.meta.updateTag({ name: 'robots', content: 'noindex, follow' })
+    this.clearProductStructuredData()
   }
 
   setProductStructuredData(product: Product): void {
@@ -248,7 +263,8 @@ export class SeoService {
       image: this.logoUrl,
       telephone: '+54 9 11 4085-6083',
       email: 'estudioinmobiliario@pauladallochio.com.ar',
-      hasMap: 'https://maps.app.goo.gl/nd41iHQazLP6VuV78',
+      hasMap:
+        'https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%205694%2C%20piso%203ro.%20departamento%20A%2C%20Ciudad%20Autonoma%20de%20Buenos%20Aires%2C%20CP%201417',
       knowsLanguage: ['es-AR'],
       areaServed: 'Buenos Aires, Argentina',
       sameAs: [
@@ -258,9 +274,10 @@ export class SeoService {
       ],
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Avenida Alvarez Thomas 925, piso 6to. depto. C',
+        streetAddress: 'Av. San Martin 5694, piso 3ro. departamento A',
         addressLocality: 'Buenos Aires',
         addressRegion: 'CABA',
+        postalCode: '1417',
         addressCountry: 'AR',
       },
       contactPoint: [
@@ -329,7 +346,7 @@ export class SeoService {
           : [],
       url: productUrl,
       brand: {
-        '@type': 'RealEstateAgent',
+        '@type': 'Organization',
         name: 'Paula Dallochio Inmobiliaria',
       },
       offers: {
@@ -338,6 +355,11 @@ export class SeoService {
         priceCurrency: product.currency || 'USD',
         availability: 'https://schema.org/InStock',
         url: productUrl,
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          applicableCountry: 'AR',
+        },
       },
       address: {
         '@type': 'PostalAddress',

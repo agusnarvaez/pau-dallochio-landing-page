@@ -1,0 +1,62 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.map-loading {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #666;
+  font-size: 1.5rem;
+}
+
+.map-popup {
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.map-popup__img {
+  width: 100%;
+  height: 132px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+}
+
+.map-popup__body {
+  padding: 10px 12px 8px;
+}
+
+.map-popup__price {
+  margin: 0 0 4px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.map-popup__details {
+  margin: 0 0 2px;
+  font-size: 1.3rem;
+  color: #444;
+}
+
+.map-popup__address {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.map-popup__cta {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.map-popup:hover .map-popup__cta {
+  text-decoration: underline;
+}

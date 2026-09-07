@@ -28,6 +28,22 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Generate production environment file
+        run: |
+          cat > src/environments/environment.prod.ts << 'EOF'
+          export const environment = {
+            production: true,
+            TOKKOBROKER_KEY: '${{ secrets.TOKKOBROKER_KEY }}',
+            sanity_key: '${{ secrets.SANITY_KEY }}',
+            mail_api_dev: 'http://localhost:3000',
+            mail_api_prod: '${{ secrets.MAIL_API_PROD }}',
+            maps_key: '${{ secrets.MAPS_KEY }}',
+            reviews_api_dev: 'http://localhost:3000',
+            reviews_api_prod: '${{ secrets.REVIEWS_API_PROD }}',
+            place_id: '${{ secrets.PLACE_ID }}',
+          }
+          EOF
+
       - name: Build
         run: npm run build
 

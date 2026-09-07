@@ -24,6 +24,12 @@ export class Product {
   videos: string[] = []
   pdfDescription: string = ''
   expenses: number = 0
+
+  private toNumber(value: unknown): number {
+    const parsed = Number(value)
+    return Number.isFinite(parsed) ? parsed : 0
+  }
+
   fromTokko(product: TokkoProduct) {
     this.id = product.id
     this.type = product.type.name
@@ -43,14 +49,14 @@ export class Product {
     this.cover = product.photos[0]?.image ?? ''
     this.operation_type = product.operations[0].operation_type
     this.title = product.publication_title
-    this.geo_lat = product.geo_lat
-    this.geo_long = product.geo_long
+    this.geo_lat = this.toNumber(product.geo_lat)
+    this.geo_long = this.toNumber(product.geo_long)
     this.garage = product.parking_lot_amount
     this.description = product.description_only
     this.pdfDescription = product.description
     this.images = product.photos.map((photo) => photo.image)
     this.videos = product.videos.map((video) => video.url)
-    this.expenses = product.expenses
+    this.expenses = this.toNumber(product.expenses)
     return this
   }
 

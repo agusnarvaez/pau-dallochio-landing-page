@@ -51,10 +51,11 @@ npm run test:ci
 Versioned environment files are safe templates without real secrets:
 
 - `src/environments/environment.ts`
-- `src/environments/environment.prod.ts`
+- `src/environments/environment.example.ts`
 
 Ignored local overrides for real credentials:
 
+- `src/environments/environment.prod.ts`
 - `src/environments/environment.local.ts`
 - `src/environments/environment.prod.local.ts`
 - `enviroment.prod.ts` (legacy local file, root-level)

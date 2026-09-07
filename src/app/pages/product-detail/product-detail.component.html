@@ -9,7 +9,10 @@
 
     <aside class="main-info-contact" aria-labelledby="detail-contact-title">
       <h2 id="detail-contact-title">¿Te interesa esta propiedad?</h2>
-      <app-contact-form subject="Comprar este inmueble"></app-contact-form>
+      <app-contact-form
+        subject="Comprar este inmueble"
+        [product]="product"
+      ></app-contact-form>
       <app-contact-card></app-contact-card>
       <app-button
         (click)="copyActualRoute()"

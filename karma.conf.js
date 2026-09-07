@@ -25,12 +25,14 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/worldcapp-2023-grupo-3'),
+      // `ng test --code-coverage` pisa este dir con coverage/<proyecto>.
+      dir: require('path').join(__dirname, './coverage/pau-dallochio-landing-page'),
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'text-summary' }, // <-- agregar una coma al final
-        { type: 'json-summary' }  // <-- agregar esta línea
+        { type: 'text-summary' },
+        { type: 'json-summary' },
+        { type: 'lcovonly' } // lo que sube el paso de Codecov en build.yml
       ]
     },
     reporters: ['progress', 'kjhtml'],
