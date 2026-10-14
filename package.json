@@ -5,6 +5,7 @@
     "ng": "ng",
     "dev": "ng serve --port 4589",
     "start": "npm run dev",
+    "prebuild": "node scripts/generate-env.mjs",
     "build": "ng build",
     "postbuild": "node scripts/generate-sitemap.mjs && node scripts/post-build-index.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
