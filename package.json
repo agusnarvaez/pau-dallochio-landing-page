@@ -25,7 +25,7 @@
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
     "@angular/compiler": "^17.0.0",
-    "@angular/core": "^17.0.0",
+    "@angular/core": "^22.2.1",
     "@angular/forms": "^17.0.0",
     "@angular/google-maps": "^17.0.4",
     "@angular/platform-browser": "^17.0.0",
