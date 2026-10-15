@@ -33,11 +33,10 @@ export const HOME_FAQ_ITEMS: FaqEntry[] = [
 ]
 
 @Component({
-  selector: 'app-home-faq',
-  standalone: true,
-  imports: [CommonModule, FaqItemComponent],
-  templateUrl: './home-faq.component.html',
-  styleUrl: './home-faq.component.css',
+    selector: 'app-home-faq',
+    imports: [CommonModule, FaqItemComponent],
+    templateUrl: './home-faq.component.html',
+    styleUrl: './home-faq.component.css'
 })
 export class HomeFaqComponent {
   faqList = HOME_FAQ_ITEMS

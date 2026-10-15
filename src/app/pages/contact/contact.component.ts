@@ -5,10 +5,9 @@ import { ButtonComponent } from '../../components/button/button.component'
 import { ContactFormComponent } from '../../sections/contact/contact-form/contact-form.component'
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent, ContactFormComponent],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css',
+    selector: 'app-contact',
+    imports: [CommonModule, FormsModule, ButtonComponent, ContactFormComponent],
+    templateUrl: './contact.component.html',
+    styleUrl: './contact.component.css'
 })
 export class ContactComponent {}

@@ -11,12 +11,11 @@ import { registerLocaleData } from '@angular/common'
 // Registra los datos locales
 registerLocaleData(localeEs)
 @Component({
-  selector: 'app-products-card',
-  standalone: true,
-  providers: [],
-  imports: [CommonModule, RouterLink],
-  templateUrl: './products-card.component.html',
-  styleUrl: './products-card.component.css',
+    selector: 'app-products-card',
+    providers: [],
+    imports: [CommonModule, RouterLink],
+    templateUrl: './products-card.component.html',
+    styleUrl: './products-card.component.css'
 })
 export class ProductsCardComponent {
   constructor(

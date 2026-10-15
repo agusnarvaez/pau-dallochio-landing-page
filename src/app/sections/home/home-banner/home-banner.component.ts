@@ -7,11 +7,10 @@ import { FilterObject } from '../../../services/filters/filters.service'
 import { ScrollService } from '../../../services/scroll/scroll.service'
 
 @Component({
-  selector: 'app-home-banner',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent],
-  templateUrl: './home-banner.component.html',
-  styleUrl: './home-banner.component.css',
+    selector: 'app-home-banner',
+    imports: [CommonModule, ButtonComponent],
+    templateUrl: './home-banner.component.html',
+    styleUrl: './home-banner.component.css'
 })
 export class HomeBannerComponent {
   constructor(

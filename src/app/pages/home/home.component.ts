@@ -11,18 +11,17 @@ import { HomeContactComponent } from '../../sections/home/home-contact/home-cont
 import { SeoService } from '../../services/seo/seo.service'
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    HomeBannerComponent,
-    HomeStudioComponent,
-    HomeReviewsComponent,
-    HomeFaqComponent,
-    HomeContactComponent,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+    selector: 'app-home',
+    imports: [
+        CommonModule,
+        HomeBannerComponent,
+        HomeStudioComponent,
+        HomeReviewsComponent,
+        HomeFaqComponent,
+        HomeContactComponent,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
   constructor(private seoService: SeoService) {}

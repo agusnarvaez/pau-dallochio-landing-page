@@ -4,11 +4,10 @@ import { Router, RouterLink, RouterModule } from '@angular/router'
 import { ScrollService } from '../../services/scroll/scroll.service'
 
 @Component({
-  selector: 'app-button',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterModule],
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.css',
+    selector: 'app-button',
+    imports: [CommonModule, RouterLink, RouterModule],
+    templateUrl: './button.component.html',
+    styleUrl: './button.component.css'
 })
 export class ButtonComponent {
   @Input() type: string = ''

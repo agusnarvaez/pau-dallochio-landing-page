@@ -11,11 +11,10 @@ interface DisplayReview {
 }
 
 @Component({
-  selector: 'app-home-reviews',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './home-reviews.component.html',
-  styleUrl: './home-reviews.component.css'
+    selector: 'app-home-reviews',
+    imports: [CommonModule],
+    templateUrl: './home-reviews.component.html',
+    styleUrl: './home-reviews.component.css'
 })
 export class HomeReviewsComponent implements OnInit {
   fallback: DisplayReview[] = [

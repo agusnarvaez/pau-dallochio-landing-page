@@ -17,19 +17,18 @@ import { ToastService } from '../../services/toast/toast.service'
 import { SeoService } from '../../services/seo/seo.service'
 
 @Component({
-  selector: 'app-product-detail',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ButtonComponent,
-    CarrouselComponent,
-    MainInfoComponent,
-    ContactCardComponent,
-    SuggestionsComponent,
-    ContactFormComponent,
-  ],
-  templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.css',
+    selector: 'app-product-detail',
+    imports: [
+        CommonModule,
+        ButtonComponent,
+        CarrouselComponent,
+        MainInfoComponent,
+        ContactCardComponent,
+        SuggestionsComponent,
+        ContactFormComponent,
+    ],
+    templateUrl: './product-detail.component.html',
+    styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
   product: Product | undefined
