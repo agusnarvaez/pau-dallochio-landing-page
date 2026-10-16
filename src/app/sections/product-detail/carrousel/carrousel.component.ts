@@ -5,11 +5,10 @@ import { ChangeDetectorRef } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
-  selector: 'app-carrousel',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent],
-  templateUrl: './carrousel.component.html',
-  styleUrl: './carrousel.component.css',
+    selector: 'app-carrousel',
+    imports: [CommonModule, ButtonComponent],
+    templateUrl: './carrousel.component.html',
+    styleUrl: './carrousel.component.css'
 })
 export class CarrouselComponent {
   @Input() images: string[] | undefined = []

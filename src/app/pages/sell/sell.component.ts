@@ -23,11 +23,10 @@ export const SELL_FAQ_ITEMS = [
 ]
 
 @Component({
-  selector: 'app-sell',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent, FaqItemComponent],
-  templateUrl: './sell.component.html',
-  styleUrl: './sell.component.css',
+    selector: 'app-sell',
+    imports: [CommonModule, ButtonComponent, FaqItemComponent],
+    templateUrl: './sell.component.html',
+    styleUrl: './sell.component.css'
 })
 export class SellComponent implements OnInit, OnDestroy {
   faqList = SELL_FAQ_ITEMS

@@ -15,11 +15,10 @@ type WindowWithGoogle = Window & {
 }
 
 @Component({
-  selector: 'app-main-info',
-  standalone: true,
-  imports: [CommonModule, GoogleMapsModule],
-  templateUrl: './main-info.component.html',
-  styleUrl: './main-info.component.css',
+    selector: 'app-main-info',
+    imports: [CommonModule, GoogleMapsModule],
+    templateUrl: './main-info.component.html',
+    styleUrl: './main-info.component.css'
 })
 export class MainInfoComponent {
   @Input() product: Product | undefined

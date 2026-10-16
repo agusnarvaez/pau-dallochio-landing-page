@@ -10,11 +10,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ToastService } from '../../../services/toast/toast.service'
 
 @Component({
-  selector: 'app-contact-form',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent],
-  templateUrl: './contact-form.component.html',
-  styleUrl: './contact-form.component.css',
+    selector: 'app-contact-form',
+    imports: [CommonModule, FormsModule, ButtonComponent],
+    templateUrl: './contact-form.component.html',
+    styleUrl: './contact-form.component.css'
 })
 export class ContactFormComponent {
   @ViewChild('myForm') myForm!: NgForm

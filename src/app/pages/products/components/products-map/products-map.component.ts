@@ -24,11 +24,10 @@ interface ProductMapMarker {
 }
 
 @Component({
-  selector: 'app-products-map',
-  standalone: true,
-  imports: [CommonModule, GoogleMapsModule, RouterModule],
-  templateUrl: './products-map.component.html',
-  styleUrl: './products-map.component.css',
+    selector: 'app-products-map',
+    imports: [CommonModule, GoogleMapsModule, RouterModule],
+    templateUrl: './products-map.component.html',
+    styleUrl: './products-map.component.css'
 })
 export class ProductsMapComponent implements OnInit, OnChanges {
   @Input() products: Product[] = []

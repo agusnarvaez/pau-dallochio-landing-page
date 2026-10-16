@@ -20,18 +20,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { SeoService } from '../../services/seo/seo.service'
 
 @Component({
-  selector: 'app-products',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ProductsBannerComponent,
-    ProductsFilterComponent,
-    ProductsCardComponent,
-    ProductsMapComponent,
-    ButtonComponent,
-  ],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css',
+    selector: 'app-products',
+    imports: [
+        CommonModule,
+        ProductsBannerComponent,
+        ProductsFilterComponent,
+        ProductsCardComponent,
+        ProductsMapComponent,
+        ButtonComponent,
+    ],
+    templateUrl: './products.component.html',
+    styleUrl: './products.component.css'
 })
 export class ProductsComponent {
   list: Product[] = []

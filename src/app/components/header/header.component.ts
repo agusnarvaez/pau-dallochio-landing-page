@@ -4,11 +4,10 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router'
 import { ScrollService } from '../../services/scroll/scroll.service'
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, NgClass, RouterLink, RouterLinkActive],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+    selector: 'app-header',
+    imports: [CommonModule, NgClass, RouterLink, RouterLinkActive],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   showHeader = false

@@ -5,10 +5,9 @@ import { SalesComponent } from '../../sections/how-we-work/sales/sales.component
 import { AdviceComponent } from '../../sections/how-we-work/advice/advice.component'
 
 @Component({
-  selector: 'app-how-we-work',
-  standalone: true,
-  imports: [CommonModule, PurposeComponent, SalesComponent, AdviceComponent],
-  templateUrl: './how-we-work.component.html',
-  styleUrl: './how-we-work.component.css',
+    selector: 'app-how-we-work',
+    imports: [CommonModule, PurposeComponent, SalesComponent, AdviceComponent],
+    templateUrl: './how-we-work.component.html',
+    styleUrl: './how-we-work.component.css'
 })
 export class HowWeWorkComponent {}

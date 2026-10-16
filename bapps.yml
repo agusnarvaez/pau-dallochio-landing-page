@@ -1,7 +1,7 @@
 version: 1
 id: pau-dallochio
 kind: site
-stack: [angular@17]
+stack: [angular@20]
 environments:
   testing: { url: https://pau-dallochio-testing.bapps.com.ar, host: vps, health: /version.json, workflow: deploy-testing.yml }
   prod: { url: https://pauladallochio.com.ar, host: vps, health: /version.json, workflow: deploy-prod.yml }

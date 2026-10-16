@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 
 import { HomeComponent } from './home.component'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 describe('HomeComponent', () => {
   let component: HomeComponent
@@ -10,8 +11,9 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent, HttpClientTestingModule, RouterTestingModule],
-    }).compileComponents()
+    imports: [HomeComponent, RouterTestingModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents()
 
     fixture = TestBed.createComponent(HomeComponent)
     component = fixture.componentInstance

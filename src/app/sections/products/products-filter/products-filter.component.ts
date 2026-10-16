@@ -10,11 +10,10 @@ import { FormsModule, NgForm } from '@angular/forms'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Component({
-  selector: 'app-products-filter',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent, FormsModule],
-  templateUrl: './products-filter.component.html',
-  styleUrl: './products-filter.component.css',
+    selector: 'app-products-filter',
+    imports: [CommonModule, ButtonComponent, FormsModule],
+    templateUrl: './products-filter.component.html',
+    styleUrl: './products-filter.component.css'
 })
 export class ProductsFilterComponent {
   @ViewChild('myForm') myForm!: NgForm

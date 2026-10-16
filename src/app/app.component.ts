@@ -8,17 +8,16 @@ import { ToastContainerComponent } from './components/toast-container/toast-cont
 import { SeoService } from './services/seo/seo.service'
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    HeaderComponent,
-    FooterComponent,
-    ToastContainerComponent,
-  ],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        HeaderComponent,
+        FooterComponent,
+        ToastContainerComponent,
+    ]
 })
 export class AppComponent {
   constructor(

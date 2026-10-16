@@ -1,0 +1,4 @@
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+ignoreUntil = 2027-01-14
+reason = "braces 3.0.3 (dependencia transitiva de herramientas de desarrollo: micromatch/chokidar/webpack-dev-server). Sin version corregida publicada; no entra en el bundle de produccion ni se ejecuta en el sitio."

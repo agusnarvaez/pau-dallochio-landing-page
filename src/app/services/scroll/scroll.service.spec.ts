@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common'
+import { DOCUMENT } from '@angular/core'
 import { TestBed, fakeAsync, tick } from '@angular/core/testing'
 import { NavigationEnd, Router } from '@angular/router'
 import { Subject } from 'rxjs'
