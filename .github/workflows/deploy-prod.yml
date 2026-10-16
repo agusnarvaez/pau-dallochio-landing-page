@@ -7,5 +7,5 @@ permissions:
 jobs:
   deploy:
     uses: agusnarvaez/bapps-workflows/.github/workflows/deploy-vps.yml@v1
-    with: { app: pau-dallochio, env: prod, health-url: 'https://pauladallochio.com.ar/version.json', build-command: 'REQUIRE_BUILD_ENV=1 npm run build', node-version: '22', build-dir: dist/pau-dallochio-landing-page/browser }
+    with: { app: pau-dallochio, env: prod, health-url: 'https://pauladallochio.com.ar/version.json', build-command: 'REQUIRE_BUILD_ENV=1 npm run build', build-dir: dist/pau-dallochio-landing-page/browser }
     secrets: inherit

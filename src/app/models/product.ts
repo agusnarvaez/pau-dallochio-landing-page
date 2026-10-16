@@ -63,8 +63,8 @@ export class Product {
   fromSanity(product: SanityProduct) {
     this.id = product._id
     this.type = product.type.title
-    ;(this.address = new Address(product.street, product.city)),
-      (this.price = product.price)
+    this.address = new Address(product.street, product.city)
+    this.price = product.price
     this.currency = product.currency.title
     this.area = product.area
     this.coveredArea = product.coveredArea

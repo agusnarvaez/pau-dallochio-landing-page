@@ -6,11 +6,10 @@ permissions:
 jobs:
   qa:
     uses: agusnarvaez/bapps-workflows/.github/workflows/qa.yml@v1
-    with: { node-version: '22' }   # Angular 17 no soporta Node 24
   security:
     uses: agusnarvaez/bapps-workflows/.github/workflows/security.yml@v1
   deploy:
     needs: qa
     uses: agusnarvaez/bapps-workflows/.github/workflows/deploy-vps.yml@v1
-    with: { app: pau-dallochio, env: testing, health-url: 'https://pau-dallochio-testing.bapps.com.ar/version.json', build-command: 'REQUIRE_BUILD_ENV=1 npm run build', node-version: '22', build-dir: dist/pau-dallochio-landing-page/browser }
+    with: { app: pau-dallochio, env: testing, health-url: 'https://pau-dallochio-testing.bapps.com.ar/version.json', build-command: 'REQUIRE_BUILD_ENV=1 npm run build', build-dir: dist/pau-dallochio-landing-page/browser }
     secrets: inherit

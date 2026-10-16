@@ -8,6 +8,5 @@ jobs:
   qa:
     if: github.event_name == 'pull_request'
     uses: agusnarvaez/bapps-workflows/.github/workflows/qa.yml@v1
-    with: { node-version: '22' }   # Angular 17 no soporta Node 24
   security:
     uses: agusnarvaez/bapps-workflows/.github/workflows/security.yml@v1
