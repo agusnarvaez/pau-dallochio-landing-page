@@ -81,6 +81,20 @@ describe('MainInfoComponent', () => {
     expect(component.mapEmbedUrl()).toBe('')
   })
 
+  it('should return a cached safe embed url for the iframe', () => {
+    const product = new Product()
+    product.geo_lat = -34.6
+    product.geo_long = -58.4
+    component.product = product
+
+    const first = component.safeMapEmbedUrl()
+    expect(first).not.toBeNull()
+    expect(component.safeMapEmbedUrl()).toBe(first)
+
+    component.product = new Product()
+    expect(component.safeMapEmbedUrl()).toBeNull()
+  })
+
   it('should initialize maps api using importLibrary when available', async () => {
     mapsLoaderSpy.load.and.resolveTo()
     const importLibrarySpy = jasmine

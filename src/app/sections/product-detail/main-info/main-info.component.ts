@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { CommonModule } from '@angular/common'
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 import { Product } from '../../../models/product'
 import { GoogleMapsModule } from '@angular/google-maps'
 import { MapsLoaderService } from '../../../services/maps-loader/maps-loader.service'
@@ -32,7 +33,12 @@ export class MainInfoComponent {
     title: 'Property Location',
   }
 
-  constructor(private mapsLoader: MapsLoaderService) {}
+  private embedCache?: { url: string; safe: SafeResourceUrl }
+
+  constructor(
+    private mapsLoader: MapsLoaderService,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnChanges(): void {
     if (this.product) {
@@ -106,5 +112,15 @@ export class MainInfoComponent {
     }
 
     return `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`
+  }
+
+  // Un iframe solo acepta SafeResourceUrl (si no, NG0904). Se cachea para no recargar el iframe en cada change detection.
+  safeMapEmbedUrl(): SafeResourceUrl | null {
+    const url = this.mapEmbedUrl()
+    if (!url) return null
+    if (this.embedCache?.url !== url) {
+      this.embedCache = { url, safe: this.sanitizer.bypassSecurityTrustResourceUrl(url) }
+    }
+    return this.embedCache.safe
   }
 }
