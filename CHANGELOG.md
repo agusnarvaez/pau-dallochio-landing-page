@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/agusnarvaez/pau-dallochio-landing-page/compare/v1.1.0...v1.1.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* **mapa:** iframe de respaldo de la ficha sin NG0904 ([#23](https://github.com/agusnarvaez/pau-dallochio-landing-page/issues/23)) ([2f6445e](https://github.com/agusnarvaez/pau-dallochio-landing-page/commit/2f6445ec37c46fc4a9a4b11d717dd7c4037ff831))
+
 ## [1.1.0](https://github.com/agusnarvaez/pau-dallochio-landing-page/compare/v1.0.0...v1.1.0) (2026-10-22)
 
 
