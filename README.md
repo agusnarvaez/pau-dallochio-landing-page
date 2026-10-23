@@ -74,3 +74,15 @@ Ignored local overrides for real credentials:
 - ESLint validates the TypeScript source tree.
 - Production build completes without requiring local secrets.
 - CI runs lint, build, and headless tests with coverage.
+
+## Deploy y operación
+
+Sigue el estándar de bapps (manifiesto [`bapps.yml`](bapps.yml); detalle en `bapps-console/docs/estandar/`).
+
+- **Testing:** merge a `main` → `deploy-testing.yml` → https://pau-dallochio-testing.bapps.com.ar (el `health` de `bapps.yml` muestra el sha).
+- **Prod:** release-please abre el PR `chore(main): release x.y.z` → **Aprobar en el panel** (o, desde la oficina, mergearlo en
+  GitHub) → `release.yml` crea el tag `v*` y dispara `deploy-prod.yml` → https://pauladallochio.com.ar.
+- **Volver atrás:** `gh workflow run deploy-prod.yml -R agusnarvaez/pau-dallochio-landing-page --ref v<anterior>`. Desde una rama falla a propósito.
+- Claves del build: secret `BUILD_ENV` (líneas `NOMBRE=valor`) con `TOKKOBROKER_KEY`, `SANITY_KEY`, `MAPS_KEY`, `PLACE_ID` (opcionales `MAIL_API_PROD`, `REVIEWS_API_PROD`); el deploy falla si falta una. Valores en Bitwarden; nunca en el repo.
+- Los checks corren en el pre-push local (el `ci.yml` de GitHub está apagado); operar desde la oficina:
+  `bapps-console/docs/operar/desde-la-oficina.md`.
