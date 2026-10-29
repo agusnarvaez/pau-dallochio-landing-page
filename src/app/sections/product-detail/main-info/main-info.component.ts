@@ -29,4 +29,27 @@ export class MainInfoComponent {
     }
   }
 
+  /* ngOnInit() {
+    if (this.product) {
+      this.initializeMap()
+    }
+  }
+
+  initializeMap(): void {
+    const lat = parseFloat(this.product?.geo_lat.toString() ?? '0')
+    const lng = parseFloat(this.product?.geo_long.toString() ?? '0')
+
+    this.center = { lat: lat, lng: lng }
+    this.marker.position = this.center
+
+    this.loadGoogleMapsApi()
+  }
+
+  loadGoogleMapsApi(): void {
+    const script = document.createElement('script')
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC62-uVioBXRqnFsHjK5I2-Edj3fQk0GtU&callback=initMap'
+    script.async = true
+    document.head.appendChild(script)
+  } */
+
 }
