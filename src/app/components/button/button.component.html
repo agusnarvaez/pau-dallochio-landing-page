@@ -1,4 +1,4 @@
-@if(isLink()){
+@if(isLink() && !isExternalLink){
     <a
         class="btn {{class}}"
         [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary(), 'rounded': rounded,
@@ -14,7 +14,26 @@
     }
         {{ text }}
     </a>
-}@else{
+}
+@else if (isLink() && isExternalLink) {
+    <a
+        class="btn {{class}}"
+        [ngClass]="{'btn-tertiary': isTertiary(),'btn-secondary': isSecondary(), 'rounded': rounded,
+        'disabled': disabled}"
+        [href]="link"
+        target="_blank"
+        rel="noreferrer"
+    >
+    @if (isIcon()) {
+        <i class="{{icon}} {{iconClass}}"></i>
+    }
+    @if (isSvgImage()) {
+        <img class="{{iconClass}}" src="{{svgIcon}}" alt="{{text}}">
+    }
+        {{ text }}
+    </a>
+}
+@else{
     <button *ngIf="!isLink()"
         class="btn {{class}}"
         [ngClass]="{
