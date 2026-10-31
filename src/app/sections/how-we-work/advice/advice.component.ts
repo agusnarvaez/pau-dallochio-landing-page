@@ -1,12 +1,10 @@
-import { Component } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 @Component({
-    selector: 'app-advice',
-    imports: [CommonModule],
-    templateUrl: './advice.component.html',
-    styleUrl: './advice.component.css'
+  selector: 'app-advice',
+  imports: [],
+  templateUrl: './advice.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './advice.component.css',
 })
-export class AdviceComponent {
-
-}
+export class AdviceComponent {}

@@ -3,7 +3,11 @@ import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 
 import { HomeComponent } from './home.component'
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withXhr,
+} from '@angular/common/http'
 
 describe('HomeComponent', () => {
   let component: HomeComponent
@@ -11,9 +15,12 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [HomeComponent, RouterTestingModule],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents()
+      imports: [HomeComponent, RouterTestingModule],
+      providers: [
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    }).compileComponents()
 
     fixture = TestBed.createComponent(HomeComponent)
     component = fixture.componentInstance

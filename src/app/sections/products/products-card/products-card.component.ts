@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Product } from '../../../models/product'
 import { Router, RouterLink } from '@angular/router'
@@ -11,11 +11,12 @@ import { registerLocaleData } from '@angular/common'
 // Registra los datos locales
 registerLocaleData(localeEs)
 @Component({
-    selector: 'app-products-card',
-    providers: [],
-    imports: [CommonModule, RouterLink],
-    templateUrl: './products-card.component.html',
-    styleUrl: './products-card.component.css'
+  selector: 'app-products-card',
+  providers: [],
+  imports: [CommonModule, RouterLink],
+  templateUrl: './products-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './products-card.component.css',
 })
 export class ProductsCardComponent {
   constructor(

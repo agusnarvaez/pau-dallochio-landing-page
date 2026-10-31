@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterOutlet } from '@angular/router'
 import { HeaderComponent } from './components/header/header.component'
@@ -8,16 +8,17 @@ import { ToastContainerComponent } from './components/toast-container/toast-cont
 import { SeoService } from './services/seo/seo.service'
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [
-        CommonModule,
-        RouterOutlet,
-        HeaderComponent,
-        FooterComponent,
-        ToastContainerComponent,
-    ]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    ToastContainerComponent,
+  ],
 })
 export class AppComponent {
   constructor(

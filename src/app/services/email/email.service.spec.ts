@@ -1,10 +1,17 @@
 import { TestBed } from '@angular/core/testing'
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing'
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing'
 
 import { EmailService } from './email.service'
 import { environment } from '../../../environments/environment'
 import { Mail } from '../../models/mail'
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withXhr,
+} from '@angular/common/http'
 
 describe('EmailService', () => {
   let service: EmailService
@@ -19,9 +26,12 @@ describe('EmailService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+      imports: [],
+      providers: [
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    })
     service = TestBed.inject(EmailService)
     httpMock = TestBed.inject(HttpTestingController)
   })

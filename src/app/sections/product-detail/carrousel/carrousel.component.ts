@@ -1,14 +1,21 @@
-import { Component, HostListener, Input, SimpleChanges } from '@angular/core'
+import {
+  Component,
+  HostListener,
+  Input,
+  SimpleChanges,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../../components/button/button.component'
 import { ChangeDetectorRef } from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
-    selector: 'app-carrousel',
-    imports: [CommonModule, ButtonComponent],
-    templateUrl: './carrousel.component.html',
-    styleUrl: './carrousel.component.css'
+  selector: 'app-carrousel',
+  imports: [CommonModule, ButtonComponent],
+  templateUrl: './carrousel.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './carrousel.component.css',
 })
 export class CarrouselComponent {
   @Input() images: string[] | undefined = []
@@ -33,7 +40,7 @@ export class CarrouselComponent {
   carouselItemWidth = '0%'
 
   //* Esta función se llama cada vez que la ventana cambia de tamaño
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
 
   //* Esta función se llama cada vez que la ventana cambia de tamaño
   onResize() {

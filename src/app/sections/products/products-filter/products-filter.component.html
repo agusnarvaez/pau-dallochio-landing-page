@@ -55,14 +55,13 @@
         min="0"
         #roomsField="ngModel"
       />
-      <div
-        class="contact-errors"
-        *ngIf="roomsField.invalid && (roomsField.dirty || roomsField.touched)"
-      >
-        <small *ngIf="roomsField.errors?.['min']"
-          >La propiedad debe contar con al menos una habitación.</small
-        >
-      </div>
+      @if (roomsField.invalid && (roomsField.dirty || roomsField.touched)) {
+        <div class="contact-errors">
+          @if (roomsField.errors?.['min']) {
+            <small>La propiedad debe contar con al menos una habitación.</small>
+          }
+        </div>
+      }
     </div>
 
     <div class="input-container">
@@ -76,17 +75,15 @@
         min="0"
         #minPriceField="ngModel"
       />
-      <div
-        class="contact-errors"
-        *ngIf="
-          minPriceField.invalid &&
-          (minPriceField.dirty || minPriceField.touched)
-        "
-      >
-        <small *ngIf="minPriceField.errors?.['min']"
-          >El precio mínimo debe ser mayor a 0.</small
-        >
-      </div>
+      @if (
+        minPriceField.invalid && (minPriceField.dirty || minPriceField.touched)
+      ) {
+        <div class="contact-errors">
+          @if (minPriceField.errors?.['min']) {
+            <small>El precio mínimo debe ser mayor a 0.</small>
+          }
+        </div>
+      }
     </div>
 
     <div class="input-container">
@@ -100,17 +97,15 @@
         min="0"
         #maxPriceField="ngModel"
       />
-      <div
-        class="contact-errors"
-        *ngIf="
-          maxPriceField.invalid &&
-          (maxPriceField.dirty || maxPriceField.touched)
-        "
-      >
-        <small *ngIf="maxPriceField.errors?.['min']"
-          >El precio mínimo debe ser mayor a 0.</small
-        >
-      </div>
+      @if (
+        maxPriceField.invalid && (maxPriceField.dirty || maxPriceField.touched)
+      ) {
+        <div class="contact-errors">
+          @if (maxPriceField.errors?.['min']) {
+            <small>El precio mínimo debe ser mayor a 0.</small>
+          }
+        </div>
+      }
     </div>
 
     <div class="input-container order_by">

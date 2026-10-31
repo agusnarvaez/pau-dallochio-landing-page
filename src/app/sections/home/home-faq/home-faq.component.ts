@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FaqItemComponent } from '../../../components/faq-item/faq-item.component'
 
@@ -33,10 +33,11 @@ export const HOME_FAQ_ITEMS: FaqEntry[] = [
 ]
 
 @Component({
-    selector: 'app-home-faq',
-    imports: [CommonModule, FaqItemComponent],
-    templateUrl: './home-faq.component.html',
-    styleUrl: './home-faq.component.css'
+  selector: 'app-home-faq',
+  imports: [CommonModule, FaqItemComponent],
+  templateUrl: './home-faq.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './home-faq.component.css',
 })
 export class HomeFaqComponent {
   faqList = HOME_FAQ_ITEMS

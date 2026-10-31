@@ -1,5 +1,12 @@
-import { Component, DestroyRef, Input, ViewChild, inject } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import {
+  Component,
+  DestroyRef,
+  Input,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core'
+
 import { FormsModule, NgForm } from '@angular/forms'
 import { ButtonComponent } from '../../../components/button/button.component'
 import { EmailService } from '../../../services/email/email.service'
@@ -9,10 +16,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { ToastService } from '../../../services/toast/toast.service'
 
 @Component({
-    selector: 'app-contact-form',
-    imports: [CommonModule, FormsModule, ButtonComponent],
-    templateUrl: './contact-form.component.html',
-    styleUrl: './contact-form.component.css'
+  selector: 'app-contact-form',
+  imports: [FormsModule, ButtonComponent],
+  templateUrl: './contact-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './contact-form.component.css',
 })
 export class ContactFormComponent {
   @ViewChild('myForm') myForm!: NgForm
@@ -56,8 +64,14 @@ export class ContactFormComponent {
       ...(product && {
         fields: [
           { label: 'Propiedad consultada', value: product.title },
-          { label: 'Operación', value: `${product.operation_type} - ${product.address.street}, ${product.address.city}` },
-          { label: 'Precio', value: `${product.currency} ${product.price.toLocaleString('es-ES', { maximumFractionDigits: 0 })}` },
+          {
+            label: 'Operación',
+            value: `${product.operation_type} - ${product.address.street}, ${product.address.city}`,
+          },
+          {
+            label: 'Precio',
+            value: `${product.currency} ${product.price.toLocaleString('es-ES', { maximumFractionDigits: 0 })}`,
+          },
         ],
         link: `/catalogo/${encodeURIComponent(String(product.id))}`,
       }),

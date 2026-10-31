@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
+
 import { HomeBannerComponent } from '../../sections/home/home-banner/home-banner.component'
 import {
   HOME_FAQ_ITEMS,
@@ -11,17 +11,17 @@ import { HomeContactComponent } from '../../sections/home/home-contact/home-cont
 import { SeoService } from '../../services/seo/seo.service'
 
 @Component({
-    selector: 'app-home',
-    imports: [
-        CommonModule,
-        HomeBannerComponent,
-        HomeStudioComponent,
-        HomeReviewsComponent,
-        HomeFaqComponent,
-        HomeContactComponent,
-    ],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.css'
+  selector: 'app-home',
+  imports: [
+    HomeBannerComponent,
+    HomeStudioComponent,
+    HomeReviewsComponent,
+    HomeFaqComponent,
+    HomeContactComponent,
+  ],
+  templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   constructor(private seoService: SeoService) {}

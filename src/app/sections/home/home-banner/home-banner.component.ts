@@ -1,16 +1,17 @@
 import { ProductService } from './../../../services/product/product.service'
-import { Component } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
+
 import { ButtonComponent } from '../../../components/button/button.component'
 import { Router } from '@angular/router'
 import { FilterObject } from '../../../services/filters/filters.service'
 import { ScrollService } from '../../../services/scroll/scroll.service'
 
 @Component({
-    selector: 'app-home-banner',
-    imports: [CommonModule, ButtonComponent],
-    templateUrl: './home-banner.component.html',
-    styleUrl: './home-banner.component.css'
+  selector: 'app-home-banner',
+  imports: [ButtonComponent],
+  templateUrl: './home-banner.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './home-banner.component.css',
 })
 export class HomeBannerComponent {
   constructor(

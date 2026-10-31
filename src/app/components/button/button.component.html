@@ -5,7 +5,7 @@
       'btn-tertiary': isTertiary(),
       'btn-secondary': isSecondary(),
       rounded: rounded,
-      disabled: disabled
+      disabled: disabled,
     }"
     [routerLink]="link"
     [attr.aria-label]="ariaLabel || null"
@@ -26,7 +26,7 @@
       'btn-tertiary': isTertiary(),
       'btn-secondary': isSecondary(),
       rounded: rounded,
-      disabled: disabled
+      disabled: disabled,
     }"
     [href]="link"
     [attr.aria-label]="ariaLabel || null"
@@ -42,28 +42,29 @@
     {{ text }}
   </a>
 } @else {
-  <button
-    *ngIf="!isLink()"
-    class="btn {{ class }}"
-    [ngClass]="{
-      'btn-tertiary': isTertiary(),
-      'btn-secondary': isSecondary(),
-      rounded: rounded,
-      disabled: disabled
-    }"
-    [attr.aria-label]="ariaLabel || null"
-    [disabled]="!!disabled"
-    type="{{ buttonType() }}"
-  >
-    @if (isIcon()) {
-      <i
-        class="{{ icon }} {{ iconClass }}"
-        [ngClass]="{ 'margin-right': hasText() }"
-      ></i>
-    }
-    @if (isSvgImage()) {
-      <img class="{{ iconClass }}" src="{{ svgIcon }}" alt="{{ text }}" />
-    }
-    {{ text }}
-  </button>
+  @if (!isLink()) {
+    <button
+      class="btn {{ class }}"
+      [ngClass]="{
+        'btn-tertiary': isTertiary(),
+        'btn-secondary': isSecondary(),
+        rounded: rounded,
+        disabled: disabled,
+      }"
+      [attr.aria-label]="ariaLabel || null"
+      [disabled]="!!disabled"
+      type="{{ buttonType() }}"
+    >
+      @if (isIcon()) {
+        <i
+          class="{{ icon }} {{ iconClass }}"
+          [ngClass]="{ 'margin-right': hasText() }"
+        ></i>
+      }
+      @if (isSvgImage()) {
+        <img class="{{ iconClass }}" src="{{ svgIcon }}" alt="{{ text }}" />
+      }
+      {{ text }}
+    </button>
+  }
 }

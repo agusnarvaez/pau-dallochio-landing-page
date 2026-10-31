@@ -5,13 +5,13 @@
     (click)="scrollToTopOnNavigate()"
   >
     <img
-      [src]="product?.cover"
+      [src]="$safeNavigationMigration(product?.cover)"
       [alt]="
-        product?.type +
+        $safeNavigationMigration(product?.type) +
         ' en ' +
-        product?.address?.street +
+        $safeNavigationMigration(product?.address?.street) +
         ' ' +
-        product?.address?.city
+        $safeNavigationMigration(product?.address?.city)
       "
     />
     <section>
@@ -22,7 +22,9 @@
       <h2 class="price">
         <span class="bold"
           >{{ product?.currency }}
-          {{ product?.price | number: '1.0-0' : 'es-ES' }}</span
+          {{
+            $safeNavigationMigration(product?.price) | number: '1.0-0' : 'es-ES'
+          }}</span
         >
       </h2>
       <h3>

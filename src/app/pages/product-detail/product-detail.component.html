@@ -1,7 +1,7 @@
 <main>
   <app-carrousel
-    [images]="product?.images"
-    [videos]="product?.videos"
+    [images]="$safeNavigationMigration(product?.images)"
+    [videos]="$safeNavigationMigration(product?.videos)"
   ></app-carrousel>
 
   <section class="main-info">

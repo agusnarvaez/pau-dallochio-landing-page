@@ -1,9 +1,11 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
-<main *ngIf="isLoading$ | async" class="loading">
-  <h2>Cargando...</h2>
-  <span class="loader"></span>
-</main>
+@if (isLoading$ | async) {
+  <main class="loading">
+    <h2>Cargando...</h2>
+    <span class="loader"></span>
+  </main>
+}
 <app-toast-container></app-toast-container>
 <a
   class="whatsapp-button"
