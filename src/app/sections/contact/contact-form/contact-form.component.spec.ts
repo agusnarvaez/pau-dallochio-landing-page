@@ -51,13 +51,7 @@ describe('ContactFormComponent', () => {
   })
 
   it('should delegate sendMail to EmailService', () => {
-    const mail = new Mail(
-      'to@test.com',
-      'from@test.com',
-      'subject',
-      'msg',
-      '<p>msg</p>',
-    )
+    const mail: Mail = { site: 'pauladallochio', subject: 'subject', message: 'msg' }
     const mockResponse = { ok: true }
     emailServiceSpy.sendEmail.and.returnValue(of(mockResponse))
 
@@ -68,7 +62,7 @@ describe('ContactFormComponent', () => {
     expect(emailServiceSpy.sendEmail).toHaveBeenCalledWith(mail)
   })
 
-  it('should send notification and user email, reset form and show success toast', () => {
+  it('should send the form data to mailing-api, reset form and show success toast', () => {
     component.fullName = 'Juan Perez'
     component.email = 'juan@example.com'
     component.phone = '1112345678'
@@ -80,14 +74,14 @@ describe('ContactFormComponent', () => {
     component.onSubmit()
 
     expect(component.isSubmitting).toBeFalse()
-    expect(emailServiceSpy.sendEmail).toHaveBeenCalledTimes(2)
-
-    const firstCallMail = emailServiceSpy.sendEmail.calls.argsFor(0)[0] as Mail
-    const secondCallMail = emailServiceSpy.sendEmail.calls.argsFor(1)[0] as Mail
-
-    expect(firstCallMail.to).toBe('info@pauladallochio.com.ar')
-    expect(firstCallMail.cc).toBe('agus.narvaez@outlook.com')
-    expect(secondCallMail.to).toBe('juan@example.com')
+    expect(emailServiceSpy.sendEmail).toHaveBeenCalledOnceWith({
+      site: 'pauladallochio',
+      subject: 'Consulta',
+      name: 'Juan Perez',
+      email: 'juan@example.com',
+      phone: '1112345678',
+      message: 'Hola! Quisiera mas informacion.',
+    })
 
     expect(formSpy.reset).toHaveBeenCalled()
     expect(toastServiceSpy.show).toHaveBeenCalledWith(
