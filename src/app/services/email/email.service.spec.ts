@@ -10,13 +10,12 @@ describe('EmailService', () => {
   let service: EmailService
   let httpMock: HttpTestingController
 
-  const mockMail: Mail = new Mail(
-    'estudioinmobiliario@pauladallochio.com.ar',
-    'juan@example.com',
-    'Consulta por propiedad',
-    'Hola! Quisiera mas informacion.',
-    '<p>Hola! Quisiera mas informacion.</p>',
-  )
+  const mockMail: Mail = {
+    site: 'pauladallochio',
+    subject: 'Consulta por propiedad',
+    email: 'juan@example.com',
+    message: 'Hola! Quisiera mas informacion.',
+  }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,7 +41,7 @@ describe('EmailService', () => {
       expect(response).toEqual(mockResponse)
     })
 
-    const req = httpMock.expectOne(`${environment.mail_api_prod}/mail/send`)
+    const req = httpMock.expectOne(`${environment.mail_api_prod}/mail/form`)
     expect(req.request.method).toBe('POST')
     expect(req.request.body).toEqual(mockMail)
 
@@ -58,7 +57,7 @@ describe('EmailService', () => {
       },
     })
 
-    const req = httpMock.expectOne(`${environment.mail_api_prod}/mail/send`)
+    const req = httpMock.expectOne(`${environment.mail_api_prod}/mail/form`)
     req.flush(
       { message: 'error interno' },
       { status: 500, statusText: 'Server Error' },

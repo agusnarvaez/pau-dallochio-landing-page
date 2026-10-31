@@ -12,7 +12,7 @@ export class EmailService {
 
   sendEmail(mail: Mail): Observable<unknown> {
     return this.http
-      .post<unknown>(`${environment.mail_api_prod}/mail/send`, mail)
+      .post<unknown>(`${environment.mail_api_prod}/mail/form`, mail)
       .pipe(
         catchError((error: { message?: string }) => {
           return throwError(
