@@ -1,6 +1,6 @@
 import { ButtonComponent } from './../../components/button/button.component'
 import { Component, DestroyRef, inject } from '@angular/core'
-import { CommonModule } from '@angular/common'
+
 import { CarrouselComponent } from '../../sections/product-detail/carrousel/carrousel.component'
 import { MainInfoComponent } from '../../sections/product-detail/main-info/main-info.component'
 import { ContactCardComponent } from '../../sections/product-detail/contact-card/contact-card.component'
@@ -17,18 +17,17 @@ import { ToastService } from '../../services/toast/toast.service'
 import { SeoService } from '../../services/seo/seo.service'
 
 @Component({
-    selector: 'app-product-detail',
-    imports: [
-        CommonModule,
-        ButtonComponent,
-        CarrouselComponent,
-        MainInfoComponent,
-        ContactCardComponent,
-        SuggestionsComponent,
-        ContactFormComponent,
-    ],
-    templateUrl: './product-detail.component.html',
-    styleUrl: './product-detail.component.css'
+  selector: 'app-product-detail',
+  imports: [
+    ButtonComponent,
+    CarrouselComponent,
+    MainInfoComponent,
+    ContactCardComponent,
+    SuggestionsComponent,
+    ContactFormComponent,
+  ],
+  templateUrl: './product-detail.component.html',
+  styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
   product: Product | undefined

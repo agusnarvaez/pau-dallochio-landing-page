@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common'
 import {
   Component,
   Input,
@@ -24,10 +23,10 @@ interface ProductMapMarker {
 }
 
 @Component({
-    selector: 'app-products-map',
-    imports: [CommonModule, GoogleMapsModule, RouterModule],
-    templateUrl: './products-map.component.html',
-    styleUrl: './products-map.component.css'
+  selector: 'app-products-map',
+  imports: [GoogleMapsModule, RouterModule],
+  templateUrl: './products-map.component.html',
+  styleUrl: './products-map.component.css',
 })
 export class ProductsMapComponent implements OnInit, OnChanges {
   @Input() products: Product[] = []
@@ -67,7 +66,12 @@ export class ProductsMapComponent implements OnInit, OnChanges {
       .map((product) => {
         const lat = Number(product.geo_lat)
         const lng = Number(product.geo_long)
-        if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat === 0 || lng === 0) {
+        if (
+          !Number.isFinite(lat) ||
+          !Number.isFinite(lng) ||
+          lat === 0 ||
+          lng === 0
+        ) {
           return null
         }
 
@@ -85,7 +89,8 @@ export class ProductsMapComponent implements OnInit, OnChanges {
     }
 
     const normalizedCurrency = (currency ?? '').toUpperCase()
-    const isUSD = normalizedCurrency.includes('USD') || normalizedCurrency === 'U$S'
+    const isUSD =
+      normalizedCurrency.includes('USD') || normalizedCurrency === 'U$S'
 
     if (isUSD) {
       if (price >= 1_000_000) return `USD ${(price / 1_000_000).toFixed(1)}M`

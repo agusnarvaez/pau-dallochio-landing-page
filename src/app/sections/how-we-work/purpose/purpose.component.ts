@@ -1,12 +1,9 @@
 import { Component } from '@angular/core'
-import { CommonModule } from '@angular/common'
 
 @Component({
-    selector: 'app-purpose',
-    imports: [CommonModule],
-    templateUrl: './purpose.component.html',
-    styleUrl: './purpose.component.css'
+  selector: 'app-purpose',
+  imports: [],
+  templateUrl: './purpose.component.html',
+  styleUrl: './purpose.component.css',
 })
-export class PurposeComponent {
-
-}
+export class PurposeComponent {}
