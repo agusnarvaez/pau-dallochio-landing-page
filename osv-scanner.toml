@@ -2,3 +2,8 @@
 id = "GHSA-vfj7-8cjw-p6xm"
 ignoreUntil = 2027-01-14
 reason = "braces 3.0.3 (dependencia transitiva de herramientas de desarrollo: micromatch/chokidar/webpack-dev-server). Sin version corregida publicada; no entra en el bundle de produccion ni se ejecuta en el sitio."
+
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+ignoreUntil = 2027-01-31
+reason = "minimatch 3.x/10.x (dependencia transitiva de herramientas de desarrollo: karma, glob, eslint). El fix sólo existe en 11 (major) y los consumidores no lo aceptan; no entra en el bundle de produccion."
