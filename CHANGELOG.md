@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/agusnarvaez/pau-dallochio-landing-page/compare/v1.1.1...v1.2.0) (2026-10-31)
+
+
+### Features
+
+* el formulario de contacto manda sólo datos a mailing-api (/mail/form) ([#29](https://github.com/agusnarvaez/pau-dallochio-landing-page/issues/29)) ([d9789fe](https://github.com/agusnarvaez/pau-dallochio-landing-page/commit/d9789fed4caa295be88580c611f744899cd0b483))
+
 ## [1.1.1](https://github.com/agusnarvaez/pau-dallochio-landing-page/compare/v1.1.0...v1.1.1) (2026-10-23)
 
 
