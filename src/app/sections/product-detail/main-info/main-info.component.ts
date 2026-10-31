@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'
 import { Product } from '../../../models/product'
@@ -16,10 +16,11 @@ type WindowWithGoogle = Window & {
 }
 
 @Component({
-    selector: 'app-main-info',
-    imports: [CommonModule, GoogleMapsModule],
-    templateUrl: './main-info.component.html',
-    styleUrl: './main-info.component.css'
+  selector: 'app-main-info',
+  imports: [CommonModule, GoogleMapsModule],
+  templateUrl: './main-info.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './main-info.component.css',
 })
 export class MainInfoComponent {
   @Input() product: Product | undefined
@@ -119,7 +120,10 @@ export class MainInfoComponent {
     const url = this.mapEmbedUrl()
     if (!url) return null
     if (this.embedCache?.url !== url) {
-      this.embedCache = { url, safe: this.sanitizer.bypassSecurityTrustResourceUrl(url) }
+      this.embedCache = {
+        url,
+        safe: this.sanitizer.bypassSecurityTrustResourceUrl(url),
+      }
     }
     return this.embedCache.safe
   }

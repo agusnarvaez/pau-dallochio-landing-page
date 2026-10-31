@@ -1,9 +1,10 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 @Component({
   selector: 'app-sales',
   imports: [],
   templateUrl: './sales.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sales.component.css',
 })
 export class SalesComponent {

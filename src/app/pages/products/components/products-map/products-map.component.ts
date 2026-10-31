@@ -6,6 +6,7 @@ import {
   QueryList,
   ViewChild,
   ViewChildren,
+  ChangeDetectionStrategy,
 } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import {
@@ -26,6 +27,7 @@ interface ProductMapMarker {
   selector: 'app-products-map',
   imports: [GoogleMapsModule, RouterModule],
   templateUrl: './products-map.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './products-map.component.css',
 })
 export class ProductsMapComponent implements OnInit, OnChanges {

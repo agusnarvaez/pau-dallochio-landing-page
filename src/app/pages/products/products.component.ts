@@ -1,5 +1,10 @@
 import { ProductService } from './../../services/product/product.service'
-import { Component, DestroyRef, inject } from '@angular/core'
+import {
+  Component,
+  DestroyRef,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 
 import { ProductsBannerComponent } from '../../sections/products/products-banner/products-banner.component'
 import { ProductsFilterComponent } from '../../sections/products/products-filter/products-filter.component'
@@ -29,6 +34,7 @@ import { SeoService } from '../../services/seo/seo.service'
     ButtonComponent,
   ],
   templateUrl: './products.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {

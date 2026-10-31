@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { Router, RouterLink, RouterModule } from '@angular/router'
 import { ScrollService } from '../../services/scroll/scroll.service'
 
 @Component({
-    selector: 'app-button',
-    imports: [CommonModule, RouterLink, RouterModule],
-    templateUrl: './button.component.html',
-    styleUrl: './button.component.css'
+  selector: 'app-button',
+  imports: [CommonModule, RouterLink, RouterModule],
+  templateUrl: './button.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './button.component.css',
 })
 export class ButtonComponent {
   @Input() type: string = ''

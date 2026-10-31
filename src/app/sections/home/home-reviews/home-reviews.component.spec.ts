@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { provideHttpClient } from '@angular/common/http'
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing'
+import { provideHttpClient, withXhr } from '@angular/common/http'
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing'
 
 import { HomeReviewsComponent } from './home-reviews.component'
 
@@ -12,9 +15,8 @@ describe('HomeReviewsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomeReviewsComponent],
-      providers: [provideHttpClient(), provideHttpClientTesting()]
-    })
-    .compileComponents()
+      providers: [provideHttpClient(withXhr()), provideHttpClientTesting()],
+    }).compileComponents()
 
     httpMock = TestBed.inject(HttpTestingController)
     fixture = TestBed.createComponent(HomeReviewsComponent)
@@ -32,25 +34,27 @@ describe('HomeReviewsComponent', () => {
   })
 
   it('renderiza reseñas de la API cuando la respuesta trae items', () => {
-    httpMock.expectOne((req) => req.url.includes('/reviews')).flush({
-      source: 'places',
-      placeId: 'ChIJtest',
-      rating: 4.9,
-      totalCount: 10,
-      mapsUri: 'https://maps.google.com',
-      fetchedAt: new Date().toISOString(),
-      stale: false,
-      reviews: [
-        {
-          author: 'Ana',
-          avatar: 'https://example.com/a.png',
-          content: 'Excelente',
-          rating: 5,
-          time: '2025-01-01T00:00:00Z',
-          url: 'https://google.com/maps/contrib/1',
-        },
-      ],
-    })
+    httpMock
+      .expectOne((req) => req.url.includes('/reviews'))
+      .flush({
+        source: 'places',
+        placeId: 'ChIJtest',
+        rating: 4.9,
+        totalCount: 10,
+        mapsUri: 'https://maps.google.com',
+        fetchedAt: new Date().toISOString(),
+        stale: false,
+        reviews: [
+          {
+            author: 'Ana',
+            avatar: 'https://example.com/a.png',
+            content: 'Excelente',
+            rating: 5,
+            time: '2025-01-01T00:00:00Z',
+            url: 'https://google.com/maps/contrib/1',
+          },
+        ],
+      })
 
     expect(component.reviews[0].author).toBe('Ana')
     expect(component.reviews[0].stars).toBe(5)

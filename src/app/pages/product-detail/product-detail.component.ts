@@ -1,5 +1,10 @@
 import { ButtonComponent } from './../../components/button/button.component'
-import { Component, DestroyRef, inject } from '@angular/core'
+import {
+  Component,
+  DestroyRef,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 
 import { CarrouselComponent } from '../../sections/product-detail/carrousel/carrousel.component'
 import { MainInfoComponent } from '../../sections/product-detail/main-info/main-info.component'
@@ -27,6 +32,7 @@ import { SeoService } from '../../services/seo/seo.service'
     ContactFormComponent,
   ],
   templateUrl: './product-detail.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { CommonModule, NgClass } from '@angular/common'
 import { Router, RouterLink, RouterLinkActive } from '@angular/router'
 import { ScrollService } from '../../services/scroll/scroll.service'
@@ -7,6 +7,7 @@ import { ScrollService } from '../../services/scroll/scroll.service'
   selector: 'app-header',
   imports: [CommonModule, NgClass, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {

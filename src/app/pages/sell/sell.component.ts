@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../components/button/button.component'
 import { FaqItemComponent } from '../../components/faq-item/faq-item.component'
@@ -23,10 +28,11 @@ export const SELL_FAQ_ITEMS = [
 ]
 
 @Component({
-    selector: 'app-sell',
-    imports: [CommonModule, ButtonComponent, FaqItemComponent],
-    templateUrl: './sell.component.html',
-    styleUrl: './sell.component.css'
+  selector: 'app-sell',
+  imports: [CommonModule, ButtonComponent, FaqItemComponent],
+  templateUrl: './sell.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './sell.component.css',
 })
 export class SellComponent implements OnInit, OnDestroy {
   faqList = SELL_FAQ_ITEMS

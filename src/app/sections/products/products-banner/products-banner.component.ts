@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 import { ButtonComponent } from '../../../components/button/button.component'
 
@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../../components/button/button.component'
   selector: 'app-products-banner',
   imports: [ButtonComponent],
   templateUrl: './products-banner.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './products-banner.component.css',
 })
 export class ProductsBannerComponent {}

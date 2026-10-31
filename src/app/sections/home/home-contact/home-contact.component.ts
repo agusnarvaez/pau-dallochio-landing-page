@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 import { ButtonComponent } from '../../../components/button/button.component'
 
@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../../components/button/button.component'
   selector: 'app-home-contact',
   imports: [ButtonComponent],
   templateUrl: './home-contact.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home-contact.component.css',
 })
 export class HomeContactComponent {}

@@ -1,10 +1,17 @@
 import { TestBed } from '@angular/core/testing'
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing'
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing'
 
 import { ProductService } from './product.service'
 import { FiltersService } from '../filters/filters.service'
 import { TokkoProduct, SanityProduct } from '../../models/product'
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withXhr,
+} from '@angular/common/http'
 
 describe('ProductsService', () => {
   let service: ProductService
@@ -78,9 +85,13 @@ describe('ProductsService', () => {
     filtersServiceSpy.get.and.returnValue({})
 
     TestBed.configureTestingModule({
-    imports: [],
-    providers: [{ provide: FiltersService, useValue: filtersServiceSpy }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+      imports: [],
+      providers: [
+        { provide: FiltersService, useValue: filtersServiceSpy },
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
+    })
 
     service = TestBed.inject(ProductService)
     httpMock = TestBed.inject(HttpTestingController)

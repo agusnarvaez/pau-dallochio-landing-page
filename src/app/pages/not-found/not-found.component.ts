@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 import { ButtonComponent } from '../../components/button/button.component'
 
@@ -6,6 +6,7 @@ import { ButtonComponent } from '../../components/button/button.component'
   selector: 'app-not-found',
   imports: [ButtonComponent],
   templateUrl: './not-found.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './not-found.component.css',
 })
 export class NotFoundComponent {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 
 import { Router, RouterLink } from '@angular/router'
 import { ScrollService } from '../../services/scroll/scroll.service'
@@ -7,6 +7,7 @@ import { ScrollService } from '../../services/scroll/scroll.service'
   selector: 'app-footer',
   imports: [RouterLink],
   templateUrl: './footer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {

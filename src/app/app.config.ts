@@ -2,7 +2,11 @@ import { ApplicationConfig } from '@angular/core'
 import { provideRouter, withInMemoryScrolling } from '@angular/router'
 
 import { routes } from './app.routes'
-import { provideHttpClient, withJsonpSupport } from '@angular/common/http'
+import {
+  provideHttpClient,
+  withJsonpSupport,
+  withXhr,
+} from '@angular/common/http'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +17,6 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled',
       }),
     ),
-    provideHttpClient(withJsonpSupport()),
+    provideHttpClient(withXhr(), withJsonpSupport()),
   ],
 }

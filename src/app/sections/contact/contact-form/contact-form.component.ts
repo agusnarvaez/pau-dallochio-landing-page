@@ -1,4 +1,11 @@
-import { Component, DestroyRef, Input, ViewChild, inject } from '@angular/core'
+import {
+  Component,
+  DestroyRef,
+  Input,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 
 import { FormsModule, NgForm } from '@angular/forms'
 import { ButtonComponent } from '../../../components/button/button.component'
@@ -12,6 +19,7 @@ import { ToastService } from '../../../services/toast/toast.service'
   selector: 'app-contact-form',
   imports: [FormsModule, ButtonComponent],
   templateUrl: './contact-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-form.component.css',
 })
 export class ContactFormComponent {

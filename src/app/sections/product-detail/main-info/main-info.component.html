@@ -2,7 +2,11 @@
   <span>{{ product?.operation_type }}</span>
   <h1>{{ product?.title }}</h1>
   <h2>
-    {{ product?.currency + ' ' + (product?.price | number: '1.0-0' : 'es-ES') }}
+    {{
+      product?.currency +
+        ' ' +
+        ($safeNavigationMigration(product?.price) | number: '1.0-0' : 'es-ES')
+    }}
   </h2>
   <ul>
     <li>
@@ -57,7 +61,10 @@
     <li><i class="fa fa-solid fa-building"></i>{{ expenses() }}</li>
   </ul>
   <h2>Descripción</h2>
-  <p class="description" [innerHTML]="product?.description"></p>
+  <p
+    class="description"
+    [innerHTML]="$safeNavigationMigration(product?.description)"
+  ></p>
 
   <h2>Ubicación</h2>
   @if (product && mapsApiLoaded) {

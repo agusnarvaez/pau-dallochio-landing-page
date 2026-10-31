@@ -1,4 +1,10 @@
-import { Component, DestroyRef, ViewChild, inject } from '@angular/core'
+import {
+  Component,
+  DestroyRef,
+  ViewChild,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ButtonComponent } from '../../../components/button/button.component'
 import {
@@ -10,10 +16,11 @@ import { FormsModule, NgForm } from '@angular/forms'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Component({
-    selector: 'app-products-filter',
-    imports: [CommonModule, ButtonComponent, FormsModule],
-    templateUrl: './products-filter.component.html',
-    styleUrl: './products-filter.component.css'
+  selector: 'app-products-filter',
+  imports: [CommonModule, ButtonComponent, FormsModule],
+  templateUrl: './products-filter.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './products-filter.component.css',
 })
 export class ProductsFilterComponent {
   @ViewChild('myForm') myForm!: NgForm
