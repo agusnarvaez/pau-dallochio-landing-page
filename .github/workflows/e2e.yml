@@ -1,0 +1,14 @@
+name: e2e
+# Playwright contra testing después de cada deploy y los lunes. Las capturas van como artifact e2e-<sha>: las lee la
+# verificación con IA del panel (bapps-console, Fase 4).
+on:
+  workflow_run: { workflows: [deploy-testing], types: [completed] }
+  schedule: [{ cron: '0 9 * * 1' }]   # lunes 06:00 en Buenos Aires
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  e2e:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    uses: agusnarvaez/bapps-workflows/.github/workflows/e2e.yml@v1
+    with: { base-url: 'https://pau-dallochio-testing.bapps.com.ar' }
