@@ -102,3 +102,7 @@ src/environments/environment.prod.local.ts
 # Google service account keys — NEVER commit
 *-service-account.json
 pau-dallochio-*.json
+
+# e2e (Playwright)
+/test-results
+/playwright-report

@@ -6,4 +6,6 @@ environments:
   testing: { url: https://pau-dallochio-testing.bapps.com.ar, host: vps, health: /version.json, workflow: deploy-testing.yml }
   prod: { url: https://pauladallochio.com.ar, host: vps, health: /version.json, workflow: deploy-prod.yml }
 domains: [pauladallochio.com.ar]
-checks: { security: weekly }
+checks: { security: weekly, e2e: weekly, ai_verify: weekly }
+# Un test de e2e/flujos.spec.ts por flujo (el título del test es el flujo).
+critical_flows: ["home → catálogo → ficha", "home → cómo trabajamos → contacto"]
