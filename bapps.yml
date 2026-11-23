@@ -9,3 +9,5 @@ domains: [pauladallochio.com.ar]
 checks: { security: weekly, e2e: weekly, ai_verify: weekly }
 # Un test de e2e/flujos.spec.ts por flujo (el título del test es el flujo).
 critical_flows: ["home → catálogo → ficha", "home → cómo trabajamos → contacto"]
+# Revisión mensual con IA (bapps-console, Fase 5).
+review: { enabled: true }
