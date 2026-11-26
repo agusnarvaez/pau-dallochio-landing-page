@@ -1,5 +1,6 @@
 version: 1
 id: pau-dallochio
+client: Pau Dallochio
 kind: site
 stack: [angular@22]
 environments:
